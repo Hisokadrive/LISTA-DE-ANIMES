@@ -14,7 +14,7 @@
     }
 
     header {
-      padding: 30px 10px;
+      padding: 20px 10px;
       background: #1e1e1e;
       box-shadow: 0 2px 5px rgba(0,0,0,0.5);
     }
@@ -26,6 +26,8 @@
 
     p {
       color: #ccc;
+      margin-top: 0;
+      margin-bottom: 15px;
     }
 
     /* Carrossel */
@@ -45,13 +47,12 @@
     }
 
     .carousel img {
-      width: 1000px;
-      height: 260px;
+      width: 100%;
+      aspect-ratio: 16 / 9; /* Mantém proporção 16:9 */
       object-fit: cover;
       flex-shrink: 0;
     }
 
-    /* Botões do carrossel */
     .carousel button {
       position: absolute;
       top: 50%;
@@ -64,14 +65,15 @@
       cursor: pointer;
       border-radius: 50%;
       transition: background 0.3s;
+      z-index: 2;
     }
 
     .carousel button:hover {
       background: rgba(255,165,0,0.8); /* Laranja */
     }
 
-    .prev { left: 15px; }
-    .next { right: 15px; }
+    .prev { left: 10px; }
+    .next { right: 10px; }
 
     /* Container principal */
     .anime-container {
@@ -80,20 +82,19 @@
       padding: 20px;
     }
 
-    /* Lista com colunas e rolagem */
+    /* Lista de animes com grid responsivo */
     .anime-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 20px;
       max-height: 70vh;
       overflow-y: auto;
       padding-right: 10px;
     }
 
-    /* Itens dos animes */
     .anime-item {
       background: #1e1e1e;
-      padding: 20px;
+      padding: 15px;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.4);
       transition: transform 0.2s, box-shadow 0.2s;
@@ -108,7 +109,7 @@
       text-decoration: none;
       color: #ffa500;
       font-weight: bold;
-      font-size: 1.1em;
+      font-size: 1em;
     }
 
     .anime-item a:hover {
@@ -118,7 +119,7 @@
     /* Banner inferior */
     .banner {
       width: 100%;
-      max-height: 200px;
+      aspect-ratio: 6 / 1; /* Mantém proporção longa e fina */
       object-fit: cover;
       border-radius: 10px;
       margin: 30px 0;
@@ -142,6 +143,16 @@
     ::-webkit-scrollbar-track {
       background: #2a2a2a;
     }
+
+    /* Ajustes para telas pequenas */
+    @media (max-width: 600px) {
+      .carousel img {
+        aspect-ratio: 4 / 3; /* Proporção mais vertical para celular */
+      }
+      .anime-list {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      }
+    }
   </style>
 </head>
 <body>
@@ -152,11 +163,11 @@
     <!-- Carrossel -->
     <div class="carousel">
       <div class="carousel-images" id="carouselImages">
-        <img src="https://i.postimg.cc/GH2yJ3Wh/banner1.jpg" alt="Banner 1">
-        <img src="https://i.postimg.cc/xcMSZLD6/banner2.jpg" alt="Banner 2">
-        <img src="https://i.postimg.cc/CB745Pq3/banner3.jpg" alt="Banner 3">
-        <img src="https://i.postimg.cc/ThQk3wjn/banner4.jpg" alt="Banner 4">
-        <img src="https://i.postimg.cc/LhhPj8KL/banner5.jpg" alt="Banner 5">
+        <img src="https://i.postimg.cc/ftbpC9Ds/banner1.jpg" alt="Banner 1">
+        <img src="https://i.postimg.cc/Btz9hM8b/banner2.jpg" alt="Banner 2">
+        <img src="https://i.postimg.cc/mz2fnnNG/banner3.jpg" alt="Banner 3">
+        <img src="https://i.postimg.cc/K4pF6mWZ/banner4.jpg" alt="Banner 4">
+        <img src="https://i.postimg.cc/gwymQRCt/banner5.jpg" alt="Banner 5">
       </div>
       <button class="prev" id="prevBtn">❮</button>
       <button class="next" id="nextBtn">❯</button>
@@ -188,14 +199,11 @@
   </footer>
 
   <script>
-    // Ordenar animes em ordem alfabética
+    // Ordenar animes
     const animeList = document.getElementById('animeList');
     const animes = Array.from(animeList.getElementsByClassName('anime-item'));
-    animes.sort((a, b) => {
-      const nameA = a.querySelector('a').textContent.toUpperCase();
-      const nameB = b.querySelector('a').textContent.toUpperCase();
-      return nameA.localeCompare(nameB);
-    });
+    animes.sort((a, b) => a.querySelector('a').textContent.toUpperCase()
+                          .localeCompare(b.querySelector('a').textContent.toUpperCase()));
     animeList.innerHTML = '';
     animes.forEach(item => animeList.appendChild(item));
 
@@ -214,115 +222,6 @@
     document.getElementById('prevBtn').addEventListener('click', () => showSlide(index - 1));
     document.getElementById('nextBtn').addEventListener('click', () => showSlide(index + 1));
 
-    // Troca automática a cada 4 segundos
-    setInterval(() => showSlide(index + 1), 4000);
-  </script>
-</body>
-</html>
-    .anime-item a:hover {
-      color: #1ec8ff;
-    }
-
-    /* Banner inferior */
-    .banner {
-      width: 100%;
-      max-height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin: 30px 0;
-    }
-
-    footer {
-      background: #1e1e1e;
-      padding: 20px;
-      color: #aaa;
-      margin-top: 40px;
-    }
-
-    /* Scrollbar personalizada */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #00bfff;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #2a2a2a;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>LISTA DE ANIMES</h1>
-    <p>Bem-vindo ao meu drive de animes!</p>
-
-    <!-- Carrossel -->
-    <div class="carousel">
-      <div class="carousel-images" id="carouselImages">
-        <img src="https://wallpapercave.com/wp/wp11057522.jpg" alt="Banner 1">
-        <img src="https://wallpapercave.com/wp/wp8728398.jpg" alt="Banner 2">
-        <img src="https://wallpapercave.com/wp/wp8774294.jpg" alt="Banner 3">
-        <img src="https://wallpapercave.com/wp/wp8816914.jpg" alt="Banner 4">
-        <img src="https://wallpapercave.com/wp/wp11758509.jpg" alt="Banner 5">
-      </div>
-      <button class="prev" id="prevBtn">❮</button>
-      <button class="next" id="nextBtn">❯</button>
-    </div>
-  </header>
-
-  <div class="anime-container">
-    <div class="anime-list" id="animeList">
-      <div class="anime-item"><a href="#" target="_blank">Naruto</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/drive/folders/17xefCnNIuWVp2Jh2F7wJHNeL7bj7TNMN?usp=drive_link" target="_blank">Bleach</a></div>
-      <div class="anime-item"><a href="#" target="_blank">One Piece</a></div>
-      <div class="anime-item"><a href="#" target="_blank">Attack on Titan</a></div>
-      <div class="anime-item"><a href="#" target="_blank">Jujutsu Kaisen</a></div>
-      <div class="anime-item"><a href="#" target="_blank">Demon Slayer</a></div>
-      <div class="anime-item"><a href="#" target="_blank">Chainsaw Man</a></div>
-      <div class="anime-item"><a href="#" target="_blank">Tokyo Ghoul</a></div>
-      <div class="anime-item"><a href="#" target="_blank">Hunter x Hunter</a></div>
-      <div class="anime-item"><a href="#" target="_blank">Death Note</a></div>
-      <div class="anime-item"><a href="#" target="_blank">Fullmetal Alchemist</a></div>
-    </div>
-  </div>
-
-  <!-- Banner inferior -->
-  <img src="https://wallpapercave.com/wp/wp8970415.jpg" alt="Banner Inferior" class="banner">
-
-  <footer>
-    <p>Este é o meu primeiro site hospedado no GitHub Pages</p>
-    <p>© 2025 Drive de Animes</p>
-  </footer>
-
-  <script>
-    // Ordenar animes em ordem alfabética
-    const animeList = document.getElementById('animeList');
-    const animes = Array.from(animeList.getElementsByClassName('anime-item'));
-    animes.sort((a, b) => {
-      const nameA = a.querySelector('a').textContent.toUpperCase();
-      const nameB = b.querySelector('a').textContent.toUpperCase();
-      return nameA.localeCompare(nameB);
-    });
-    animeList.innerHTML = '';
-    animes.forEach(item => animeList.appendChild(item));
-
-    // Carrossel
-    const carousel = document.getElementById('carouselImages');
-    const totalSlides = carousel.children.length;
-    let index = 0;
-
-    function showSlide(i) {
-      if (i < 0) index = totalSlides - 1;
-      else if (i >= totalSlides) index = 0;
-      else index = i;
-      carousel.style.transform = `translateX(${-index * 100}%)`;
-    }
-
-    document.getElementById('prevBtn').addEventListener('click', () => showSlide(index - 1));
-    document.getElementById('nextBtn').addEventListener('click', () => showSlide(index + 1));
-
-    // Troca automática a cada 4 segundos
     setInterval(() => showSlide(index + 1), 4000);
   </script>
 </body>
