@@ -48,7 +48,7 @@
 
     .carousel img {
       width: 100%;
-      aspect-ratio: 16 / 9; /* Mantém proporção 16:9 */
+      height: auto; /* Mantém proporção original como banner inferior */
       object-fit: cover;
       flex-shrink: 0;
     }
@@ -85,7 +85,7 @@
     /* Lista de animes com grid responsivo */
     .anime-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(4, 1fr); /* Desktop: 4 colunas */
       gap: 20px;
       max-height: 70vh;
       overflow-y: auto;
@@ -119,7 +119,7 @@
     /* Banner inferior */
     .banner {
       width: 100%;
-      aspect-ratio: 6 / 1; /* Mantém proporção longa e fina */
+      height: auto;
       object-fit: cover;
       border-radius: 10px;
       margin: 30px 0;
@@ -145,12 +145,9 @@
     }
 
     /* Ajustes para telas pequenas */
-    @media (max-width: 600px) {
-      .carousel img {
-        aspect-ratio: 4 / 3; /* Proporção mais vertical para celular */
-      }
+    @media (max-width: 900px) {
       .anime-list {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        grid-template-columns: repeat(2, 1fr); /* Celular / Telegram: 2 colunas */
       }
     }
   </style>
