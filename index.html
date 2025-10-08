@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Meu site no GitHub Pages</title>
+  <title>Drive de Animes</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -10,10 +10,63 @@
       background: #f0f0f0;
       padding: 50px;
     }
+
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #666;
+      margin-bottom: 40px;
+    }
+
+    .anime-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .anime-item {
+      background: #fff;
+      padding: 15px 25px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 300px;
+      transition: transform 0.2s;
+    }
+
+    .anime-item:hover {
+      transform: scale(1.05);
+    }
+
+    .anime-item a {
+      text-decoration: none;
+      color: #0077cc;
+      font-weight: bold;
+    }
+
+    .anime-item a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-  <h1>Olá, mundo!</h1>
-  <p>Este é o meu primeiro site hospedado no GitHub Pages </p>
+  <h1>LISTA DE ANIMES</h1>
+  <p>Este é o meu primeiro site hospedado no GitHub Pages</p>
+
+  <div class="anime-list">
+    <div class="anime-item">
+      <a href="https://link-do-anime1.com" target="_blank">Anime 1</a>
+    </div>
+    <div class="anime-item">
+      <a href="https://link-do-anime2.com" target="_blank">Anime 2</a>
+    </div>
+    <div class="anime-item">
+      <a href="https://link-do-anime3.com" target="_blank">Anime 3</a>
+    </div>
+    <!-- Adicione mais animes aqui -->
+  </div>
 </body>
 </html>
