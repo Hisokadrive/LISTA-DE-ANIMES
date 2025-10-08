@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Adicionado para corrigir visualização mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Garante compatibilidade mobile -->
   <title>Drive de Animes</title>
   <style>
     body {
@@ -40,20 +40,21 @@
       overflow: hidden;
       border-radius: 10px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.6);
-      height: 200px; /* Altura fixa para melhor controle em mobile */
+      aspect-ratio: 16 / 5; /* Proporção fixa para consistência */
     }
 
     .carousel-images {
       display: flex;
       transition: transform 0.5s ease-in-out;
+      height: 100%; /* Garante que as imagens preencham a altura */
     }
 
     .carousel img {
       width: 100%;
-      height: 100%; /* Ajustado para preencher a altura */
+      height: 100%;
       object-fit: cover;
       flex-shrink: 0;
-      image-rendering: auto; /* Melhora renderização em escalas */
+      image-rendering: auto; /* Melhora renderização */
     }
 
     .carousel button {
@@ -148,12 +149,12 @@
     }
 
     /* Ajustes para telas pequenas */
-    @media (max-width: 768px) { /* Ajustado para breakpoint mais padrão */
+    @media (max-width: 768px) {
       .anime-list {
         grid-template-columns: repeat(2, 1fr); /* Celular: 2 colunas */
       }
       .carousel {
-        height: 150px; /* Menor em mobile para economia de espaço */
+        aspect-ratio: 16 / 3; /* Proporção menor em mobile */
       }
     }
   </style>
@@ -167,10 +168,10 @@
     <div class="carousel">
       <div class="carousel-images" id="carouselImages">
         <img src="https://i.postimg.cc/CKX5Zsm0/1-pg.jpg" alt="Banner de Spy x Family" loading="lazy">
-        <img src="https://i.postimg.cc/Btz9hM8b/banner2.jpg" alt="Banner de anime com explosões" loading="lazy">
-        <img src="https://i.postimg.cc/mz2fnnNG/banner3.jpg" alt="Banner com lua vermelha" loading="lazy">
-        <img src="https://i.postimg.cc/K4pF6mWZ/banner4.jpg" alt="Banner romântico de anime" loading="lazy">
-        <img src="https://i.postimg.cc/gwymQRCt/banner5.jpg" alt="Banner de Goblin Slayer" loading="lazy">
+        <img src="https://i.postimg.cc/ZK4RyRFy/7.jpg" alt="Banner de anime com explosões" loading="lazy">
+        <img src="https://i.postimg.cc/63CW8J8T/3.jpg" alt="Banner com lua vermelha" loading="lazy">
+        <img src="https://i.postimg.cc/WbNN1yTG/10.jpg" alt="Banner romântico de anime" loading="lazy">
+        <img src="https://i.postimg.cc/SsL4y6Pn/2.png" alt="Banner de Goblin Slayer" loading="lazy">
       </div>
       <button class="prev" id="prevBtn" aria-label="Imagem anterior">❮</button>
       <button class="next" id="nextBtn" aria-label="Próxima imagem">❯</button>
@@ -179,22 +180,22 @@
 
   <div class="anime-container">
     <div class="anime-list" id="animeList">
-      <div class="anime-item"><a href="#" target="_blank">Naruto</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/drive/folders/17xefCnNIuWVp2Jh2F7wJHNeL7bj7TNMN?usp=drive_link" target="_blank">Bleach</a></div>
-      <div class="anime-item"><a href="#" target="_blank">One Piece</a></div>
       <div class="anime-item"><a href="#" target="_blank">Attack on Titan</a></div>
-      <div class="anime-item"><a href="#" target="_blank">Jujutsu Kaisen</a></div>
-      <div class="anime-item"><a href="#" target="_blank">Demon Slayer</a></div>
+      <div class="anime-item"><a href="https://drive.google.com/drive/folders/17xefCnNIuWVp2Jh2F7wJHNeL7bj7TNMN?usp=drive_link" target="_blank">Bleach</a></div>
       <div class="anime-item"><a href="#" target="_blank">Chainsaw Man</a></div>
-      <div class="anime-item"><a href="#" target="_blank">Tokyo Ghoul</a></div>
-      <div class="anime-item"><a href="#" target="_blank">Hunter x Hunter</a></div>
-      <div class="anime-item"><a href="#" target="_blank">Death Note</a></div>
+      <div class="anime-ihttps://i.postimg.cc/ZK4RyRFy/7.jpgtem"><a href="#" target="_blank">Death Note</a></div>
+      <div class="anime-item"><a href="#" target="_blank">Demon Slayer</a></div>
       <div class="anime-item"><a href="#" target="_blank">Fullmetal Alchemist</a></div>
+      <div class="anime-item"><a href="#" target="_blank">Hunter x Hunter</a></div>
+      <div class="anime-item"><a href="#" target="_blank">Jujutsu Kaisen</a></div>
+      <div class="anime-item"><a href="#" target="_blank">Naruto</a></div>
+      <div class="anime-item"><a href="#" target="_blank">One Piece</a></div>
+      <div class="anime-item"><a href="#" target="_blank">Tokyo Ghoul</a></div>
     </div>
   </div>
 
   <!-- Banner inferior -->
-  <img src="https://i.postimg.cc/CKX5Zsm0/1-pg.jpg" alt="Banner Inferior de mandala" class="banner" loading="lazy">
+  <img src="https://i.postimg.cc/T1MNkBY3/e9d27a8c9b3faade4dbf4a0ec2a57d1d.jpg" alt="Banner Inferior de mandala" class="banner" loading="lazy">
 
   <footer>
     <p>Este é o meu primeiro site hospedado no GitHub Pages</p>
@@ -211,7 +212,7 @@
     animes.forEach(item => animeList.appendChild(item));
 
     // Carrossel
-    const carouselContainer = document.querySelector('.carousel'); // Adicionado para hover
+    const carouselContainer = document.querySelector('.carousel');
     const carousel = document.getElementById('carouselImages');
     const totalSlides = carousel.children.length;
     let index = 0;
@@ -227,11 +228,9 @@
     document.getElementById('prevBtn').addEventListener('click', () => showSlide(index - 1));
     document.getElementById('nextBtn').addEventListener('click', () => showSlide(index + 1));
 
-    // Pausar no hover
+    // Pausar no hover e navegação por teclado
     carouselContainer.addEventListener('mouseover', () => clearInterval(autoSlide));
     carouselContainer.addEventListener('mouseout', () => autoSlide = setInterval(() => showSlide(index + 1), 4000));
-
-    // Navegação por teclado
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft') showSlide(index - 1);
       if (e.key === 'ArrowRight') showSlide(index + 1);
