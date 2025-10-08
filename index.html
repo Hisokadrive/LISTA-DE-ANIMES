@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Adicionado para corrigir visualização mobile -->
   <title>Drive de Animes</title>
   <style>
     body {
@@ -39,6 +40,7 @@
       overflow: hidden;
       border-radius: 10px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+      height: 200px; /* Altura fixa para melhor controle em mobile */
     }
 
     .carousel-images {
@@ -48,9 +50,10 @@
 
     .carousel img {
       width: 100%;
-      height: auto; /* Mantém proporção original como banner inferior */
+      height: 100%; /* Ajustado para preencher a altura */
       object-fit: cover;
       flex-shrink: 0;
+      image-rendering: auto; /* Melhora renderização em escalas */
     }
 
     .carousel button {
@@ -119,7 +122,7 @@
     /* Banner inferior */
     .banner {
       width: 100%;
-      height: auto;
+      max-height: 300px; /* Limitado para não ficar grande */
       object-fit: cover;
       border-radius: 10px;
       margin: 30px 0;
@@ -145,9 +148,12 @@
     }
 
     /* Ajustes para telas pequenas */
-    @media (max-width: 900px) {
+    @media (max-width: 768px) { /* Ajustado para breakpoint mais padrão */
       .anime-list {
-        grid-template-columns: repeat(2, 1fr); /* Celular / Telegram: 2 colunas */
+        grid-template-columns: repeat(2, 1fr); /* Celular: 2 colunas */
+      }
+      .carousel {
+        height: 150px; /* Menor em mobile para economia de espaço */
       }
     }
   </style>
@@ -160,14 +166,14 @@
     <!-- Carrossel -->
     <div class="carousel">
       <div class="carousel-images" id="carouselImages">
-        <img src="https://i.postimg.cc/ftbpC9Ds/banner1.jpg" alt="Banner 1">
-        <img src="https://i.postimg.cc/Btz9hM8b/banner2.jpg" alt="Banner 2">
-        <img src="https://i.postimg.cc/mz2fnnNG/banner3.jpg" alt="Banner 3">
-        <img src="https://i.postimg.cc/K4pF6mWZ/banner4.jpg" alt="Banner 4">
-        <img src="https://i.postimg.cc/gwymQRCt/banner5.jpg" alt="Banner 5">
+        <img src="https://i.postimg.cc/ftbpC9Ds/banner1.jpg" alt="Banner de Spy x Family" loading="lazy">
+        <img src="https://i.postimg.cc/Btz9hM8b/banner2.jpg" alt="Banner de anime com explosões" loading="lazy">
+        <img src="https://i.postimg.cc/mz2fnnNG/banner3.jpg" alt="Banner com lua vermelha" loading="lazy">
+        <img src="https://i.postimg.cc/K4pF6mWZ/banner4.jpg" alt="Banner romântico de anime" loading="lazy">
+        <img src="https://i.postimg.cc/gwymQRCt/banner5.jpg" alt="Banner de Goblin Slayer" loading="lazy">
       </div>
-      <button class="prev" id="prevBtn">❮</button>
-      <button class="next" id="nextBtn">❯</button>
+      <button class="prev" id="prevBtn" aria-label="Imagem anterior">❮</button>
+      <button class="next" id="nextBtn" aria-label="Próxima imagem">❯</button>
     </div>
   </header>
 
@@ -188,7 +194,7 @@
   </div>
 
   <!-- Banner inferior -->
-  <img src="https://wallpapercave.com/wp/wp8970415.jpg" alt="Banner Inferior" class="banner">
+  <img src="https://wallpapercave.com/wp/wp8970415.jpg" alt="Banner Inferior de mandala" class="banner" loading="lazy">
 
   <footer>
     <p>Este é o meu primeiro site hospedado no GitHub Pages</p>
@@ -205,9 +211,11 @@
     animes.forEach(item => animeList.appendChild(item));
 
     // Carrossel
+    const carouselContainer = document.querySelector('.carousel'); // Adicionado para hover
     const carousel = document.getElementById('carouselImages');
     const totalSlides = carousel.children.length;
     let index = 0;
+    let autoSlide = setInterval(() => showSlide(index + 1), 4000);
 
     function showSlide(i) {
       if (i < 0) index = totalSlides - 1;
@@ -219,7 +227,15 @@
     document.getElementById('prevBtn').addEventListener('click', () => showSlide(index - 1));
     document.getElementById('nextBtn').addEventListener('click', () => showSlide(index + 1));
 
-    setInterval(() => showSlide(index + 1), 4000);
+    // Pausar no hover
+    carouselContainer.addEventListener('mouseover', () => clearInterval(autoSlide));
+    carouselContainer.addEventListener('mouseout', () => autoSlide = setInterval(() => showSlide(index + 1), 4000));
+
+    // Navegação por teclado
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') showSlide(index - 1);
+      if (e.key === 'ArrowRight') showSlide(index + 1);
+    });
   </script>
 </body>
 </html>
