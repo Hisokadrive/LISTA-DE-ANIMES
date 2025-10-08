@@ -7,76 +7,138 @@
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      background: #f0f0f0;
-      padding: 50px;
+      background: #121212;
+      color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      padding: 30px 10px;
+      background: #1e1e1e;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
     }
 
     h1 {
-      color: #333;
+      color: #00bfff;
       margin-bottom: 10px;
     }
 
     p {
-      color: #666;
-      margin-bottom: 40px;
+      color: #ccc;
     }
 
+    /* Banner superior e inferior */
+    .banner {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    /* Container da lista */
+    .anime-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Lista com rolagem */
     .anime-list {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-height: 70vh;
+      overflow-y: auto;
+      padding-right: 10px;
     }
 
+    /* Estilo de cada anime */
     .anime-item {
-      background: #fff;
-      padding: 15px 25px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      width: 300px;
-      transition: transform 0.2s;
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .anime-item:hover {
-      transform: scale(1.05);
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
     }
 
     .anime-item a {
       text-decoration: none;
-      color: #0077cc;
+      color: #00bfff;
       font-weight: bold;
+      font-size: 1.1em;
     }
 
     .anime-item a:hover {
-      text-decoration: underline;
+      color: #1ec8ff;
+    }
+
+    footer {
+      background: #1e1e1e;
+      padding: 20px;
+      color: #aaa;
+      margin-top: 40px;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #00bfff;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #2a2a2a;
     }
   </style>
 </head>
 <body>
-  <h1>LISTA DE ANIMES</h1>
+  <header>
+    <h1>LISTA DE ANIMES</h1>
+    <p>Bem-vindo ao meu drive de animes!</p>
+    <!-- Banner superior -->
+    <img src="https://wallpapercave.com/wp/wp11057522.jpg" alt="Banner de Anime" class="banner">
+  </header>
 
-
-  <div class="anime-list" id="animeList">
-    <div class="anime-item"><a href="#" target="_blank">Naruto</a></div>
-    <div class="anime-item"><a href="https://drive.google.com/drive/folders/17xefCnNIuWVp2Jh2F7wJHNeL7bj7TNMN?usp=drive_link" target="_blank">Bleach</a></div>
-    <div class="anime-item"><a href="#" target="_blank">One Piece</a></div>
-      <p>Este é o meu primeiro site hospedado no GitHub Pages</p>
+  <div class="anime-container">
+    <div class="anime-list" id="animeList">
+      <div class="anime-item"><a href="#" target="_blank">Naruto</a></div>
+      <div class="anime-item"><a href="https://drive.google.com/drive/folders/17xefCnNIuWVp2Jh2F7wJHNeL7bj7TNMN?usp=drive_link" target="_blank">Bleach</a></div>
+      <div class="anime-item"><a href="#" target="_blank">One Piece</a></div>
+      <div class="anime-item"><a href="#" target="_blank">Attack on Titan</a></div>
+      <div class="anime-item"><a href="#" target="_blank">Jujutsu Kaisen</a></div>
+      <div class="anime-item"><a href="#" target="_blank">Demon Slayer</a></div>
+      <div class="anime-item"><a href="#" target="_blank">Chainsaw Man</a></div>
+      <div class="anime-item"><a href="#" target="_blank">Tokyo Ghoul</a></div>
+      <div class="anime-item"><a href="#" target="_blank">Hunter x Hunter</a></div>
+      <div class="anime-item"><a href="#" target="_blank">Death Note</a></div>
+      <div class="anime-item"><a href="#" target="_blank">Fullmetal Alchemist</a></div>
+    </div>
   </div>
-    <script src='//libtl.com/sdk.js' data-zone='10011677' data-sdk='show_10011677'></script>
-<script src='//libtl.com/sdk.js' data-zone='10011677' data-sdk='show_10011677'></script>
+
+  <!-- Banner inferior -->
+  <img src="https://wallpapercave.com/wp/wp8728398.jpg" alt="Banner Inferior" class="banner">
+
+  <footer>
+    <p>Este é o meu primeiro site hospedado no GitHub Pages</p>
+    <p>© 2025 Drive de Animes</p>
+  </footer>
+
   <script>
-    // Pega a lista de animes
+    // Ordenar animes em ordem alfabética
     const animeList = document.getElementById('animeList');
     const animes = Array.from(animeList.getElementsByClassName('anime-item'));
-
-    // Ordena em ordem alfabética pelo texto do link
     animes.sort((a, b) => {
       const nameA = a.querySelector('a').textContent.toUpperCase();
       const nameB = b.querySelector('a').textContent.toUpperCase();
       return nameA.localeCompare(nameB);
     });
-
-    // Limpa a lista e adiciona os itens ordenados
     animeList.innerHTML = '';
     animes.forEach(item => animeList.appendChild(item));
   </script>
