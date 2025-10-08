@@ -56,17 +56,27 @@
   <h1>LISTA DE ANIMES</h1>
   <p>Este é o meu primeiro site hospedado no GitHub Pages</p>
 
-  <div class="anime-list">
-    <div class="anime-item">
-      <a href="https://link-do-anime1.com" target="_blank">Anime 1</a>
-    </div>
-    <div class="anime-item">
-      <a href="https://link-do-anime2.com" target="_blank">Anime 2</a>
-    </div>
-    <div class="anime-item">
-      <a href="https://link-do-anime3.com" target="_blank">Anime 3</a>
-    </div>
-    <!-- Adicione mais animes aqui -->
+  <div class="anime-list" id="animeList">
+    <div class="anime-item"><a href="#" target="_blank">Naruto</a></div>
+    <div class="anime-item"><a href="https://drive.google.com/drive/folders/17xefCnNIuWVp2Jh2F7wJHNeL7bj7TNMN?usp=drive_link" target="_blank">Bleach</a></div>
+    <div class="anime-item"><a href="#" target="_blank">One Piece</a></div>
   </div>
+
+  <script>
+    // Pega a lista de animes
+    const animeList = document.getElementById('animeList');
+    const animes = Array.from(animeList.getElementsByClassName('anime-item'));
+
+    // Ordena em ordem alfabética pelo texto do link
+    animes.sort((a, b) => {
+      const nameA = a.querySelector('a').textContent.toUpperCase();
+      const nameB = b.querySelector('a').textContent.toUpperCase();
+      return nameA.localeCompare(nameB);
+    });
+
+    // Limpa a lista e adiciona os itens ordenados
+    animeList.innerHTML = '';
+    animes.forEach(item => animeList.appendChild(item));
+  </script>
 </body>
 </html>
