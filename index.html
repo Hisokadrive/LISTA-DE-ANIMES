@@ -161,6 +161,14 @@
   </style>
 </head>
 <body>
+    <div id="ad-container" style="width: 100%; height: 100px; margin: 10px 0;"></div>
+  <button onclick="showAd()">Mostrar Anúncio</button>
+
+  <!-- Telegram WebApp SDK -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <!-- Libtl SDK -->
+  <script src='//libtl.com/sdk.js' data-zone='10011677' data-sdk='show_10011677'></script>
+  <script src="main.js"></script>
   <header>
     <h1>LISTA DE ANIMES</h1>
     <p>Bem-vindo ao meu drive de animes!</p>
@@ -274,7 +282,45 @@
     <p>© 2025 Drive de Animes</p>
   </footer>
 // Rewarded Popup
+<Script>
 
+// Inicialize Telegram WebApp
+const tg = window.Telegram.WebApp;
+tg.ready();
+tg.expand(); // Expande para tela cheia
+
+// Função para mostrar o anúncio
+function showAd() {
+  return new Promise((resolve, reject) => {
+    if (typeof window.show_10011677 === 'function') {
+      try {
+        window.show_10011677().then(() => {
+          resolve(); // Anúncio exibido/assistido
+        }).catch((error) => {
+          reject(error); // Falha ou skip
+        });
+      } catch (error) {
+        reject(error);
+      }
+    } else {
+      reject(new Error('Libtl SDK not loaded or show_10011677 not defined'));
+    }
+  });
+}
+
+// Chame a função (ex: ao clicar no botão)
+window.showAd = showAd; // Torna global para o botão HTML
+showAd()
+  .then(() => {
+    console.log('User watched the ad');
+    tg.HapticFeedback.notificationOccurred('success'); // Feedback tátil
+    // Exemplo: Dê uma recompensa
+    // updateUserCoins(10); // Função fictícia
+  })
+  .catch((error) => {
+    console.log('Ad failed or was skipped:', error);
+    tg.HapticFeedback.notificationOccurred('error');
+  });<script\>
 <script>
 // Função para exibir anúncio recompensado
 function mostrarAnuncio(callback) {
