@@ -275,6 +275,29 @@
   </footer>
 // Rewarded Popup
 
+<script>
+// Função para exibir anúncio recompensado
+function mostrarAnuncio(callback) {
+  // Tenta mostrar o Rewarded Interstitial
+  show_10011677().then(() => {
+    callback(); // usuário assistiu
+  }).catch(() => {
+    // Se der erro, tenta o Rewarded Popup
+    show_10011677('pop').then(() => {
+      callback(); // usuário assistiu
+    }).catch(() => {
+      alert('O anúncio não pôde ser exibido. Tente novamente mais tarde.');
+    });
+  });
+}
+
+// Função para liberar o link após o anúncio
+function liberarLinkAnime(linkId) {
+  mostrarAnuncio(() => {
+    document.getElementById(linkId).style.display = 'block';
+  });
+}
+</script>
 
   <script>
     // Ordenar animes
