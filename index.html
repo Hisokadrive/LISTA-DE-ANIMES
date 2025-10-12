@@ -2,8 +2,8 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Garante compatibilidade mobile -->
-  <script src='//libtl.com/sdk.js' data-zone='10011677' data-sdk='show_10011677'></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src='//libtl.com/sdk.js' data-zone='10011677' data-sdk='show_10011677' async></script>
   <title>Drive de Animes</title>
   <style>
     body {
@@ -22,17 +22,16 @@
     }
 
     h1 {
-      color: #ffa500; /* Laranja */
+      color: #ffa500;
       margin-bottom: 10px;
     }
 
     p {
-      color: #ccc;
+      color: #ddd;
       margin-top: 0;
       margin-bottom: 15px;
     }
 
-    /* Carrossel */
     .carousel {
       position: relative;
       width: 100%;
@@ -41,13 +40,13 @@
       overflow: hidden;
       border-radius: 10px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.6);
-      aspect-ratio: 16 / 5; /* Proporção fixa para consistência */
+      aspect-ratio: 16 / 5;
     }
 
     .carousel-images {
       display: flex;
       transition: transform 0.5s ease-in-out;
-      height: 100%; /* Garante que as imagens preencham a altura */
+      height: 100%;
     }
 
     .carousel img {
@@ -55,7 +54,7 @@
       height: 100%;
       object-fit: cover;
       flex-shrink: 0;
-      image-rendering: auto; /* Melhora renderização */
+      image-rendering: auto;
     }
 
     .carousel button {
@@ -74,23 +73,60 @@
     }
 
     .carousel button:hover {
-      background: rgba(255,165,0,0.8); /* Laranja */
+      background: rgba(255,165,0,0.8);
     }
 
     .prev { left: 10px; }
     .next { right: 10px; }
 
-    /* Container principal */
+    .carousel-indicators {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 2;
+    }
+
+    .carousel-indicators span {
+      width: 10px;
+      height: 10px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0.5;
+      cursor: pointer;
+    }
+
+    .carousel-indicators span.active {
+      background: #ffa500;
+      opacity: 1;
+    }
+
     .anime-container {
       max-width: 1000px;
       margin: 0 auto;
       padding: 20px;
     }
 
-    /* Lista de animes com grid responsivo */
+    .search-bar {
+      margin-bottom: 20px;
+    }
+
+    .search-bar input {
+      padding: 10px;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 5px;
+      border: none;
+      background: #1e1e1e;
+      color: #fff;
+      font-size: 16px;
+    }
+
     .anime-list {
       display: grid;
-      grid-template-columns: repeat(4, 1fr); /* Desktop: 4 colunas */
+      grid-template-columns: repeat(4, 1fr);
       gap: 20px;
       max-height: 70vh;
       overflow-y: auto;
@@ -107,7 +143,7 @@
 
     .anime-item:hover {
       transform: translateY(-5px);
-      box-shadow: 0 4px 12px rgba(255,165,0,0.4); /* Laranja */
+      box-shadow: 0 4px 12px rgba(255,165,0,0.4);
     }
 
     .anime-item a {
@@ -121,10 +157,15 @@
       color: #ffb733;
     }
 
-    /* Banner inferior */
+    .anime-item p {
+      color: #ddd;
+      font-size: 0.9em;
+      margin-top: 5px;
+    }
+
     .banner {
       width: 100%;
-      max-height: 300px; /* Limitado para não ficar grande */
+      max-height: 300px;
       object-fit: cover;
       border-radius: 10px;
       margin: 30px 0;
@@ -137,43 +178,34 @@
       margin-top: 40px;
     }
 
-    /* Scrollbar personalizada */
     ::-webkit-scrollbar {
       width: 8px;
     }
     ::-webkit-scrollbar-thumb {
-      background: #ffa500; /* Laranja */
+      background: #ffa500;
       border-radius: 4px;
     }
     ::-webkit-scrollbar-track {
       background: #2a2a2a;
     }
 
-    /* Ajustes para telas pequenas */
     @media (max-width: 768px) {
       .anime-list {
-        grid-template-columns: repeat(2, 1fr); /* Celular: 2 colunas */
+        grid-template-columns: repeat(2, 1fr);
       }
       .carousel {
-        aspect-ratio: 16 / 3; /* Proporção menor em mobile */
+        aspect-ratio: 16 / 3;
       }
     }
   </style>
 </head>
 <body>
-    <div id="ad-container" style="width: 100%; height: 100px; margin: 10px 0;"></div>
-  <button onclick="showAd()">Mostrar Anúncio</button>
+  <div id="ad-container" style="width: 100%; height: 100px; margin: 10px 0;"></div>
 
-  <!-- Telegram WebApp SDK -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <!-- Libtl SDK -->
-  <script src='//libtl.com/sdk.js' data-zone='10011677' data-sdk='show_10011677'></script>
-  <script src="main.js"></script>
   <header>
     <h1>LISTA DE ANIMES</h1>
-    <p>Bem-vindo ao meu drive de animes!</p>
-
-    <!-- Carrossel -->
+    <p>Bem-vindo ao meu drive de animes! Desative bloqueadores de anúncios para acessar os links.</p>
     <div class="carousel">
       <div class="carousel-images" id="carouselImages">
         <img src="https://i.postimg.cc/CKX5Zsm0/1-pg.jpg" alt="Banner de Spy x Family" loading="lazy">
@@ -184,200 +216,242 @@
       </div>
       <button class="prev" id="prevBtn" aria-label="Imagem anterior">❮</button>
       <button class="next" id="nextBtn" aria-label="Próxima imagem">❯</button>
+      <div class="carousel-indicators" id="carouselIndicators"></div>
     </div>
   </header>
 
   <div class="anime-container">
-    <div class="anime-list" id="animeList">
-      <div class="anime-item"><a href="#" target="_blank">Attack on Titan</a></div>
-        <div class="anime-item"><a href="https://drive.google.com/drive/folders/1ysE7kcOpQYC_LKNCR66axZkmLKGQqjkm?usp=drive_link" target="_blank">Os Cavaleiros do Zodíaco Compilação (Dublado e Legendado)</a></div>
-          <div class="anime-item"><a href="https://drive.google.com/drive/folders/1foGOqy0aiNF1XmYcQqMi5atTc8PYOx9n" target="_blank">Shoujo Kageki Revue Starlight (Legendado)</a></div>
-            <div class="anime-item"><a href="https://drive.google.com/drive/u/1/folders/1rq0bBxch2Qjx7ralxDTTQlHoA7iHcIaQ" target="_blank">Dororo Compilação (1969-2019) (Legendado)</a></div>
-              <div class="anime-item"><a href="https://drive.google.com/drive/folders/10rcO0psKZI4ePzYwqecnMYtd0rmAVf2r" target="_blank">Mononoke the Movie: The Phantom in the Rain - O Filme: O Fantasma na Chuva (2024) (Legendado)</a></div>
-                <div class="anime-item"><a href="https://drive.google.com/file/d/1sN4Wszhz9EjwmTfnJgeXz-bBtF_A03fY/view?usp=drive_link/" target="_blank">Gurren Lagann The Movie: Childhood's End (Legendado)</a></div>
-       <div class="anime-item"><a href="https://drive.google.com/file/d/13kjsQxEeNSZh2Pu19pIz3fIOnUth4oP6/view" target="_blank">Tengen Toppa Gurren Lagann Movie 2: Lagann-hen (Legendado)</a></div>
-        <div class="anime-item"><a href="https://drive.google.com/file/d/1-Sr_DzRixhGzjkBkr_L98--fPs-SrvXm/view" target="_blank">Naruto Shippuden o Filme 3: A Vontade do Fogo (Dublado)</a></div>
-         <div class="anime-item"><a href="https://drive.google.com/file/d/1-WTzt37FxoKoHF990SdIkwzdXVCuMaL6/view" target="_blank">Naruto Shippuden o Filme 4: A Torre Perdida (Dublado)</a></div>
-          <div class="anime-item"><a href="https://drive.google.com/file/d/1-XSz4hvQcAHOnHyzxCgsif8Aq-dSK8RN/view" target="_blank">Naruto Shippuden o Filme 5: Prisão de Sangue (Dublado)</a></div>
-           <div class="anime-item"><a href="https://drive.google.com/file/d/1-YOvScnSetyXrSAsMrVrG7CzecJD2Q2t/view" target="_blank">Naruto Shippuden o Filme 6: Estrada para Ninja (Dublado)</a></div>
-            <div class="anime-item"><a href="https://drive.google.com/file/d/1-DOAEfGPlGsIhbYcngiO3GVZNwT-64zR/view" target="_blank">Naruto Shippuden o Filme 7: O Último (Dublado)</a></div>
-             <div class="anime-item"><a href="https://drive.google.com/drive/u/0/mobile/folders/173WjMeA6gSs4l0Pn473b1BvARNM5XVy_/18faNGhb1636SGqGUBu7LaxSiw65gjFLZ/17BlOW2ed9h45wlYWmRHbb-8dE1dlCFFM?sort=13&direction=a" target="_blank">Blue Lock (Legendado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/drive/u/0/folders/199EZVJLL0M4eeq9Oxidc8ZKmCfTQI2v-?sort=13&direction=a" target="_blank">Blue Lock (Dublado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/drive/folders/1LgKpWQvUgwPy-2bVku438TY0vmE7tD3a" target="_blank">Blood-C (Legendado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/drive/folders/1FMFV6Esw1bQtGi4G-VT2IjwyhhoFZLwB" target="_blank">Blood-C: O filme (2012) (Legendado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/drive/folders/1T8ZCBquE_jbgquYO_JwfZKdhba8K1F_I" target="_blank">Neon Genesis Evangelion 1995 Compilação (Dublado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/drive/folders/1h44Mmc2jJ7mPSjE_ztjobktjtW1xGrg5" target="_blank">Aku no Hana (Legendado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/drive/u/0/folders/1S22cwAeE-kkXu4bfDclpVCc--AbeWp5Y" target="_blank">Toradora (Legendado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/drive/u/0/mobile/folders/1S22cwAeE-kkXu4bfDclpVCc--AbeWp5Y" target="_blank">Attack on Titan</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/drive/u/0/folders/1-CYImZGZ_hCjWwmdrG_CkY27GSR2piFF" target="_blank">SK8 the Infinity (Legendado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/drive/u/0/folders/1gqn24ZWZQj4kZbkw-zQ2uN2SGloSEePF" target="_blank">Shin Nakama (Legendado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/drive/u/0/folders/1TIPo368XZUBJvU2wzJW9Wi8_u3SU30Sv" target="_blank"> Tsukihime (Dublado)</a></div>
-        <div class="anime-item"><a href="https://drive.google.com/drive/u/0/folders/16W7rFMDCHrET7HK-X-M7GFiYIGGzmnAK" target="_blank">Tomo chan is a Girl! (Dublado e Legendado)</a></div>
-          <div class="anime-item"><a href="https://drive.google.com/drive/folders/1ms56ikK8em7RgmE3PpwXk59C-FGQwfVC" target="_blank">Vinland Saga Season 2 (Dublado)</a></div>
-            <div class="anime-item"><a href="https://drive.google.com/drive/folders/1G5BzNK4b2ZuYJB5z3J0nnUv2NtqTxxKK" target="_blank">Isekai Shikkaku (Legendado)</a></div>
-              <div class="anime-item"><a href="https://drive.google.com/file/d/1EAw6rOlVGHa7vSpXcMGxiLsvMQZ9NtQ2/view?usp=drivesdk" target="_blank">Túmulo dos Vagalumes (Legendado)</a></div>
-                <div class="anime-item"><a href="https://drive.google.com/file/d/1y3S7maaOKVlhnX6W4ffBYpjsgKtYnhk2/view?usp=drivesdk" target="_blank">Túmulo dos Vagalumes (Dublado)</a></div>
-                  <div class="anime-item"><a href="https://drive.google.com/drive/folders/1L6IdDTTX62DSQbvMoKho5IbpxouHb39Y" target="_blank">Horimiya (Dublado)</a></div>
-                    <div class="anime-item"><a href="https://drive.google.com/file/d/1jZelC3pDUbbq6A4oaavt8x2kAWmMyEwq/view?usp=drivesdk" target="_blank">The king of Pings (Legendado)</a></div>
-                      <div class="anime-item"><a href="https://drive.google.com/drive/folders/18lhQDYwBxzFsfZ8Gu7SnntonPVTlDWqu" target="_blank">Sono Bisque Doll wa Koi o Suru (Dublado)</a></div>
-                        <div class="anime-item"><a href="https://ouo.io/0zjIor6" target="_blank">Kyoukai no Kanata (Legendado)</a></div>
-                          <div class="anime-item"><a href="https://drive.google.com/drive/folders/1vZUVStiJ_rpWsYUW4dT2yXj05dQ5kg22" target="_blank">Solo Leveling Season 2: Arise from the Shadow (Legendado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/drive/folders/1wONIq4gxyOYOnbLiqaDWb_iKx_PNGenI" target="_blank">Dan Da Dan (Legendado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/file/d/1EVuhzDT9ycL8UsnH9D16K6TTzcOrmCq_/view" target="_blank">Overlord Movie 3: Sei Oukoku-hen</a></div>
-      <div class="anime-item"><a href="https://ouo.io/cC9Gsk" target="_blank">Batman Ninja vs. Yakuza League (Dublado)</a></div>
-      <div class="anime-item"><a href="https://ouo.io/PdVHzv" target="_blank">The Witcher: Sereias das Profundezas (Dublado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/file/d/1IAxxwYOAhFCELdPykhCF4kD58vu7-0Nz/view" target="_blank">The Witcher- Sirens Of The Deep (Dub Japonês) 2025</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/file/d/1y12gt2yGCl9ewmnuJ6emh_wFsBVYy1EJ/view" target="_blank">Akuyaku Reijou Tensei Ojisan (Legendado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/file/d/1PnwHTNZfXLlqoq2c4uJ_xDY1EwEI_7mF/view" target="_blank">Devil May Cry (Dublado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/file/d/1_q02tIjacvIYXjFWC-pYz4WTVFCvm4qn/view" target="_blank">0-Saiji Start Dash Monogatari (Legendado)</a></div>
-      <div class="anime-item"><a href="https://t.me/Sword_Art_Online_BR/96" target="_blank">Sword Art Online Odinal Scale (Legendado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/file/d/1nd0PRy-mONMv_GGvI3tr3V5mYDnrHAzI/view" target="_blank">Bungou Stray Dogs (Dublado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/file/d/14tChNZ18KcCuSCMQiwo50TbeTgEynFgc/view" target="_blank">Sword Art Online Odinal Scale (Dublado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/file/d/1dQw3lB1RM9UG1H2Av2ILWXtDbfxQ5mP6/view" target="_blank">Shingeki no Kyojin Movie ... -hen - The Last Attack - Movie (Legendado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/file/d/1-xtnzJSN4DNxaRUYwQtbZgWY8rqR1EQa/view" target="_blank">Nezha Zhi Mo Tong Nao Hai (Legendado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/file/d/1bp-cEfT7Ks8VRTqY_dyrOvF9azscYvVy/view" target="_blank">Kaijuu 8-gou Movie (Dublado)</a></div>
-      <div class="anime-item"><a href="https://t.me/drivedeanimesblogger/243" target="_blank">Horimiya (Legendado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/drive/folders/17xefCnNIuWVp2Jh2F7wJHNeL7bj7TNMN?usp=drive_link" target="_blank">Bleach (Legendado)</a></div>
-      <div class="anime-item"><a href="#" target="_blank">Chainsaw Man</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/drive/folders/1TPKqXVup-lVWoHmj7aIFqQztN4ZelxJr" target="_blank">Marshle 2 (Legendado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/drive/folders/1H8HZP-zR-KIaJCKQpeqNWE3GlZ5fs28x" target="_blank">Castlevania (Dublado)</a></div>
-      <div class="anime-item"><a href="#" target="_blank">Death Note</a></div>
-   <div class="anime-item"><a href="#" target="_blank">Solo Leveling (Legendado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/drive/folders/1FtThIZOgaipPDfBwfhp_T-XSEpnSsodw" target="_blank">Demon Slayer - Kimetsu no Yaiba (Dublado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/drive/folders/13SNL9xiUf34PMgYhIXQW8qT6qIaU3rap" target="_blank">Fullmetal Alchemist</a></div>
-      <div class="anime-item"><a href="#" target="_blank">Hunter x Hunter</a></div>
-         <div class="anime-item"><a href="https://drive.google.com/drive/folders/1aZNNumtoEDTAvuV0seSQMWi-reLkPpgP" target="_blank">Vinland Saga (Dublado)</a></div>
-      <div class="anime-item"><a href="#" target="_blank">Jujutsu Kaisen</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/drive/folders/1AEu5eofQe6nPSSyaeWC5BxGBhCzz9TRI" target="_blank">Chiyu Mahou no Machigatta Tsukaikata (Legendado)</a></div>
-            <div class="anime-item"><a href="https://drive.google.com/drive/folders/1Y6LIxGE7E4RHbL98-rFX0rCjLPll1bSb" target="_blank">Suicide Squad Isekai (Dublado) </a></div>
-                  <div class="anime-item"><a href="https://drive.google.com/drive/folders/1uPU1XubuC3aQm9uz6-jPOmUPnKeau5aL" target="_blank">Suicide Squade Isekai (Legendado)</a></div>
-                        <div class="anime-item"><a href="https://drive.google.com/file/d/1jwelLnZOL1Jd-JRnkC3vYDlsuh9lo3vK/view" target="_blank">Hajime no Ippo Champion Road – Filme 2003 (Legendado)</a></div>
-                              <div class="anime-item"><a href="https://drive.google.com/drive/folders/1mkALUArY2cfQiY76uy8Q5rgEpN04hhKe" target="_blank">Nanatsu no Taizai (Os Sete Pecados Capitais) (Legendado)</a></div>
-                                    <div class="anime-item"><a href="https://drive.google.com/file/d/1E3GBkg0FzP4s2cHbLJYb5b5TZx9VCYTV/view" target="_blank">Sword Art Online- Progressive Movie - Hoshi Naki Yoru no Aria (Dublado)</a></div>
-      <div class="anime-item"><a href="#" target="_blank">Demon Slayer - Kimetsu no Yaiba - The Hinokami Chronicles 2 (Legendado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/file/d/16vbLtBTiQvwlxWS4lZuSvegceG9rUBYG/view" target="_blank">Great Pretender - Razbliuto Filme 2024</a></div>
-            <div class="anime-item"><a href="https://drive.google.com/drive/folders/1d2znymE0_B1kJhABh6GeRjS-4v6IEgCM" target="_blank">Another (Legendado)</a></div>
-             <div class="anime-item"><a href="https://drive.google.com/file/d/1qinfu-AM9OjiWDzIAs4CvejE_j5VKFIX/view" target="_blank">Demon Slayer: Kimetsu no Yaiba Mugen Train (Legendado)</a></div>
-    <div class="anime-item"><a href="https://drive.google.com/file/d/11trQnJBylX-VfvxDEC6wJvd5xmG5xWu2/view" target="_blank">Demon Slayer: Kimetsu no Yaiba Mugen Train (Dublado)</a></div>
-     <div class="anime-item"><a href="https://drive.google.com/drive/folders/1O4bfDM-xcSuDdz1yUv8c_F93TP7XoFXM" target="_blank">Oshi No Ko (Legendado)</a></div>    
-      <div class="anime-item"><a href="https://drive.google.com/file/d/1RcclmpnKtAHK0Fo0wyGPrFSOyEHK3jGz/view" target="_blank">Spy x Family Filme Código Branco FILME</a></div>    
-       <div class="anime-item"><a href="https://drive.google.com/file/d/1xC6j7QxfOuKZxz3KWfZhN9TNzVUG9fTm/view" target="_blank">Youjo Senki Filme (Legendado)</a></div>    
-        <div class="anime-item"><a href="https://drive.google.com/file/d/122IzGMB0gU06PHT20eEjmW-mEAwqUB0C/view" target="_blank">Sword Art Online- Progressive Movie - Kuraki Yuuyami no Scherzo (Dublado)</a></div>    
-         <div class="anime-item"><a href="https://drive.google.com/drive/folders/1-2zo1ebq-F3PWtA_kmY_JKhAZcTpGJyD" target="_blank">Solo Leveling (Dublado)</a></div>         
-      <div class="anime-item"><a href="https://drive.google.com/drive/folders/17X60wyW6hq8vWCaIiw5czc6riw1FaFXp" target="_blank">Metallic Rouge (Legendado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/drive/folders/1fHIP19DjvJFJM8vmVZJXJtP_teZ5Pf0_" target="_blank">Arcane (Dublado)</a></div>
-       <div class="anime-item"><a href="https://drive.google.com/drive/folders/1nzs0PMfYHjJ6vR2OQtwmp6lQb_fscucr" target="_blank">Arcane (Legendado)</a></div>
-      <div class="anime-item"><a href="https://drive.google.com/drive/folders/15slWq9LKKrGErN4Emeq3t84Kcjb92QJi" target="_blank">Gintama Compilação (Legendado)</a></div>
-    
-
- 
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Pesquisar animes...">
     </div>
+    <div id="adFeedback" style="display: none; color: #ffa500; margin-bottom: 10px;">Carregando anúncio...</div>
+    <div class="anime-list" id="animeList"></div>
   </div>
 
-  <!-- Banner inferior -->
   <img src="https://i.postimg.cc/T1MNkBY3/e9d27a8c9b3faade4dbf4a0ec2a57d1d.jpg" alt="Banner Inferior de mandala" class="banner" loading="lazy">
 
   <footer>
     <p>Este é o meu primeiro site hospedado no GitHub Pages</p>
     <p>© 2025 Drive de Animes</p>
   </footer>
-// Rewarded Popup
-<Script>
-
-// Inicialize Telegram WebApp
-const tg = window.Telegram.WebApp;
-tg.ready();
-tg.expand(); // Expande para tela cheia
-
-// Função para mostrar o anúncio
-function showAd() {
-  return new Promise((resolve, reject) => {
-    if (typeof window.show_10011677 === 'function') {
-      try {
-        window.show_10011677().then(() => {
-          resolve(); // Anúncio exibido/assistido
-        }).catch((error) => {
-          reject(error); // Falha ou skip
-        });
-      } catch (error) {
-        reject(error);
-      }
-    } else {
-      reject(new Error('Libtl SDK not loaded or show_10011677 not defined'));
-    }
-  });
-}
-
-// Chame a função (ex: ao clicar no botão)
-window.showAd = showAd; // Torna global para o botão HTML
-showAd()
-  .then(() => {
-    console.log('User watched the ad');
-    tg.HapticFeedback.notificationOccurred('success'); // Feedback tátil
-    // Exemplo: Dê uma recompensa
-    // updateUserCoins(10); // Função fictícia
-  })
-  .catch((error) => {
-    console.log('Ad failed or was skipped:', error);
-    tg.HapticFeedback.notificationOccurred('error');
-  });<script\>
-<script>
-// Função para exibir anúncio recompensado
-function mostrarAnuncio(callback) {
-  // Tenta mostrar o Rewarded Interstitial
-  show_10011677().then(() => {
-    callback(); // usuário assistiu
-  }).catch(() => {
-    // Se der erro, tenta o Rewarded Popup
-    show_10011677('pop').then(() => {
-      callback(); // usuário assistiu
-    }).catch(() => {
-      alert('O anúncio não pôde ser exibido. Tente novamente mais tarde.');
-    });
-  });
-}
-
-// Função para liberar o link após o anúncio
-function liberarLinkAnime(linkId) {
-  mostrarAnuncio(() => {
-    document.getElementById(linkId).style.display = 'block';
-  });
-}
-</script>
 
   <script>
-    // Ordenar animes
-    const animeList = document.getElementById('animeList');
-    const animes = Array.from(animeList.getElementsByClassName('anime-item'));
-    animes.sort((a, b) => a.querySelector('a').textContent.toUpperCase()
-                          .localeCompare(b.querySelector('a').textContent.toUpperCase()));
-    animeList.innerHTML = '';
-    animes.forEach(item => animeList.appendChild(item));
+    // Lista de animes
+    const animes = [
+      { title: "Attack on Titan", url: "#", dubbed: false, description: "Link em breve (Legendado)" },
+      { title: "Os Cavaleiros do Zodíaco Compilação", url: "https://drive.google.com/drive/folders/1ysE7kcOpQYC_LKNCR66axZkmLKGQqjkm?usp=drive_link", dubbed: true, description: "Dublado e Legendado" },
+      { title: "Shoujo Kageki Revue Starlight", url: "https://drive.google.com/drive/folders/1foGOqy0aiNF1XmYcQqMi5atTc8PYOx9n", dubbed: false, description: "Legendado" },
+      { title: "Dororo Compilação (1969-2019)", url: "https://drive.google.com/drive/u/1/folders/1rq0bBxch2Qjx7ralxDTTQlHoA7iHcIaQ", dubbed: false, description: "Legendado" },
+      { title: "Mononoke the Movie: The Phantom in the Rain - O Filme: O Fantasma na Chuva (2024)", url: "https://drive.google.com/drive/folders/10rcO0psKZI4ePzYwqecnMYtd0rmAVf2r", dubbed: false, description: "Legendado" },
+      { title: "Gurren Lagann The Movie: Childhood's End", url: "https://drive.google.com/file/d/1sN4Wszhz9EjwmTfnJgeXz-bBtF_A03fY/view?usp=drive_link/", dubbed: false, description: "Legendado" },
+      { title: "Tengen Toppa Gurren Lagann Movie 2: Lagann-hen", url: "https://drive.google.com/file/d/13kjsQxEeNSZh2Pu19pIz3fIOnUth4oP6/view", dubbed: false, description: "Legendado" },
+      { title: "Naruto Shippuden o Filme 3: A Vontade do Fogo", url: "https://drive.google.com/file/d/1-Sr_DzRixhGzjkBkr_L98--fPs-SrvXm/view", dubbed: true, description: "Dublado" },
+      { title: "Naruto Shippuden o Filme 4: A Torre Perdida", url: "https://drive.google.com/file/d/1-WTzt37FxoKoHF990SdIkwzdXVCuMaL6/view", dubbed: true, description: "Dublado" },
+      { title: "Naruto Shippuden o Filme 5: Prisão de Sangue", url: "https://drive.google.com/file/d/1-XSz4hvQcAHOnHyzxCgsif8Aq-dSK8RN/view", dubbed: true, description: "Dublado" },
+      { title: "Naruto Shippuden o Filme 6: Estrada para Ninja", url: "https://drive.google.com/file/d/1-YOvScnSetyXrSAsMrVrG7CzecJD2Q2t/view", dubbed: true, description: "Dublado" },
+      { title: "Naruto Shippuden o Filme 7: O Último", url: "https://drive.google.com/file/d/1-DOAEfGPlGsIhbYcngiO3GVZNwT-64zR/view", dubbed: true, description: "Dublado" },
+      { title: "Blue Lock", url: "https://drive.google.com/drive/u/0/mobile/folders/173WjMeA6gSs4l0Pn473b1BvARNM5XVy_/18faNGhb1636SGqGUBu7LaxSiw65gjFLZ/17BlOW2ed9h45wlYWmRHbb-8dE1dlCFFM?sort=13&direction=a", dubbed: false, description: "Legendado" },
+      { title: "Blue Lock", url: "https://drive.google.com/drive/u/0/folders/199EZVJLL0M4eeq9Oxidc8ZKmCfTQI2v-?sort=13&direction=a", dubbed: true, description: "Dublado" },
+      { title: "Blood-C", url: "https://drive.google.com/drive/folders/1LgKpWQvUgwPy-2bVku438TY0vmE7tD3a", dubbed: false, description: "Legendado" },
+      { title: "Blood-C: O filme (2012)", url: "https://drive.google.com/drive/folders/1FMFV6Esw1bQtGi4G-VT2IjwyhhoFZLwB", dubbed: false, description: "Legendado" },
+      { title: "Neon Genesis Evangelion 1995 Compilação", url: "https://drive.google.com/drive/folders/1T8ZCBquE_jbgquYO_JwfZKdhba8K1F_I", dubbed: true, description: "Dublado" },
+      { title: "Aku no Hana", url: "https://drive.google.com/drive/folders/1h44Mmc2jJ7mPSjE_ztjobktjtW1xGrg5", dubbed: false, description: "Legendado" },
+      { title: "Toradora", url: "https://drive.google.com/drive/u/0/folders/1S22cwAeE-kkXu4bfDclpVCc--AbeWp5Y", dubbed: false, description: "Legendado" },
+      { title: "Attack on Titan", url: "https://drive.google.com/drive/u/0/mobile/folders/1S22cwAeE-kkXu4bfDclpVCc--AbeWp5Y", dubbed: false, description: "Legendado" },
+      { title: "SK8 the Infinity", url: "https://drive.google.com/drive/u/0/folders/1-CYImZGZ_hCjWwmdrG_CkY27GSR2piFF", dubbed: false, description: "Legendado" },
+      { title: "Shin Nakama", url: "https://drive.google.com/drive/u/0/folders/1gqn24ZWZQj4kZbkw-zQ2uN2SGloSEePF", dubbed: false, description: "Legendado" },
+      { title: "Tsukihime", url: "https://drive.google.com/drive/u/0/folders/1TIPo368XZUBJvU2wzJW9Wi8_u3SU30Sv", dubbed: true, description: "Dublado" },
+      { title: "Tomo chan is a Girl!", url: "https://drive.google.com/drive/u/0/folders/16W7rFMDCHrET7HK-X-M7GFiYIGGzmnAK", dubbed: true, description: "Dublado e Legendado" },
+      { title: "Vinland Saga Season 2", url: "https://drive.google.com/drive/folders/1ms56ikK8em7RgmE3PpwXk59C-FGQwfVC", dubbed: true, description: "Dublado" },
+      { title: "Isekai Shikkaku", url: "https://drive.google.com/drive/folders/1G5BzNK4b2ZuYJB5z3J0nnUv2NtqTxxKK", dubbed: false, description: "Legendado" },
+      { title: "Túmulo dos Vagalumes", url: "https://drive.google.com/file/d/1EAw6rOlVGHa7vSpXcMGxiLsvMQZ9NtQ2/view?usp=drivesdk", dubbed: false, description: "Legendado" },
+      { title: "Túmulo dos Vagalumes", url: "https://drive.google.com/file/d/1y3S7maaOKVlhnX6W4ffBYpjsgKtYnhk2/view?usp=drivesdk", dubbed: true, description: "Dublado" },
+      { title: "Horimiya", url: "https://drive.google.com/drive/folders/1L6IdDTTX62DSQbvMoKho5IbpxouHb39Y", dubbed: true, description: "Dublado" },
+      { title: "The King of Pings", url: "https://drive.google.com/file/d/1jZelC3pDUbbq6A4oaavt8x2kAWmMyEwq/view?usp=drivesdk", dubbed: false, description: "Legendado" },
+      { title: "Sono Bisque Doll wa Koi o Suru", url: "https://drive.google.com/drive/folders/18lhQDYwBxzFsfZ8Gu7SnntonPVTlDWqu", dubbed: true, description: "Dublado" },
+      { title: "Kyoukai no Kanata", url: "https://ouo.io/0zjIor6", dubbed: false, description: "Legendado (Link externo, revisar)" },
+      { title: "Solo Leveling Season 2: Arise from the Shadow", url: "https://drive.google.com/drive/folders/1vZUVStiJ_rpWsYUW4dT2yXj05dQ5kg22", dubbed: false, description: "Legendado" },
+      { title: "Dan Da Dan", url: "https://drive.google.com/drive/folders/1wONIq4gxyOYOnbLiqaDWb_iKx_PNGenI", dubbed: false, description: "Legendado" },
+      { title: "Overlord Movie 3: Sei Oukoku-hen", url: "https://drive.google.com/file/d/1EVuhzDT9ycL8UsnH9D16K6TTzcOrmCq_/view", dubbed: false, description: "Legendado" },
+      { title: "Batman Ninja vs. Yakuza League", url: "https://ouo.io/cC9Gsk", dubbed: true, description: "Dublado (Link externo, revisar)" },
+      { title: "The Witcher: Sereias das Profundezas", url: "https://ouo.io/PdVHzv", dubbed: true, description: "Dublado (Link externo, revisar)" },
+      { title: "The Witcher: Sirens Of The Deep (Dub Japonês) 2025", url: "https://drive.google.com/file/d/1IAxxwYOAhFCELdPykhCF4kD58vu7-0Nz/view", dubbed: true, description: "Dublado (Japonês)" },
+      { title: "Akuyaku Reijou Tensei Ojisan", url: "https://drive.google.com/file/d/1y12gt2yGCl9ewmnuJ6emh_wFsBVYy1EJ/view", dubbed: false, description: "Legendado" },
+      { title: "Devil May Cry", url: "https://drive.google.com/file/d/1PnwHTNZfXLlqoq2c4uJ_xDY1EwEI_7mF/view", dubbed: true, description: "Dublado" },
+      { title: "0-Saiji Start Dash Monogatari", url: "https://drive.google.com/file/d/1_q02tIjacvIYXjFWC-pYz4WTVFCvm4qn/view", dubbed: false, description: "Legendado" },
+      { title: "Sword Art Online Ordinal Scale", url: "https://t.me/Sword_Art_Online_BR/96", dubbed: false, description: "Legendado" },
+      { title: "Bungou Stray Dogs", url: "https://drive.google.com/file/d/1nd0PRy-mONMv_GGvI3tr3V5mYDnrHAzI/view", dubbed: true, description: "Dublado" },
+      { title: "Sword Art Online Ordinal Scale", url: "https://drive.google.com/file/d/14tChNZ18KcCuSCMQiwo50TbeTgEynFgc/view", dubbed: true, description: "Dublado" },
+      { title: "Shingeki no Kyojin Movie ... -hen - The Last Attack - Movie", url: "https://drive.google.com/file/d/1dQw3lB1RM9UG1H2Av2ILWXtDbfxQ5mP6/view", dubbed: false, description: "Legendado" },
+      { title: "Nezha Zhi Mo Tong Nao Hai", url: "https://drive.google.com/file/d/1-xtnzJSN4DNxaRUYwQtbZgWY8rqR1EQa/view", dubbed: false, description: "Legendado" },
+      { title: "Kaijuu 8-gou Movie", url: "https://drive.google.com/file/d/1bp-cEfT7Ks8VRTqY_dyrOvF9azscYvVy/view", dubbed: true, description: "Dublado" },
+      { title: "Horimiya", url: "https://t.me/drivedeanimesblogger/243", dubbed: false, description: "Legendado" },
+      { title: "Bleach", url: "https://drive.google.com/drive/folders/17xefCnNIuWVp2Jh2F7wJHNeL7bj7TNMN?usp=drive_link", dubbed: false, description: "Legendado" },
+      { title: "Chainsaw Man", url: "#", dubbed: false, description: "Link em breve (Legendado)" },
+      { title: "Marshle 2", url: "https://drive.google.com/drive/folders/1TPKqXVup-lVWoHmj7aIFqQztN4ZelxJr", dubbed: false, description: "Legendado" },
+      { title: "Castlevania", url: "https://drive.google.com/drive/folders/1H8HZP-zR-KIaJCKQpeqNWE3GlZ5fs28x", dubbed: true, description: "Dublado" },
+      { title: "Death Note", url: "#", dubbed: false, description: "Link em breve (Legendado)" },
+      { title: "Solo Leveling", url: "#", dubbed: false, description: "Link em breve (Legendado)" },
+      { title: "Demon Slayer - Kimetsu no Yaiba", url: "https://drive.google.com/drive/folders/1FtThIZOgaipPDfBwfhp_T-XSEpnSsodw", dubbed: true, description: "Dublado" },
+      { title: "Fullmetal Alchemist", url: "https://drive.google.com/drive/folders/13SNL9xiUf34PMgYhIXQW8qT6qIaU3rap", dubbed: false, description: "Legendado" },
+      { title: "Hunter x Hunter", url: "#", dubbed: false, description: "Link em breve (Legendado)" },
+      { title: "Vinland Saga", url: "https://drive.google.com/drive/folders/1aZNNumtoEDTAvuV0seSQMWi-reLkPpgP", dubbed: true, description: "Dublado" },
+      { title: "Jujutsu Kaisen", url: "#", dubbed: false, description: "Link em breve (Legendado)" },
+      { title: "Chiyu Mahou no Machigatta Tsukaikata", url: "https://drive.google.com/drive/folders/1AEu5eofQe6nPSSyaeWC5BxGBhCzz9TRI", dubbed: false, description: "Legendado" },
+      { title: "Suicide Squad Isekai", url: "https://drive.google.com/drive/folders/1Y6LIxGE7E4RHbL98-rFX0rCjLPll1bSb", dubbed: true, description: "Dublado" },
+      { title: "Suicide Squad Isekai", url: "https://drive.google.com/drive/folders/1uPU1XubuC3aQm9uz6-jPOmUPnKeau5aL", dubbed: false, description: "Legendado" },
+      { title: "Hajime no Ippo Champion Road – Filme 2003", url: "https://drive.google.com/file/d/1jwelLnZOL1Jd-JRnkC3vYDlsuh9lo3vK/view", dubbed: false, description: "Legendado" },
+      { title: "Nanatsu no Taizai (Os Sete Pecados Capitais)", url: "https://drive.google.com/drive/folders/1mkALUArY2cfQiY76uy8Q5rgEpN04hhKe", dubbed: false, description: "Legendado" },
+      { title: "Sword Art Online: Progressive Movie - Hoshi Naki Yoru no Aria", url: "https://drive.google.com/file/d/1E3GBkg0FzP4s2cHbLJYb5b5TZx9VCYTV/view", dubbed: true, description: "Dublado" },
+      { title: "Demon Slayer - Kimetsu no Yaiba - The Hinokami Chronicles 2", url: "#", dubbed: false, description: "Link em breve (Legendado)" },
+      { title: "Great Pretender - Razbliuto Filme 2024", url: "https://drive.google.com/file/d/16vbLtBTiQvwlxWS4lZuSvegceG9rUBYG/view", dubbed: false, description: "Legendado" },
+      { title: "Another", url: "https://drive.google.com/drive/folders/1d2znymE0_B1kJhABh6GeRjS-4v6IEgCM", dubbed: false, description: "Legendado" },
+      { title: "Demon Slayer: Kimetsu no Yaiba Mugen Train", url: "https://drive.google.com/file/d/1qinfu-AM9OjiWDzIAs4CvejE_j5VKFIX/view", dubbed: false, description: "Legendado" },
+      { title: "Demon Slayer: Kimetsu no Yaiba Mugen Train", url: "https://drive.google.com/file/d/11trQnJBylX-VfvxDEC6wJvd5xmG5xWu2/view", dubbed: true, description: "Dublado" },
+      { title: "Oshi No Ko", url: "https://drive.google.com/drive/folders/1O4bfDM-xcSuDdz1yUv8c_F93TP7XoFXM", dubbed: false, description: "Legendado" },
+      { title: "Spy x Family Filme Código Branco", url: "https://drive.google.com/file/d/1RcclmpnKtAHK0Fo0wyGPrFSOyEHK3jGz/view", dubbed: false, description: "Legendado" },
+      { title: "Youjo Senki Filme", url: "https://drive.google.com/file/d/1xC6j7QxfOuKZxz3KWfZhN9TNzVUG9fTm/view", dubbed: false, description: "Legendado" },
+      { title: "Sword Art Online: Progressive Movie - Kuraki Yuuyami no Scherzo", url: "https://drive.google.com/file/d/122IzGMB0gU06PHT20eEjmW-mEAwqUB0C/view", dubbed: true, description: "Dublado" },
+      { title: "Solo Leveling", url: "https://drive.google.com/drive/folders/1-2zo1ebq-F3PWtA_kmY_JKhAZcTpGJyD", dubbed: true, description: "Dublado" },
+      { title: "Metallic Rouge", url: "https://drive.google.com/drive/folders/17X60wyW6hq8vWCaIiw5czc6riw1FaFXp", dubbed: false, description: "Legendado" },
+      { title: "Arcane", url: "https://drive.google.com/drive/folders/1fHIP19DjvJFJM8vmVZJXJtP_teZ5Pf0_", dubbed: true, description: "Dublado" },
+      { title: "Arcane", url: "https://drive.google.com/drive/folders/1nzs0PMfYHjJ6vR2OQtwmp6lQb_fscucr", dubbed: false, description: "Legendado" },
+      { title: "Gintama Compilação", url: "https://drive.google.com/drive/folders/15slWq9LKKrGErN4Emeq3t84Kcjb92QJi", dubbed: false, description: "Legendado" }
+    ];
+
+    // Renderizar lista de animes
+    function renderAnimeList(filter = '') {
+      const animeList = document.getElementById('animeList');
+      animeList.innerHTML = '';
+      animes
+        .filter(anime => anime.title.toLowerCase().includes(filter.toLowerCase()))
+        .sort((a, b) => a.title.toUpperCase().localeCompare(b.title.toUpperCase()))
+        .forEach(anime => {
+          const div = document.createElement('div');
+          div.className = 'anime-item';
+          div.innerHTML = `
+            <a href="${anime.url}" target="_blank">${anime.title}</a>
+            <p>${anime.description}</p>
+          `;
+          animeList.appendChild(div);
+        });
+    }
+
+    // Inicializar Telegram WebApp
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+    tg.expand();
+
+    // Função para verificar se o SDK está carregado
+    function waitForSDK(maxAttempts = 5, interval = 1000) {
+      return new Promise((resolve, reject) => {
+        let attempts = 0;
+        const checkSDK = setInterval(() => {
+          if (typeof window.show_10011677 === 'function') {
+            clearInterval(checkSDK);
+            resolve();
+          } else if (attempts >= maxAttempts) {
+            clearInterval(checkSDK);
+            reject(new Error('Libtl SDK não carregado após várias tentativas'));
+          }
+          attempts++;
+        }, interval);
+      });
+    }
+
+    // Função para mostrar o anúncio
+    function showAd() {
+      return new Promise((resolve, reject) => {
+        const adFeedback = document.getElementById('adFeedback');
+        adFeedback.style.display = 'block';
+        waitForSDK()
+          .then(() => {
+            window.show_10011677().then(() => {
+              tg.HapticFeedback.notificationOccurred('success');
+              adFeedback.style.display = 'none';
+              resolve();
+            }).catch(error => {
+              tg.HapticFeedback.notificationOccurred('error');
+              adFeedback.style.display = 'none';
+              reject(error);
+            });
+          })
+          .catch(error => {
+            console.error('Erro ao carregar SDK:', error);
+            adFeedback.style.display = 'none';
+            alert('Não foi possível carregar o sistema de anúncios. O link será aberto diretamente. Considere desativar bloqueadores de anúncios.');
+            resolve(); // Permite abrir o link mesmo com falha no SDK
+          });
+      });
+    }
+
+    // Vincular anúncios aos links de anime
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('.anime-item a');
+      if (link) {
+        e.preventDefault();
+        if (link.href === window.location.href + '#') {
+          alert('Este link ainda não está disponível. Tente outro anime.');
+          return;
+        }
+        showAd()
+          .then(() => {
+            window.open(link.href, '_blank');
+          })
+          .catch(error => {
+            console.error('Erro ao exibir anúncio:', error);
+          });
+      }
+    });
 
     // Carrossel
     const carouselContainer = document.querySelector('.carousel');
     const carousel = document.getElementById('carouselImages');
+    const indicators = document.getElementById('carouselIndicators');
     const totalSlides = carousel.children.length;
     let index = 0;
     let autoSlide = setInterval(() => showSlide(index + 1), 4000);
+
+    // Criar indicadores
+    for (let i = 0; i < totalSlides; i++) {
+      const span = document.createElement('span');
+      span.addEventListener('click', () => showSlide(i));
+      indicators.appendChild(span);
+    }
 
     function showSlide(i) {
       if (i < 0) index = totalSlides - 1;
       else if (i >= totalSlides) index = 0;
       else index = i;
       carousel.style.transform = `translateX(${-index * 100}%)`;
+      updateIndicators();
+    }
+
+    function updateIndicators() {
+      document.querySelectorAll('.carousel-indicators span').forEach((span, i) => {
+        span.className = i === index ? 'active' : '';
+      });
     }
 
     document.getElementById('prevBtn').addEventListener('click', () => showSlide(index - 1));
     document.getElementById('nextBtn').addEventListener('click', () => showSlide(index + 1));
-
-    // Pausar no hover e navegação por teclado
     carouselContainer.addEventListener('mouseover', () => clearInterval(autoSlide));
     carouselContainer.addEventListener('mouseout', () => autoSlide = setInterval(() => showSlide(index + 1), 4000));
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft') showSlide(index - 1);
       if (e.key === 'ArrowRight') showSlide(index + 1);
     });
+
+    // Inicializar carrossel
+    updateIndicators();
+
+    // Pesquisa
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      renderAnimeList(e.target.value);
+    });
+
+    // Renderizar lista inicial
+    renderAnimeList();
   </script>
 </body>
 </html>
