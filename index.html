@@ -238,7 +238,6 @@
   <script>
     // Lista de animes
     const animes = [
-        
   {
     "title": "Attack on Titan",
     "url": "#",
@@ -383,88 +382,493 @@
     "dubbed": false,
     "description": "Legendado"
   },
-      { title: "Tensei shitara Slime Datta Ken Movie: Guren no Kizuna-hen", url: "https://drive.google.com/file/d/1aZML_-kujpgHU0_obthlrz7b-mUKA2dq/view?usp=sharing", dubbed: true, description: "Dublado" }
-      { title: " Tensei shitara Slime Datta Ken Movie: Guren no Kizuna-hen", url: "https://drive.google.com/file/d/1pGyxVdSEbhlg5UCHdWqWRL3Ecs08ywfY/view?usp=sharing", dubbed: false, description: "Legendado" }, 
-      { title: "Attack on Titan", url: "#", dubbed: false, description: "Link em breve (Legendado)" },
-      { title: "Os Cavaleiros do Zodíaco Compilação", url: "https://drive.google.com/drive/folders/1ysE7kcOpQYC_LKNCR66axZkmLKGQqjkm?usp=drive_link", dubbed: true, description: "Dublado e Legendado" },
-      { title: "Shoujo Kageki Revue Starlight", url: "https://drive.google.com/drive/folders/1foGOqy0aiNF1XmYcQqMi5atTc8PYOx9n", dubbed: false, description: "Legendado" },
-      { title: "Dororo Compilação (1969-2019)", url: "https://drive.google.com/drive/u/1/folders/1rq0bBxch2Qjx7ralxDTTQlHoA7iHcIaQ", dubbed: false, description: "Legendado" },
-      { title: "Mononoke the Movie: The Phantom in the Rain - O Filme: O Fantasma na Chuva (2024)", url: "https://drive.google.com/drive/folders/10rcO0psKZI4ePzYwqecnMYtd0rmAVf2r", dubbed: false, description: "Legendado" },
-      { title: "Gurren Lagann The Movie: Childhood's End", url: "https://drive.google.com/file/d/1sN4Wszhz9EjwmTfnJgeXz-bBtF_A03fY/view?usp=drive_link/", dubbed: false, description: "Legendado" },
-      { title: "Tengen Toppa Gurren Lagann Movie 2: Lagann-hen", url: "https://drive.google.com/file/d/13kjsQxEeNSZh2Pu19pIz3fIOnUth4oP6/view", dubbed: false, description: "Legendado" },
-      { title: "Naruto Shippuden o Filme 3: A Vontade do Fogo", url: "https://drive.google.com/file/d/1-Sr_DzRixhGzjkBkr_L98--fPs-SrvXm/view", dubbed: true, description: "Dublado" },
-      { title: "Naruto Shippuden o Filme 4: A Torre Perdida", url: "https://drive.google.com/file/d/1-WTzt37FxoKoHF990SdIkwzdXVCuMaL6/view", dubbed: true, description: "Dublado" },
-      { title: "Naruto Shippuden o Filme 5: Prisão de Sangue", url: "https://drive.google.com/file/d/1-XSz4hvQcAHOnHyzxCgsif8Aq-dSK8RN/view", dubbed: true, description: "Dublado" },
-      { title: "Naruto Shippuden o Filme 6: Estrada para Ninja", url: "https://drive.google.com/file/d/1-YOvScnSetyXrSAsMrVrG7CzecJD2Q2t/view", dubbed: true, description: "Dublado" },
-      { title: "Naruto Shippuden o Filme 7: O Último", url: "https://drive.google.com/file/d/1-DOAEfGPlGsIhbYcngiO3GVZNwT-64zR/view", dubbed: true, description: "Dublado" },
-      { title: "Blue Lock", url: "https://drive.google.com/drive/u/0/mobile/folders/173WjMeA6gSs4l0Pn473b1BvARNM5XVy_/18faNGhb1636SGqGUBu7LaxSiw65gjFLZ/17BlOW2ed9h45wlYWmRHbb-8dE1dlCFFM?sort=13&direction=a", dubbed: false, description: "Legendado" },
-      { title: "Blue Lock", url: "https://drive.google.com/drive/u/0/folders/199EZVJLL0M4eeq9Oxidc8ZKmCfTQI2v-?sort=13&direction=a", dubbed: true, description: "Dublado" },
-      { title: "Blood-C", url: "https://drive.google.com/drive/folders/1LgKpWQvUgwPy-2bVku438TY0vmE7tD3a", dubbed: false, description: "Legendado" },
-      { title: "Blood-C: O filme (2012)", url: "https://drive.google.com/drive/folders/1FMFV6Esw1bQtGi4G-VT2IjwyhhoFZLwB", dubbed: false, description: "Legendado" },
-      { title: "Neon Genesis Evangelion 1995 Compilação", url: "https://drive.google.com/drive/folders/1T8ZCBquE_jbgquYO_JwfZKdhba8K1F_I", dubbed: true, description: "Dublado" },
-      { title: "Aku no Hana", url: "https://drive.google.com/drive/folders/1h44Mmc2jJ7mPSjE_ztjobktjtW1xGrg5", dubbed: false, description: "Legendado" },
-      { title: "Toradora", url: "https://drive.google.com/drive/u/0/folders/1S22cwAeE-kkXu4bfDclpVCc--AbeWp5Y", dubbed: false, description: "Legendado" },
-      { title: "Attack on Titan", url: "https://drive.google.com/drive/u/0/mobile/folders/1S22cwAeE-kkXu4bfDclpVCc--AbeWp5Y", dubbed: false, description: "Legendado" },
-      { title: "SK8 the Infinity", url: "https://drive.google.com/drive/u/0/folders/1-CYImZGZ_hCjWwmdrG_CkY27GSR2piFF", dubbed: false, description: "Legendado" },
-      { title: "Shin Nakama", url: "https://drive.google.com/drive/u/0/folders/1gqn24ZWZQj4kZbkw-zQ2uN2SGloSEePF", dubbed: false, description: "Legendado" },
-      { title: "Tsukihime", url: "https://drive.google.com/drive/u/0/folders/1TIPo368XZUBJvU2wzJW9Wi8_u3SU30Sv", dubbed: true, description: "Dublado" },
-      { title: "Tomo chan is a Girl!", url: "https://drive.google.com/drive/u/0/folders/16W7rFMDCHrET7HK-X-M7GFiYIGGzmnAK", dubbed: true, description: "Dublado e Legendado" },
-      { title: "Vinland Saga Season 2", url: "https://drive.google.com/drive/folders/1ms56ikK8em7RgmE3PpwXk59C-FGQwfVC", dubbed: true, description: "Dublado" },
-      { title: "Isekai Shikkaku", url: "https://drive.google.com/drive/folders/1G5BzNK4b2ZuYJB5z3J0nnUv2NtqTxxKK", dubbed: false, description: "Legendado" },
-      { title: "Túmulo dos Vagalumes", url: "https://drive.google.com/file/d/1EAw6rOlVGHa7vSpXcMGxiLsvMQZ9NtQ2/view?usp=drivesdk", dubbed: false, description: "Legendado" },
-      { title: "Túmulo dos Vagalumes", url: "https://drive.google.com/file/d/1y3S7maaOKVlhnX6W4ffBYpjsgKtYnhk2/view?usp=drivesdk", dubbed: true, description: "Dublado" },
-      { title: "Horimiya", url: "https://drive.google.com/drive/folders/1L6IdDTTX62DSQbvMoKho5IbpxouHb39Y", dubbed: true, description: "Dublado" },
-      { title: "The King of Pings", url: "https://drive.google.com/file/d/1jZelC3pDUbbq6A4oaavt8x2kAWmMyEwq/view?usp=drivesdk", dubbed: false, description: "Legendado" },
-      { title: "Sono Bisque Doll wa Koi o Suru", url: "https://drive.google.com/drive/folders/18lhQDYwBxzFsfZ8Gu7SnntonPVTlDWqu", dubbed: true, description: "Dublado" },
-      { title: "Kyoukai no Kanata", url: "https://ouo.io/0zjIor6", dubbed: false, description: "Legendado (Link externo, revisar)" },
-      { title: "Solo Leveling Season 2: Arise from the Shadow", url: "https://drive.google.com/drive/folders/1vZUVStiJ_rpWsYUW4dT2yXj05dQ5kg22", dubbed: false, description: "Legendado" },
-      { title: "Dan Da Dan", url: "https://drive.google.com/drive/folders/1wONIq4gxyOYOnbLiqaDWb_iKx_PNGenI", dubbed: false, description: "Legendado" },
-      { title: "Overlord Movie 3: Sei Oukoku-hen", url: "https://drive.google.com/file/d/1EVuhzDT9ycL8UsnH9D16K6TTzcOrmCq_/view", dubbed: false, description: "Legendado" },
-      { title: "Batman Ninja vs. Yakuza League", url: "https://ouo.io/cC9Gsk", dubbed: true, description: "Dublado (Link externo, revisar)" },
-      { title: "The Witcher: Sereias das Profundezas", url: "https://ouo.io/PdVHzv", dubbed: true, description: "Dublado (Link externo, revisar)" },
-      { title: "The Witcher: Sirens Of The Deep (Dub Japonês) 2025", url: "https://drive.google.com/file/d/1IAxxwYOAhFCELdPykhCF4kD58vu7-0Nz/view", dubbed: true, description: "Dublado (Japonês)" },
-      { title: "Akuyaku Reijou Tensei Ojisan", url: "https://drive.google.com/file/d/1y12gt2yGCl9ewmnuJ6emh_wFsBVYy1EJ/view", dubbed: false, description: "Legendado" },
-      { title: "Devil May Cry", url: "https://drive.google.com/file/d/1PnwHTNZfXLlqoq2c4uJ_xDY1EwEI_7mF/view", dubbed: true, description: "Dublado" },
-      { title: "0-Saiji Start Dash Monogatari", url: "https://drive.google.com/file/d/1_q02tIjacvIYXjFWC-pYz4WTVFCvm4qn/view", dubbed: false, description: "Legendado" },
-      { title: "Sword Art Online Ordinal Scale", url: "https://t.me/Sword_Art_Online_BR/96", dubbed: false, description: "Legendado" },
-      { title: "Bungou Stray Dogs", url: "https://drive.google.com/file/d/1nd0PRy-mONMv_GGvI3tr3V5mYDnrHAzI/view", dubbed: true, description: "Dublado" },
-      { title: "Sword Art Online Ordinal Scale", url: "https://drive.google.com/file/d/14tChNZ18KcCuSCMQiwo50TbeTgEynFgc/view", dubbed: true, description: "Dublado" },
-      { title: "Shingeki no Kyojin Movie ... -hen - The Last Attack - Movie", url: "https://drive.google.com/file/d/1dQw3lB1RM9UG1H2Av2ILWXtDbfxQ5mP6/view", dubbed: false, description: "Legendado" },
-      { title: "Nezha Zhi Mo Tong Nao Hai", url: "https://drive.google.com/file/d/1-xtnzJSN4DNxaRUYwQtbZgWY8rqR1EQa/view", dubbed: false, description: "Legendado" },
-      { title: "Kaijuu 8-gou Movie", url: "https://drive.google.com/file/d/1bp-cEfT7Ks8VRTqY_dyrOvF9azscYvVy/view", dubbed: true, description: "Dublado" },
-      { title: "Horimiya", url: "https://t.me/drivedeanimesblogger/243", dubbed: false, description: "Legendado" },
-      { title: "Bleach", url: "https://drive.google.com/drive/folders/17xefCnNIuWVp2Jh2F7wJHNeL7bj7TNMN?usp=drive_link", dubbed: false, description: "Legendado" },
-      { title: "Chainsaw Man", url: "#", dubbed: false, description: "Link em breve (Legendado)" },
-      { title: "Marshle 2", url: "https://drive.google.com/drive/folders/1TPKqXVup-lVWoHmj7aIFqQztN4ZelxJr", dubbed: false, description: "Legendado" },
-      { title: "Castlevania", url: "https://drive.google.com/drive/folders/1H8HZP-zR-KIaJCKQpeqNWE3GlZ5fs28x", dubbed: true, description: "Dublado" },
-      { title: "Death Note", url: "#", dubbed: false, description: "Link em breve (Legendado)" },
-      { title: "Solo Leveling", url: "#", dubbed: false, description: "Link em breve (Legendado)" },
-      { title: "Demon Slayer - Kimetsu no Yaiba", url: "https://drive.google.com/drive/folders/1FtThIZOgaipPDfBwfhp_T-XSEpnSsodw", dubbed: true, description: "Dublado" },
-      { title: "Fullmetal Alchemist", url: "https://drive.google.com/drive/folders/13SNL9xiUf34PMgYhIXQW8qT6qIaU3rap", dubbed: false, description: "Legendado" },
-      { title: "Hunter x Hunter", url: "#", dubbed: false, description: "Link em breve (Legendado)" },
-      { title: "Vinland Saga", url: "https://drive.google.com/drive/folders/1aZNNumtoEDTAvuV0seSQMWi-reLkPpgP", dubbed: true, description: "Dublado" },
-      { title: "Jujutsu Kaisen", url: "#", dubbed: false, description: "Link em breve (Legendado)" },
-      { title: "Chiyu Mahou no Machigatta Tsukaikata", url: "https://drive.google.com/drive/folders/1AEu5eofQe6nPSSyaeWC5BxGBhCzz9TRI", dubbed: false, description: "Legendado" },
-      { title: "Suicide Squad Isekai", url: "https://drive.google.com/drive/folders/1Y6LIxGE7E4RHbL98-rFX0rCjLPll1bSb", dubbed: true, description: "Dublado" },
-      { title: "Suicide Squad Isekai", url: "https://drive.google.com/drive/folders/1uPU1XubuC3aQm9uz6-jPOmUPnKeau5aL", dubbed: false, description: "Legendado" },
-      { title: "Hajime no Ippo Champion Road – Filme 2003", url: "https://drive.google.com/file/d/1jwelLnZOL1Jd-JRnkC3vYDlsuh9lo3vK/view", dubbed: false, description: "Legendado" },
-      { title: "Nanatsu no Taizai (Os Sete Pecados Capitais)", url: "https://drive.google.com/drive/folders/1mkALUArY2cfQiY76uy8Q5rgEpN04hhKe", dubbed: false, description: "Legendado" },
-      { title: "Sword Art Online: Progressive Movie - Hoshi Naki Yoru no Aria", url: "https://drive.google.com/file/d/1E3GBkg0FzP4s2cHbLJYb5b5TZx9VCYTV/view", dubbed: true, description: "Dublado" },
-      { title: "Demon Slayer - Kimetsu no Yaiba - The Hinokami Chronicles 2", url: "#", dubbed: false, description: "Link em breve (Legendado)" },
-      { title: "Great Pretender - Razbliuto Filme 2024", url: "https://drive.google.com/file/d/16vbLtBTiQvwlxWS4lZuSvegceG9rUBYG/view", dubbed: false, description: "Legendado" },
-      { title: "Another", url: "https://drive.google.com/drive/folders/1d2znymE0_B1kJhABh6GeRjS-4v6IEgCM", dubbed: false, description: "Legendado" },
-      { title: "Demon Slayer: Kimetsu no Yaiba Mugen Train", url: "https://drive.google.com/file/d/1qinfu-AM9OjiWDzIAs4CvejE_j5VKFIX/view", dubbed: false, description: "Legendado" },
-      { title: "Demon Slayer: Kimetsu no Yaiba Mugen Train", url: "https://drive.google.com/file/d/11trQnJBylX-VfvxDEC6wJvd5xmG5xWu2/view", dubbed: true, description: "Dublado" },
-      { title: "Oshi No Ko", url: "https://drive.google.com/drive/folders/1O4bfDM-xcSuDdz1yUv8c_F93TP7XoFXM", dubbed: false, description: "Legendado" },
-      { title: "Spy x Family Filme Código Branco", url: "https://drive.google.com/file/d/1RcclmpnKtAHK0Fo0wyGPrFSOyEHK3jGz/view", dubbed: false, description: "Legendado" },
-      { title: "Youjo Senki Filme", url: "https://drive.google.com/file/d/1xC6j7QxfOuKZxz3KWfZhN9TNzVUG9fTm/view", dubbed: false, description: "Legendado" },
-      { title: "Sword Art Online: Progressive Movie - Kuraki Yuuyami no Scherzo", url: "https://drive.google.com/file/d/122IzGMB0gU06PHT20eEjmW-mEAwqUB0C/view", dubbed: true, description: "Dublado" },
-      { title: "Solo Leveling", url: "https://drive.google.com/drive/folders/1-2zo1ebq-F3PWtA_kmY_JKhAZcTpGJyD", dubbed: true, description: "Dublado" },
-      { title: "Metallic Rouge", url: "https://drive.google.com/drive/folders/17X60wyW6hq8vWCaIiw5czc6riw1FaFXp", dubbed: false, description: "Legendado" },
-      { title: "Arcane", url: "https://drive.google.com/drive/folders/1fHIP19DjvJFJM8vmVZJXJtP_teZ5Pf0_", dubbed: true, description: "Dublado" },
-      { title: "Arcane", url: "https://drive.google.com/drive/folders/1nzs0PMfYHjJ6vR2OQtwmp6lQb_fscucr", dubbed: false, description: "Legendado" },
-      { title: "Gintama Compilação", url: "https://drive.google.com/drive/folders/15slWq9LKKrGErN4Emeq3t84Kcjb92QJi", dubbed: false, description: "Legendado" }
-    ];
+  {
+    "title": "Tensei shitara Slime Datta Ken Movie: Guren no Kizuna-hen",
+    "url": "https://drive.google.com/file/d/1aZML_-kujpgHU0_obthlrz7b-mUKA2dq/view?usp=sharing",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Tensei shitara Slime Datta Ken Movie: Guren no Kizuna-hen",
+    "url": "https://drive.google.com/file/d/1pGyxVdSEbhlg5UCHdWqWRL3Ecs08ywfY/view?usp=sharing",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Attack on Titan",
+    "url": "#",
+    "dubbed": false,
+    "description": "Link em breve (Legendado)"
+  },
+  {
+    "title": "Os Cavaleiros do Zodíaco Compilação",
+    "url": "https://drive.google.com/drive/folders/1ysE7kcOpQYC_LKNCR66axZkmLKGQqjkm?usp=drive_link",
+    "dubbed": true,
+    "description": "Dublado e Legendado"
+  },
+  {
+    "title": "Shoujo Kageki Revue Starlight",
+    "url": "https://drive.google.com/drive/folders/1foGOqy0aiNF1XmYcQqMi5atTc8PYOx9n",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Dororo Compilação (1969-2019)",
+    "url": "https://drive.google.com/drive/u/1/folders/1rq0bBxch2Qjx7ralxDTTQlHoA7iHcIaQ",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Mononoke the Movie: The Phantom in the Rain - O Filme: O Fantasma na Chuva (2024)",
+    "url": "https://drive.google.com/drive/folders/10rcO0psKZI4ePzYwqecnMYtd0rmAVf2r",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Gurren Lagann The Movie: Childhood's End",
+    "url": "https://drive.google.com/file/d/1sN4Wszhz9EjwmTfnJgeXz-bBtF_A03fY/view?usp=drive_link",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Tengen Toppa Gurren Lagann Movie 2: Lagann-hen",
+    "url": "https://drive.google.com/file/d/13kjsQxEeNSZh2Pu19pIz3fIOnUth4oP6/view",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Naruto Shippuden o Filme 3: A Vontade do Fogo",
+    "url": "https://drive.google.com/file/d/1-Sr_DzRixhGzjkBkr_L98--fPs-SrvXm/view",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Naruto Shippuden o Filme 4: A Torre Perdida",
+    "url": "https://drive.google.com/file/d/1-WTzt37FxoKoHF990SdIkwzdXVCuMaL6/view",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Naruto Shippuden o Filme 5: Prisão de Sangue",
+    "url": "https://drive.google.com/file/d/1-XSz4hvQcAHOnHyzxCgsif8Aq-dSK8RN/view",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Naruto Shippuden o Filme 6: Estrada para Ninja",
+    "url": "https://drive.google.com/file/d/1-YOvScnSetyXrSAsMrVrG7CzecJD2Q2t/view",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Naruto Shippuden o Filme 7: O Último",
+    "url": "https://drive.google.com/file/d/1-DOAEfGPlGsIhbYcngiO3GVZNwT-64zR/view",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Blue Lock",
+    "url": "https://drive.google.com/drive/u/0/mobile/folders/173WjMeA6gSs4l0Pn473b1BvARNM5XVy_/18faNGhb1636SGqGUBu7LaxSiw65gjFLZ/17BlOW2ed9h45wlYWmRHbb-8dE1dlCFFM?sort=13&direction=a",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Blue Lock",
+    "url": "https://drive.google.com/drive/u/0/folders/199EZVJLL0M4eeq9Oxidc8ZKmCfTQI2v-?sort=13&direction=a",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Blood-C",
+    "url": "https://drive.google.com/drive/folders/1LgKpWQvUgwPy-2bVku438TY0vmE7tD3a",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Blood-C: O filme (2012)",
+    "url": "https://drive.google.com/drive/folders/1FMFV6Esw1bQtGi4G-VT2IjwyhhoFZLwB",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Neon Genesis Evangelion 1995 Compilação",
+    "url": "https://drive.google.com/drive/folders/1T8ZCBquE_jbgquYO_JwfZKdhba8K1F_I",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Aku no Hana",
+    "url": "https://drive.google.com/drive/folders/1h44Mmc2jJ7mPSjE_ztjobktjtW1xGrg5",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Toradora",
+    "url": "https://drive.google.com/drive/u/0/folders/1S22cwAeE-kkXu4bfDclpVCc--AbeWp5Y",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Attack on Titan",
+    "url": "https://drive.google.com/drive/u/0/mobile/folders/1S22cwAeE-kkXu4bfDclpVCc--AbeWp5Y",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "SK8 the Infinity",
+    "url": "https://drive.google.com/drive/u/0/folders/1-CYImZGZ_hCjWwmdrG_CkY27GSR2piFF",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Shin Nakama",
+    "url": "https://drive.google.com/drive/u/0/folders/1gqn24ZWZQj4kZbkw-zQ2uN2SGloSEePF",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Tsukihime",
+    "url": "https://drive.google.com/drive/u/0/folders/1TIPo368XZUBJvU2wzJW9Wi8_u3SU30Sv",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Tomo chan is a Girl!",
+    "url": "https://drive.google.com/drive/u/0/folders/16W7rFMDCHrET7HK-X-M7GFiYIGGzmnAK",
+    "dubbed": true,
+    "description": "Dublado e Legendado"
+  },
+  {
+    "title": "Vinland Saga Season 2",
+    "url": "https://drive.google.com/drive/folders/1ms56ikK8em7RgmE3PpwXk59C-FGQwfVC",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Isekai Shikkaku",
+    "url": "https://drive.google.com/drive/folders/1G5BzNK4b2ZuYJB5z3J0nnUv2NtqTxxKK",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Túmulo dos Vagalumes",
+    "url": "https://drive.google.com/file/d/1EAw6rOlVGHa7vSpXcMGxiLsvMQZ9NtQ2/view?usp=drivesdk",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Túmulo dos Vagalumes",
+    "url": "https://drive.google.com/file/d/1y3S7maaOKVlhnX6W4ffBYpjsgKtYnhk2/view?usp=drivesdk",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Horimiya",
+    "url": "https://drive.google.com/drive/folders/1L6IdDTTX62DSQbvMoKho5IbpxouHb39Y",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "The King of Pings",
+    "url": "https://drive.google.com/file/d/1jZelC3pDUbbq6A4oaavt8x2kAWmMyEwq/view?usp=drivesdk",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Sono Bisque Doll wa Koi o Suru",
+    "url": "https://drive.google.com/drive/folders/18lhQDYwBxzFsfZ8Gu7SnntonPVTlDWqu",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Kyoukai no Kanata",
+    "url": "https://ouo.io/0zjIor6",
+    "dubbed": false,
+    "description": "Legendado (Link externo, revisar)"
+  },
+  {
+    "title": "Solo Leveling Season 2: Arise from the Shadow",
+    "url": "https://drive.google.com/drive/folders/1vZUVStiJ_rpWsYUW4dT2yXj05dQ5kg22",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Dan Da Dan",
+    "url": "https://drive.google.com/drive/folders/1wONIq4gxyOYOnbLiqaDWb_iKx_PNGenI",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Overlord Movie 3: Sei Oukoku-hen",
+    "url": "https://drive.google.com/file/d/1EVuhzDT9ycL8UsnH9D16K6TTzcOrmCq_/view",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Batman Ninja vs. Yakuza League",
+    "url": "https://ouo.io/cC9Gsk",
+    "dubbed": true,
+    "description": "Dublado (Link externo, revisar)"
+  },
+  {
+    "title": "The Witcher: Sereias das Profundezas",
+    "url": "https://ouo.io/PdVHzv",
+    "dubbed": true,
+    "description": "Dublado (Link externo, revisar)"
+  },
+  {
+    "title": "The Witcher: Sirens Of The Deep (Dub Japonês) 2025",
+    "url": "https://drive.google.com/file/d/1IAxxwYOAhFCELdPykhCF4kD58vu7-0Nz/view",
+    "dubbed": true,
+    "description": "Dublado (Japonês)"
+  },
+  {
+    "title": "Akuyaku Reijou Tensei Ojisan",
+    "url": "https://drive.google.com/file/d/1y12gt2yGCl9ewmnuJ6emh_wFsBVYy1EJ/view",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Devil May Cry",
+    "url": "https://drive.google.com/file/d/1PnwHTNZfXLlqoq2c4uJ_xDY1EwEI_7mF/view",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "0-Saiji Start Dash Monogatari",
+    "url": "https://drive.google.com/file/d/1_q02tIjacvIYXjFWC-pYz4WTVFCvm4qn/view",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Sword Art Online Ordinal Scale",
+    "url": "https://t.me/Sword_Art_Online_BR/96",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Bungou Stray Dogs",
+    "url": "https://drive.google.com/file/d/1nd0PRy-mONMv_GGvI3tr3V5mYDnrHAzI/view",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Sword Art Online Ordinal Scale",
+    "url": "https://drive.google.com/file/d/14tChNZ18KcCuSCMQiwo50TbeTgEynFgc/view",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Shingeki no Kyojin Movie -hen - The Last Attack - Movie",
+    "url": "https://drive.google.com/file/d/1dQw3lB1RM9UG1H2Av2ILWXtDbfxQ5mP6/view",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Nezha Zhi Mo Tong Nao Hai",
+    "url": "https://drive.google.com/file/d/1-xtnzJSN4DNxaRUYwQtbZgWY8rqR1EQa/view",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Kaijuu 8-gou Movie",
+    "url": "https://drive.google.com/file/d/1bp-cEfT7Ks8VRTqY_dyrOvF9azscYvVy/view",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Horimiya",
+    "url": "https://t.me/drivedeanimesblogger/243",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Bleach",
+    "url": "https://drive.google.com/drive/folders/17xefCnNIuWVp2Jh2F7wJHNeL7bj7TNMN?usp=drive_link",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Chainsaw Man",
+    "url": "#",
+    "dubbed": false,
+    "description": "Link em breve (Legendado)"
+  },
+  {
+    "title": "Mashle 2",
+    "url": "https://drive.google.com/drive/folders/1TPKqXVup-lVWoHmj7aIFqQztN4ZelxJr",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Castlevania",
+    "url": "https://drive.google.com/drive/folders/1H8HZP-zR-KIaJCKQpeqNWE3GlZ5fs28x",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Death Note",
+    "url": "#",
+    "dubbed": false,
+    "description": "Link em breve (Legendado)"
+  },
+  {
+    "title": "Solo Leveling",
+    "url": "#",
+    "dubbed": false,
+    "description": "Link em breve (Legendado)"
+  },
+  {
+    "title": "Demon Slayer - Kimetsu no Yaiba",
+    "url": "https://drive.google.com/drive/folders/1FtThIZOgaipPDfBwfhp_T-XSEpnSsodw",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Fullmetal Alchemist",
+    "url": "https://drive.google.com/drive/folders/13SNL9xiUf34PMgYhIXQW8qT6qIaU3rap",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Hunter x Hunter",
+    "url": "#",
+    "dubbed": false,
+    "description": "Link em breve (Legendado)"
+  },
+  {
+    "title": "Vinland Saga",
+    "url": "https://drive.google.com/drive/folders/1aZNNumtoEDTAvuV0seSQMWi-reLkPpgP",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Jujutsu Kaisen",
+    "url": "#",
+    "dubbed": false,
+    "description": "Link em breve (Legendado)"
+  },
+  {
+    "title": "Chiyu Mahou no Machigatta Tsukaikata",
+    "url": "https://drive.google.com/drive/folders/1AEu5eofQe6nPSSyaeWC5BxGBhCzz9TRI",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Suicide Squad Isekai",
+    "url": "https://drive.google.com/drive/folders/1Y6LIxGE7E4RHbL98-rFX0rCjLPll1bSb",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Suicide Squad Isekai",
+    "url": "https://drive.google.com/drive/folders/1uPU1XubuC3aQm9uz6-jPOmUPnKeau5aL",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Hajime no Ippo Champion Road – Filme 2003",
+    "url": "https://drive.google.com/file/d/1jwelLnZOL1Jd-JRnkC3vYDlsuh9lo3vK/view",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Nanatsu no Taizai (Os Sete Pecados Capitais)",
+    "url": "https://drive.google.com/drive/folders/1mkALUArY2cfQiY76uy8Q5rgEpN04hhKe",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Sword Art Online: Progressive Movie - Hoshi Naki Yoru no Aria",
+    "url": "https://drive.google.com/file/d/1E3GBkg0FzP4s2cHbLJYb5b5TZx9VCYTV/view",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Demon Slayer - Kimetsu no Yaiba - The Hinokami Chronicles 2",
+    "url": "#",
+    "dubbed": false,
+    "description": "Link em breve (Legendado)"
+  },
+  {
+    "title": "Great Pretender - Razbliuto Filme 2024",
+    "url": "https://drive.google.com/file/d/16vbLtBTiQvwlxWS4lZuSvegceG9rUBYG/view",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Another",
+    "url": "https://drive.google.com/drive/folders/1d2zynmE0_B1kJhABh6GeRjS-4v6IEgCM",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Demon Slayer: Kimetsu no Yaiba Mugen Train",
+    "url": "https://drive.google.com/file/d/1qinfu-AM9OjiWDzIAs4CvejE_j5VKFIX/view",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Demon Slayer: Kimetsu no Yaiba Mugen Train",
+    "url": "https://drive.google.com/file/d/11trQnJBylX-VfvxDEC6wJvd5xmG5xWu2/view",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Oshi No Ko",
+    "url": "https://drive.google.com/drive/folders/1O4bfDM-xcSuDdz1yUv8c_F93TP7XoFXM",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Spy x Family Filme Código Branco",
+    "url": "https://drive.google.com/file/d/1RcclmpnKtAHK0Fo0wyGPrFSOyEHK3jGz/view",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Youjo Senki Filme",
+    "url": "https://drive.google.com/file/d/1xC6j7QxfOuKZxz3KWfZhN9TNzVUG9fTm/view",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Sword Art Online: Progressive Movie - Kuraki Yuuyami no Scherzo",
+    "url": "https://drive.google.com/file/d/122IzGMB0gU06PHT20eEjmW-mEAwqUB0C/view",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Solo Leveling",
+    "url": "https://drive.google.com/drive/folders/1-2zo1ebq-F3PWtA_kmY_JKhAZcTpGJyD",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Metallic Rouge",
+    "url": "https://drive.google.com/drive/folders/17X60wyW6hq8vWCaIiw5czc6riw1FaFXp",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Arcane",
+    "url": "https://drive.google.com/drive/folders/1fHIP19DjvJFJM8vmVZJXJtP_teZ5Pf0_",
+    "dubbed": true,
+    "description": "Dublado"
+  },
+  {
+    "title": "Arcane",
+    "url": "https://drive.google.com/drive/folders/1nzs0PMfYHjJ6vR2OQtwmp6lQb_fscucr",
+    "dubbed": false,
+    "description": "Legendado"
+  },
+  {
+    "title": "Gintama Compilação",
+    "url": "https://drive.google.com/drive/folders/15slWq9LKKrGErN4Emeq3t84Kcjb92QJi",
+    "dubbed": false,
+    "description": "Legendado"
+  }
+];
 
     // Renderizar lista de animes
     function renderAnimeList(filter = '') {
