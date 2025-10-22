@@ -4,14 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4EE9BERHRC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-4EE9BERHRC');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4EE9BERHRC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4EE9BERHRC');
+  </script>
   <script src='//libtl.com/sdk.js' data-zone='10011677' data-sdk='show_10011677' async></script>
   <title>Drive de Animes</title>
   <style>
@@ -119,7 +118,14 @@
     }
 
     .search-bar {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+    }
+
+    .stats {
+      color: #ffa500;
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 0.9em;
     }
 
     .search-bar input {
@@ -148,6 +154,7 @@
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.4);
       transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
     }
 
     .anime-item:hover {
@@ -160,10 +167,29 @@
       color: #ffa500;
       font-weight: bold;
       font-size: 1em;
+      display: block;
     }
 
     .anime-item a:hover {
       color: #ffb733;
+    }
+
+    .status-icon {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    .status-icon.available {
+      background: #4CAF50;
+      box-shadow: 0 0 8px #4CAF50;
+    }
+
+    .status-icon.unavailable {
+      background: #f44336;
     }
 
     .anime-item p {
@@ -187,6 +213,23 @@
       margin-top: 40px;
     }
 
+    .loading-spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #1e1e1e;
+      border-top: 2px solid #ffa500;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
     ::-webkit-scrollbar {
       width: 8px;
     }
@@ -206,6 +249,16 @@
         aspect-ratio: 16 / 3;
       }
     }
+
+    @media (max-width: 480px) {
+      .anime-list {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      h1 {
+        font-size: 1.5em;
+      }
+    }
   </style>
 </head>
 <body>
@@ -213,7 +266,7 @@
 
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <header>
-    <h1>LISTA DE ANIMES</h1>
+    <h1>🎌 LISTA DE ANIMES</h1>
     <p>Bem-vindo ao meu drive de animes! Desative bloqueadores de anúncios para acessar os links.</p>
     <div class="carousel">
       <div class="carousel-images" id="carouselImages">
@@ -230,10 +283,11 @@
   </header>
 
   <div class="anime-container">
+    <div id="stats" class="stats"></div>
     <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Pesquisar animes...">
+      <input type="text" id="searchInput" placeholder="🔍 Pesquisar animes...">
     </div>
-    <div id="adFeedback" style="display: none; color: #ffa500; margin-bottom: 10px;">Carregando anúncio...</div>
+    <div id="adFeedback" style="display: none; color: #ffa500; margin-bottom: 10px;"></div>
     <div class="anime-list" id="animeList"></div>
   </div>
 
@@ -245,8 +299,24 @@
   </footer>
 
   <script>
-    // Lista de animes
-    const animes = [
+    // Detecta iOS
+    function isIOS() {
+      return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    }
+
+    // Lista de animes (limpa duplicatas automaticamente)
+    function cleanAnimeList(animes) {
+      const seen = new Set();
+      return animes.filter(anime => {
+        const key = `${anime.title}-${anime.url}`;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+    }
+
+    const rawAnimes = [
+      // Sua lista original aqui (copie toda a lista de animes)
   {
     "title": "Akira 1988",
     "url": "https://drive.google.com/file/d/1vEPvHKT8DuYyltJ85sW44iCMBmx6pFzs/view?usp=sharing",
@@ -931,27 +1001,15 @@
     "dubbed": false,
     "description": "Legendado"
   }
-];
 
-    // Renderizar lista de animes
-    function renderAnimeList(filter = '') {
-      const animeList = document.getElementById('animeList');
-      animeList.innerHTML = '';
-      animes
-        .filter(anime => anime.title.toLowerCase().includes(filter.toLowerCase()))
-        .sort((a, b) => a.title.toUpperCase().localeCompare(b.title.toUpperCase()))
-        .forEach(anime => {
-          const div = document.createElement('div');
-          div.className = 'anime-item';
-          div.innerHTML = `
-            <a href="${anime.url}" target="_blank">${anime.title}</a>
-            <p>${anime.description}</p>
-          `;
-          animeList.appendChild(div);
-        });
-    }
+      // ... (adicione todas as outras entradas da sua lista original)
+      // Para economizar espaço, mantive apenas o primeiro como exemplo
+      // COLE TODA A SUA LISTA AQUI!
+    ];
 
-    // Inicializar Telegram WebApp
+    const animes = cleanAnimeList(rawAnimes);
+
+    // Telegram WebApp
     const tg = window.Telegram.WebApp;
     tg.ready();
     tg.expand();
@@ -966,55 +1024,104 @@
             resolve();
           } else if (attempts >= maxAttempts) {
             clearInterval(checkSDK);
-            reject(new Error('Libtl SDK não carregado após várias tentativas'));
+            reject(new Error('Libtl SDK não carregado'));
           }
           attempts++;
         }, interval);
       });
     }
 
-    // Função para mostrar o anúncio
+    // Função para mostrar o anúncio (com fallback iOS)
     function showAd() {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         const adFeedback = document.getElementById('adFeedback');
         adFeedback.style.display = 'block';
+        adFeedback.innerHTML = '<span class="loading-spinner"></span>Carregando anúncio...';
+
+        // Timeout rápido no iOS (3s max)
+        const timeout = setTimeout(() => {
+          adFeedback.style.display = 'none';
+          tg.HapticFeedback.notificationOccurred('error');
+          resolve();
+        }, isIOS() ? 3000 : 5000);
+
         waitForSDK()
           .then(() => {
             window.show_10011677().then(() => {
+              clearTimeout(timeout);
               tg.HapticFeedback.notificationOccurred('success');
               adFeedback.style.display = 'none';
               resolve();
-            }).catch(error => {
-              tg.HapticFeedback.notificationOccurred('error');
+            }).catch(() => {
+              clearTimeout(timeout);
               adFeedback.style.display = 'none';
-              reject(error);
+              resolve(); // Sempre resolve no iOS
             });
           })
-          .catch(error => {
-            console.error('Erro ao carregar SDK:', error);
+          .catch(() => {
+            clearTimeout(timeout);
             adFeedback.style.display = 'none';
-            alert('Não foi possível carregar o sistema de anúncios. O link será aberto diretamente. Considere desativar bloqueadores de anúncios.');
-            resolve(); // Permite abrir o link mesmo com falha no SDK
+            resolve();
           });
       });
     }
 
-    // Vincular anúncios aos links de anime
+    // Renderizar lista de animes
+    function renderAnimeList(filter = '') {
+      const animeList = document.getElementById('animeList');
+      animeList.innerHTML = '';
+
+      const filteredAnimes = animes
+        .filter(anime => anime.title.toLowerCase().includes(filter.toLowerCase()))
+        .sort((a, b) => a.title.toUpperCase().localeCompare(b.title.toUpperCase()));
+
+      filteredAnimes.forEach(anime => {
+        const div = document.createElement('div');
+        div.className = 'anime-item';
+        
+        // Corrige links do Drive
+        let linkUrl = anime.url;
+        if (linkUrl.includes('drive.google.com') && !linkUrl.includes('usp=sharing')) {
+          linkUrl += '?usp=sharing';
+        }
+
+        div.innerHTML = `
+          <a href="${linkUrl}" data-url="${linkUrl}" ${anime.url === '#' ? 'data-unavailable="true"' : ''}>
+            <span class="status-icon ${anime.url === '#' ? 'unavailable' : 'available'}"></span>
+            ${anime.title}
+          </a>
+          <p>${anime.description}</p>
+        `;
+        animeList.appendChild(div);
+      });
+
+      updateStats();
+    }
+
+    // Atualiza estatísticas
+    function updateStats() {
+      const available = animes.filter(a => a.url !== '#').length;
+      const total = animes.length;
+      document.getElementById('stats').innerHTML = `📺 ${available}/${total} animes disponíveis`;
+    }
+
+    // Event listener para cliques (FIX iOS)
     document.addEventListener('click', (e) => {
       const link = e.target.closest('.anime-item a');
-      if (link) {
+      if (link && !link.dataset.unavailable) {
         e.preventDefault();
-        if (link.href === window.location.href + '#') {
-          alert('Este link ainda não está disponível. Tente outro anime.');
-          return;
-        }
+        
         showAd()
           .then(() => {
-            window.open(link.href, '_blank');
+            // Usa Telegram openLink (funciona no iOS)
+            tg.openLink(link.dataset.url, { tryInCurrent: true });
           })
-          .catch(error => {
-            console.error('Erro ao exibir anúncio:', error);
+          .catch(() => {
+            // Fallback final
+            tg.openLink(link.dataset.url);
           });
+      } else if (link && link.dataset.unavailable) {
+        tg.showAlert('Este link ainda não está disponível. Tente outro anime! 😅');
       }
     });
 
@@ -1026,7 +1133,6 @@
     let index = 0;
     let autoSlide = setInterval(() => showSlide(index + 1), 4000);
 
-    // Criar indicadores
     for (let i = 0; i < totalSlides; i++) {
       const span = document.createElement('span');
       span.addEventListener('click', () => showSlide(i));
@@ -1056,7 +1162,6 @@
       if (e.key === 'ArrowRight') showSlide(index + 1);
     });
 
-    // Inicializar carrossel
     updateIndicators();
 
     // Pesquisa
@@ -1064,7 +1169,7 @@
       renderAnimeList(e.target.value);
     });
 
-    // Renderizar lista inicial
+    // Inicializar
     renderAnimeList();
   </script>
 </body>
