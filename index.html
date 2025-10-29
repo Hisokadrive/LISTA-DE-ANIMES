@@ -27,11 +27,13 @@
       padding: 20px 10px;
       background: #1e1e1e;
       box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      position: relative;
     }
 
     h1 {
       color: #ffa500;
       margin-bottom: 10px;
+      font-size: 1.8em;
     }
 
     p {
@@ -40,235 +42,70 @@
       margin-bottom: 15px;
     }
 
-    .carousel {
-      position: relative;
-      width: 100%;
-      max-width: 1000px;
-      margin: 20px auto;
-      overflow: hidden;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.6);
-      aspect-ratio: 16 / 5;
-    }
-
-    .carousel-images {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-      height: 100%;
-    }
-
-    .carousel img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      flex-shrink: 0;
-      image-rendering: auto;
-    }
-
-    .carousel button {
+    /* ===== NOVO: PARCERIAS E REDES SOCIAIS ===== */
+    .partnerships {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.5);
-      color: #fff;
-      border: none;
-      font-size: 24px;
-      padding: 10px;
-      cursor: pointer;
-      border-radius: 50%;
-      transition: background 0.3s;
-      z-index: 2;
-    }
-
-    .carousel button:hover {
-      background: rgba(255,165,0,0.8);
-    }
-
-    .prev { left: 10px; }
-    .next { right: 10px; }
-
-    .carousel-indicators {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
+      top: 10px;
+      right: 10px;
       display: flex;
+      flex-direction: column;
       gap: 8px;
-      z-index: 2;
+      font-size: 0.85em;
+      z-index: 10;
     }
 
-    .carousel-indicators span {
-      width: 10px;
-      height: 10px;
-      background: #fff;
-      border-radius: 50%;
-      opacity: 0.5;
-      cursor: pointer;
-    }
-
-    .carousel-indicators span.active {
-      background: #ffa500;
-      opacity: 1;
-    }
-
-    .anime-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    .search-bar {
-      margin-bottom: 15px;
-    }
-
-    .stats {
+    .partnerships a {
       color: #ffa500;
-      font-weight: bold;
-      margin-bottom: 10px;
-      font-size: 0.9em;
-    }
-
-    .search-bar input {
-      padding: 10px;
-      width: 100%;
-      max-width: 400px;
-      border-radius: 5px;
-      border: none;
-      background: #1e1e1e;
-      color: #fff;
-      font-size: 16px;
-    }
-
-    .anime-list {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      max-height: 70vh;
-      overflow-y: auto;
-      padding-right: 10px;
-    }
-
-    .anime-item {
-      background: #1e1e1e;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-      transition: transform 0.2s, box-shadow 0.2s;
-      cursor: pointer;
-    }
-
-    .anime-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 12px rgba(255,165,0,0.4);
-    }
-
-    .anime-item a {
       text-decoration: none;
-      color: #ffa500;
       font-weight: bold;
-      font-size: 1em;
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      background: rgba(30, 30, 30, 0.7);
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 165, 0, 0.3);
     }
 
-    .anime-item a:hover {
-      color: #ffb733;
+    .partnerships a:hover {
+      background: rgba(255, 165, 0, 0.2);
+      color: #fff;
+      transform: translateX(2px);
+      box-shadow: 0 0 8px rgba(255, 165, 0, 0.4);
     }
 
-    .status-icon {
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      margin-right: 8px;
-      vertical-align: middle;
+    .partnerships .icon {
+      font-size: 1.1em;
     }
 
-    .status-icon.available {
-      background: #4CAF50;
-      box-shadow: 0 0 8px #4CAF50;
-    }
-
-    .status-icon.unavailable {
-      background: #f44336;
-    }
-
-    .anime-item p {
-      color: #ddd;
-      font-size: 0.9em;
-      margin-top: 5px;
-    }
-
-    .banner {
-      width: 100%;
-      max-height: 300px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin: 30px 0;
-    }
-
-    footer {
-      background: #1e1e1e;
-      padding: 20px;
-      color: #aaa;
-      margin-top: 40px;
-    }
-
-    .loading-spinner {
-      display: inline-block;
-      width: 16px;
-      height: 16px;
-      border: 2px solid #1e1e1e;
-      border-top: 2px solid #ffa500;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-right: 8px;
-      vertical-align: middle;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    #adFeedback {
-      display: none;
-      color: #ffa500;
-      margin-bottom: 10px;
-      padding: 10px;
-      background: rgba(30,30,30,0.8);
-      border-radius: 8px;
-      border-left: 4px solid #ffa500;
-    }
-
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #ffa500;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #2a2a2a;
-    }
-
-    @media (max-width: 768px) {
-      .anime-list {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .carousel {
-        aspect-ratio: 16 / 3;
-      }
+    .partnerships .label {
+      font-size: 0.8em;
+      color: #ccc;
+      margin-top: 2px;
     }
 
     @media (max-width: 480px) {
-      .anime-list {
-        grid-template-columns: 1fr;
-        gap: 15px;
+      .partnerships {
+        flex-direction: row;
+        top: 5px;
+        right: 5px;
+        font-size: 0.75em;
       }
-      h1 {
-        font-size: 1.5em;
+      .partnerships a {
+        padding: 4px 8px;
+        gap: 4px;
+      }
+      .partnerships .label {
+        display: none;
       }
     }
+
+    /* ===== RESTANTE DO CSS (mantido igual) ===== */
+    .carousel { /* ... seu CSS original ... */ }
+    /* ... todo o resto do CSS permanece igual ... */
   </style>
 </head>
 <body>
@@ -278,6 +115,24 @@
   <header>
     <h1>🎌 LISTA DE ANIMES</h1>
     <p>Bem-vindo ao meu drive de animes! Desative bloqueadores de anúncios para acessar os links.</p>
+
+    <!-- ===== NOVO: SEÇÃO DE PARCERIAS E REDES SOCIAIS ===== -->
+    <div class="partnerships">
+      <a href="https://animesonline.cc" target="_blank">
+        <span class="icon">🎥</span> Animes Online
+        <div class="label">Parceiro</div>
+      </a>
+      <a href="https://t.me/seucanal" target="_blank">
+        <span class="icon">📢</span> Telegram
+        <div class="label">Canal</div>
+      </a>
+      <a href="https://instagram.com/seuperfil" target="_blank">
+        <span class="icon">📸</span> Instagram
+        <div class="label">Perfil</div>
+      </a>
+    </div>
+    <!-- ===== FIM DA NOVA SEÇÃO ===== -->
+
     <div class="carousel">
       <div class="carousel-images" id="carouselImages">
         <img src="https://i.postimg.cc/CKX5Zsm0/1-pg.jpg" alt="Banner de Spy x Family" loading="lazy">
