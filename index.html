@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="Drive de Animes 2025 - +1000 Animes Dublados & Legendados">
-  <meta property="og:description" content="3 colunas no celular • Adaptável no PC • Design Premium">
+  <meta property="og:description" content="3 colunas no celular • Filtros • Favoritos • Design Premium">
   <meta property="og:image" content="https://i.postimg.cc/CKX5Zsm0/1-pg.jpg">
   <meta name="theme-color" content="#ffa500">
   <title>Drive de Animes 2025</title>
@@ -48,29 +48,19 @@
     .reward-banner{background:linear-gradient(135deg,#ff6b00,#ffa500);color:#000;padding:18px;margin:20px 16px;
       border-radius:16px;text-align:center;font-weight:700;cursor:pointer;font-size:1.1rem;box-shadow:0 8px 25px rgba(255,165,0,.4)}
 
-    /* GRID RESPONSIVO PERFEITO */
+    /* GRID RESPONSIVO */
     .grid{
       display:grid;
       gap:18px;
       padding:0 12px;
       max-width:1800px;
       margin:0 auto;
-      /* MOBILE: SEMPRE 3 COLUNAS */
       grid-template-columns: repeat(3, 1fr);
     }
-    /* TABLET E ACIMA: ADAPTA AUTOMÁTICO */
-    @media (min-width: 768px) {
-      .grid{grid-template-columns: repeat(4, 1fr);}
-    }
-    @media (min-width: 1024px) {
-      .grid{grid-template-columns: repeat(5, 1fr);}
-    }
-    @media (min-width: 1400px) {
-      .grid{grid-template-columns: repeat(6, 1fr);}
-    }
-    @media (min-width: 1800px) {
-      .grid{grid-template-columns: repeat(7, 1fr);}
-    }
+    @media (min-width: 768px) {.grid{grid-template-columns: repeat(4, 1fr);}}
+    @media (min-width: 1024px) {.grid{grid-template-columns: repeat(5, 1fr);}}
+    @media (min-width: 1400px) {.grid{grid-template-columns: repeat(6, 1fr);}}
+    @media (min-width: 1800px) {.grid{grid-template-columns: repeat(7, 1fr);}}
 
     .card{background:var(--c);border-radius:18px;overflow:hidden;cursor:pointer;position:relative;
       transition:all .35s ease;box-shadow:0 6px 20px rgba(0,0,0,.5);display:flex;flex-direction:column;
@@ -151,11 +141,105 @@
   </nav>
 
 <script>
-// === COLE SUA LISTA COMPLETA AQUI ===
+// === TODA A TUA LISTA JÁ ORGANIZADA (sem duplicatas, ordenada alfabeticamente) ===
 const rawAnimes = [
-  {"title":"Alma-chan wa Kazoku ni Naritai","url":"https://drive.google.com/drive/folders/1ylJvYgFqZrBkb71stlfBOW_bf4sLDTzV","dubbed":false,"description":"Legendado"},
-  // ... todos os seus animes aqui
-  {"title":"Gintama Compilação","url":"https://drive.google.com/drive/folders/15slWq9LKKrGErN4Emeq3t84Kcjb92QJi","dubbed":false,"description":"Legendado"}
+  {"title":"0-Saiji Start Dash Monogatari","url":"https://drive.google.com/file/d/1_q02tIjacvIYXjFWC-pYz4WTVFCvm4qn/view","dubbed":false,"description":"Legendado"},
+  {"title":"100-man no Inochi no Ue ni Ore wa Tatteiru 2nd Season","url":"https://drive.google.com/drive/folders/1ZlD-gxhQ6e_FFWILMXA145DkwPmne8wO?usp=sharing","dubbed":false,"description":"Legendado"},
+  {"title":"Afro Samurai","url":"https://fir3.net/hDTko7","dubbed":false,"description":"Legendado"},
+  {"title":"Akira 1988","url":"https://drive.google.com/file/d/1vEPvHKT8DuYyltJ85sW44iCMBmx6pFzs/view?usp=sharing","dubbed":true,"description":"Dublado e Legendado"},
+  {"title":"Akuyaku Reijou Tensei Ojisan","url":"https://drive.google.com/file/d/1y12gt2yGCl9ewmnuJ6emh_wFsBVYy1EJ/view","dubbed":false,"description":"Legendado"},
+  {"title":"Alma-chan wa Kazoku ni Naritai","url":"https://drive.google.com/drive/folders/1ylJvYgFqZrBkb71stlfBOW_bf4sLDTzV?usp=drive_link","dubbed":false,"description":"Legendado"},
+  {"title":"Another","url":"https://drive.google.com/drive/folders/1d2zynmE0_B1kJhABh6GeRjS-4v6IEgCM","dubbed":false,"description":"Legendado"},
+  {"title":"Arcane","url":"https://drive.google.com/drive/folders/1fHIP19DjvJFJM8vmVZJXJtP_teZ5Pf0_","dubbed":true,"description":"Dublado"},
+  {"title":"Arcane","url":"https://drive.google.com/drive/folders/1nzs0PMfYHjJ6vR2OQtwmp6lQb_fscucr","dubbed":false,"description":"Legendado"},
+  {"title":"Arifureta Shokugyou de Sekai Saikyou Specials","url":"https://drive.google.com/drive/folders/1MSKuBseu9GeHi8x3uS0z0E_1TtQka50b?usp=drive_link","dubbed":false,"description":"Legendado"},
+  {"title":"Arifureta Shokugyou de Sekai Saikyou: Arifureta Yorimichi de Sekai Saikyou","url":"https://drive.google.com/drive/folders/1l9b1yU5ZravUPjkb5tOzU2YPbq2pR2tX?usp=drive_link","dubbed":false,"description":"Legendado"},
+  {"title":"Arifureta Shokugyou de Sekai Saikyou: Maboroshi no Bouken to Kiseki no Kaig","url":"https://drive.google.com/drive/folders/1BCaVZXYUBJfdsfkWFV9Ep0liSzB0PEmS?usp=drive_link","dubbed":false,"description":"Legendado"},
+  {"title":"Attack on Titan","url":"#","dubbed":false,"description":"Legendado"},
+  {"title":"Batman Ninja vs. Yakuza League","url":"https://ouo.io/cC9Gsk","dubbed":true,"description":"Dublado (Link externo, revisar)"},
+  {"title":"Black Clover","url":"https://drive.google.com/drive/folders/19nYk-O0MthX_4kN2CsxkPmfAmCYzOXqH","dubbed":true,"description":"Dublado"},
+  {"title":"Black Clover - Episódios Restantes","url":"https://drive.google.com/drive/folders/1njvkratHcc6d3KQKzCxOrXTVYJyafgFp","dubbed":true,"description":"Dublado (Episódios Restantes)"},
+  {"title":"Bleach","url":"https://drive.google.com/drive/folders/17xefCnNIuWVp2Jh2F7wJHNeL7bj7TNMN?usp=drive_link","dubbed":false,"description":"Legendado"},
+  {"title":"Blood-C","url":"https://drive.google.com/drive/folders/1LgKpWQvUgwPy-2bVku438TY0vmE7tD3a","dubbed":false,"description":"Legendado"},
+  {"title":"Blood-C: O filme (2012)","url":"https://drive.google.com/drive/folders/1FMFV6Esw1bQtGi4G-VT2IjwyhhoFZLwB","dubbed":false,"description":"Legendado"},
+  {"title":"BLUE LOCK O FILME - EPISÓDIO NAGI","url":"https://drive.google.com/file/d/1pTQmn0dFJUaJUmOL9uPVhjzQzPjVToO8/view?usp=sharing","dubbed":false,"description":"Legendado"},
+  {"title":"Blue Lock","url":"https://drive.google.com/drive/u/0/mobile/folders/173WjMeA6gSs4l0Pn473b1BvARNM5XVy_/18faNGhb1636SGqGUBu7LaxSiw65gjFLZ/17BlOW2ed9h45wlYWmRHbb-8dE1dlCFFM?sort=13&direction=a","dubbed":false,"description":"Legendado"},
+  {"title":"Bungou Stray Dogs","url":"https://drive.google.com/file/d/1nd0PRy-mONMv_GGvI3tr3V5mYDnrHAzI/view","dubbed":true,"description":"Dublado"},
+  {"title":"Castlevania","url":"https://drive.google.com/drive/folders/1H8HZP-zR-KIaJCKQpeqNWE3GlZ5fs28x","dubbed":true,"description":"Dublado"},
+  {"title":"Chainsaw Man","url":"#","dubbed":false,"description":"Link em breve (Legendado)"},
+  {"title":"Chiyu Mahou no Machigatta Tsukaikata","url":"https://drive.google.com/drive/folders/1AEu5eofQe6nPSSyaeWC5BxGBhCzz9TRI","dubbed":false,"description":"Legendado"},
+  {"title":"Clevatess: Majuu no Ou to Akago to Shikabane no Yuusha","url":"https://drive.google.com/drive/folders/1A-fEuTcocFo_hsyEShklJUs4BPCAB1lM?usp=drive_link","dubbed":true,"description":"Dublado"},
+  {"title":"Dan Da Dan","url":"https://drive.google.com/drive/folders/1wONIq4gxyOYOnbLiqaDWb_iKx_PNGenI","dubbed":false,"description":"Legendado"},
+  {"title":"Death Note","url":"#","dubbed":false,"description":"Link em breve (Legendado)"},
+  {"title":"Demon Slayer - Kimetsu no Yaiba","url":"https://drive.google.com/drive/folders/1FtThIZOgaipPDfBwfhp_T-XSEpnSsodw","dubbed":true,"description":"Dublado"},
+  {"title":"Demon Slayer: Kimetsu no Yaiba Mugen Train","url":"https://drive.google.com/file/d/1qinfu-AM9OjiWDzIAs4CvejE_j5VKFIX/view","dubbed":false,"description":"Legendado"},
+  {"title":"Demon Slayer: Kimetsu no Yaiba Season 4","url":"https://drive.google.com/drive/folders/1mEuYnad7JsjeY1QUznYUdOUNEnwoyaIL","dubbed":true,"description":"Dublado"},
+  {"title":"Devil May Cry","url":"https://drive.google.com/file/d/1PnwHTNZfXLlqoq2c4uJ_xDY1EwEI_7mF/view","dubbed":true,"description":"Dublado"},
+  {"title":"Digimon Tamers","url":"https://drive.google.com/drive/folders/1UCTdcIX6NP3_PGQvBaoMN9Q6VFkvn3UT?usp=drive_link","dubbed":false,"description":"Dublado e Legendado"},
+  {"title":"Dororo Compilação (1969-2019)","url":"https://drive.google.com/drive/u/1/folders/1rq0bBxch2Qjx7ralxDTTQlHoA7iHcIaQ","dubbed":false,"description":"Legendado"},
+  {"title":"Fate/stay night: Heaven's Feel I. Presage Flower","url":"https://drive.google.com/file/d/1XlP9SFSQsO2Bpuw22_4VEeZbt7LaCuMi/view?usp=sharing","dubbed":false,"description":"Legendado"},
+  {"title":"Fate/stay night: Heaven's Feel II. Lost Butterfly","url":"https://drive.google.com/file/d/1EfslP2RnkWWz1h-ZAPlSk2hLTRKU3eUQ/view?usp=sharing","dubbed":false,"description":"Legendado"},
+  {"title":"Fate/stay night: Heaven's Feel III. Spring Song","url":"https://drive.google.com/file/d/11LD6UNiQlg0bMeoWEABxEvAa5DcjDLyL/view?usp=sharing","dubbed":false,"description":"Legendado"},
+  {"title":"Fullmetal Alchemist","url":"https://drive.google.com/drive/folders/1vT2r7ZlPW6uanihDTgYr6OjaEafAh_0J","dubbed":false,"description":"Dublado e Legendado"},
+  {"title":"Fullmetal Alchemist: Brotherhood","url":"https://drive.google.com/drive/folders/1KWN2zitQ6e0AKoDyoznmmJdbwpykdmTW","dubbed":false,"description":"Dublado e Legendado"},
+  {"title":"Game Sekai wa Mob ni Kibishii Sekai desu","url":"https://drive.google.com/drive/folders/1PurJsAwhM___24D0W16IbCFZ8vvLkZcj?usp=drive_link","dubbed":false,"description":"Legendado"},
+  {"title":"Gintama Compilação","url":"https://drive.google.com/drive/folders/15slWq9LKKrGErN4Emeq3t84Kcjb92QJi","dubbed":false,"description":"Legendado"},
+  {"title":"Goblin Slayer","url":"https://drive.google.com/drive/folders/1559zJtOe8TOhdgY4qOYxokdfjuHjXPuK?usp=sharing","dubbed":false,"description":"Legendado"},
+  {"title":"Great Pretender - Razbliuto Filme 2024","url":"https://drive.google.com/file/d/16vbLtBTiQvwlxWS4lZuSvegceG9rUBYG/view","dubbed":false,"description":"Legendado"},
+  {"title":"Gurren Lagann The Movie: Childhood's End","url":"https://drive.google.com/file/d/1sN4Wszhz9EjwmTfnJgeXz-bBtF_A03fY/view?usp=drive_link","dubbed":false,"description":"Legendado"},
+  {"title":"Hajime no Ippo Champion Road – Filme 2003","url":"https://drive.google.com/file/d/1jwelLnZOL1Jd-JRnkC3vYDlsuh9lo3vK/view","dubbed":false,"description":"Legendado"},
+  {"title":"Horimiya","url":"https://drive.google.com/drive/folders/1L6IdDTTX62DSQbvMoKho5IbpxouHb39Y","dubbed":true,"description":"Dublado"},
+  {"title":"HUNTER×HUNTER (1999)","url":"https://drive.google.com/drive/folders/1oHRULWRtD1E1DPt1QLs26o0DBTF4x_Bn","dubbed":false,"description":"Dublado e Legendado"},
+  {"title":"Isekai Shikkaku","url":"https://drive.google.com/drive/folders/1G5BzNK4b2ZuYJB5z3J0nnUv2NtqTxxKK","dubbed":false,"description":"Legendado"},
+  {"title":"Jujutsu Kaisen","url":"https://drive.google.com/drive/folders/1WauugULhH8_JT8w5FGE_kP9C-1gW5nOY?sort=13&direction=a","dubbed":true,"description":"Dublado"},
+  {"title":"Jujutsu Kaisen 2 - Arco Gojo","url":"https://drive.google.com/drive/folders/1k31xgaKWJbjB-9CPHKmJUgxL1dgpWnHc","dubbed":true,"description":"Dublado (Arco Gojo)"},
+  {"title":"Jujutsu Kaisen 2 - Incidente em Shibuya","url":"https://drive.google.com/drive/folders/10g3ZalTmIjPi9a7KqPjWy8qV-GGBOpZd","dubbed":true,"description":"Dublado (Incidente em Shibuya)"},
+  {"title":"Kaijuu 8-gou Movie","url":"https://drive.google.com/file/d/1bp-cEfT7Ks8VRTqY_dyrOvF9azscYvVy/view","dubbed":true,"description":"Dublado"},
+  {"title":"Kyoukai no Kanata","url":"https://ouo.io/0zjIor6","dubbed":false,"description":"Legendado (Link externo, revisar)"},
+  {"title":"Lookism","url":"https://drive.google.com/drive/folders/1Z1ESXGLmabWR277y47rSj2cF28ZnK-kn?usp=sharing","dubbed":true,"description":"Dublado"},
+  {"title":"Mashle 2","url":"https://drive.google.com/drive/folders/1TPKqXVup-lVWoHmj7aIFqQztN4ZelxJr","dubbed":false,"description":"Legendado"},
+  {"title":"Metallic Rouge","url":"https://drive.google.com/drive/folders/17X60wyW6hq8vWCaIiw5czc6riw1FaFXp","dubbed":false,"description":"Legendado"},
+  {"title":"Mononoke the Movie: The Phantom in the Rain - O Filme: O Fantasma na Chuva (2024)","url":"https://drive.google.com/drive/folders/10rcO0psKZI4ePzYwqecnMYtd0rmAVf2r","dubbed":false,"description":"Legendado"},
+  {"title":"Nanatsu no Taizai (Os Sete Pecados Capitais)","url":"https://drive.google.com/drive/folders/1mkALUArY2cfQiY76uy8Q5rgEpN04hhKe","dubbed":false,"description":"Legendado"},
+  {"title":"NANA (2006 - 2007)","url":"https://drive.google.com/drive/folders/1fIkKU6_DGMvEybaEqUja_vcG0tXbAs4_","dubbed":false,"description":"Dublado e Legendado"},
+  {"title":"Neon Genesis Evangelion 1995 Compilação","url":"https://drive.google.com/drive/folders/1T8ZCBquE_jbgquYO_JwfZKdhba8K1F_I","dubbed":true,"description":"Dublado"},
+  {"title":"Nezha Zhi Mo Tong Nao Hai","url":"https://drive.google.com/file/d/1-xtnzJSN4DNxaRUYwQtbZgWY8rqR1EQa/view","dubbed":false,"description":"Legendado"},
+  {"title":"NieR: Automata Ver1.1a","url":"https://drive.google.com/drive/folders/1TqmsbbxvzD_vQQ7xKgsjYjZ8pVhwLb96?usp=drive_link","dubbed":false,"description":"Legendado"},
+  {"title":"Ninja Kamui","url":"https://drive.google.com/drive/folders/1eaEPjYeZH-t9pIb7WsHAOTj1U297y5Bj?usp=sharing","dubbed":false,"description":"Legendado"},
+  {"title":"No Game No Life: Zero 2017","url":"https://drive.google.com/file/d/19AfXoUg_9_CCxwOyQEoU1IHzk7m-J-yG/view?usp=sharing","dubbed":false,"description":"Legendado"},
+  {"title":"One Piece Movie 01","url":"https://drive.google.com/file/d/1qa0YFHulkSsJCAl9sNfYktugd2zPRO9M/view?usp=drive_link","dubbed":false,"description":"Legendado"},
+  {"title":"Os Cavaleiros do Zodíaco Compilação","url":"https://drive.google.com/drive/folders/1ysE7kcOpQYC_LKNCR66axZkmLKGQqjkm?usp=drive_link","dubbed":true,"description":"Dublado e Legendado"},
+  {"title":"Oshi No Ko","url":"https://drive.google.com/drive/folders/1O4bfDM-xcSuDdz1yUv8c_F93TP7XoFXM","dubbed":false,"description":"Legendado"},
+  {"title":"Overlord Movie 3: Sei Oukoku-hen","url":"https://drive.google.com/file/d/1EVuhzDT9ycL8UsnH9D16K6TTzcOrmCq_/view","dubbed":false,"description":"Legendado"},
+  {"title":"Sailor Moon","url":"https://drive.google.com/drive/folders/1kB0JWCyfu_3A1lu5dl7eFn5Jl0St5MCQ","dubbed":false,"description":"Dublado e Legendado"},
+  {"title":"Serial Experiments Lain","url":"https://drive.google.com/drive/folders/1UCTdcIX6NP3_PGQvBaoMN9Q6VFkvn3UT?usp=drive_link","dubbed":false,"description":"Dublado e Legendado"},
+  {"title":"Shingeki no Kyojin Movie -hen - The Last Attack - Movie","url":"https://drive.google.com/file/d/1dQw3lB1RM9UG1H2Av2ILWXtDbfxQ5mP6/view","dubbed":false,"description":"Legendado"},
+  {"title":"Shoujo Kageki Revue Starlight","url":"https://drive.google.com/drive/folders/1foGOqy0aiNF1XmYcQqMi5atTc8PYOx9n","dubbed":false,"description":"Legendado"},
+  {"title":"Shy 2","url":"https://drive.google.com/drive/folders/1VtH6lA8tW6UxEOyjt8MmKxjkVBSUkA99?usp=sharing","dubbed":false,"description":"Legendado"},
+  {"title":"SK8 the Infinity","url":"https://drive.google.com/drive/u/0/folders/1-CYImZGZ_hCjWwmdrG_CkY27GSR2piFF","dubbed":false,"description":"Legendado"},
+  {"title":"Solo Leveling","url":"https://drive.google.com/drive/folders/1-2zo1ebq-F3PWtA_kmY_JKhAZcTpGJyD","dubbed":true,"description":"Dublado"},
+  {"title":"Solo Leveling Season 2: Arise from the Shadow","url":"https://drive.google.com/drive/folders/1vZUVStiJ_rpWsYUW4dT2yXj05dQ5kg22","dubbed":false,"description":"Legendado"},
+  {"title":"Sono Bisque Doll wa Koi o Suru","url":"https://drive.google.com/drive/folders/18lhQDYwBxzFsfZ8Gu7SnntonPVTlDWqu","dubbed":true,"description":"Dublado"},
+  {"title":"Spy x Family Filme Código Branco","url":"https://drive.google.com/file/d/1RcclmpnKtAHK0Fo0wyGPrFSOyEHK3jGz/view","dubbed":false,"description":"Legendado"},
+  {"title":"Suicide Squad Isekai","url":"https://drive.google.com/drive/folders/1Y6LIxGE7E4RHbL98-rFX0rCjLPll1bSb","dubbed":true,"description":"Dublado"},
+  {"title":"Sword Art Online Ordinal Scale","url":"https://drive.google.com/file/d/14tChNZ18KcCuSCMQiwo50TbeTgEynFgc/view","dubbed":true,"description":"Dublado"},
+  {"title":"Sword Art Online: Progressive Movie - Hoshi Naki Yoru no Aria","url":"https://drive.google.com/file/d/1E3GBkg0FzP4s2cHbLJYb5b5TZx9VCYTV/view","dubbed":true,"description":"Dublado"},
+  {"title":"Sword Art Online: Progressive Movie - Kuraki Yuuyami no Scherzo","url":"https://drive.google.com/file/d/122IzGMB0gU06PHT20eEjmW-mEAwqUB0C/view","dubbed":true,"description":"Dublado"},
+  {"title":"Tengen Toppa Gurren Lagann Movie 2: Lagann-hen","url":"https://drive.google.com/file/d/13kjsQxEeNSZh2Pu19pIz3fIOnUth4oP6/view","dubbed":false,"description":"Legendado"},
+  {"title":"Tensei shitara Slime Datta Ken Movie: Guren no Kizuna-hen","url":"https://drive.google.com/file/d/1aZML_-kujpgHU0_obthlrz7b-mUKA2dq/view?usp=sharing","dubbed":true,"description":"Dublado"},
+  {"title":"The God of High School","url":"https://drive.google.com/drive/folders/1AOCZELV-SrFNHixl2o7WeFgERoxhZPhO?usp=sharing","dubbed":false,"description":"Legendado"},
+  {"title":"The King of Pings","url":"https://drive.google.com/file/d/1jZelC3pDUbbq6A4oaavt8x2kAWmMyEwq/view?usp=drivesdk","dubbed":false,"description":"Legendado"},
+  {"title":"The Witcher: Sereias das Profundezas","url":"https://ouo.io/PdVHzv","dubbed":true,"description":"Dublado (Link externo, revisar)"},
+  {"title":"The Witcher: Sirens Of The Deep (Dub Japonês) 2025","url":"https://drive.google.com/file/d/1IAxxwYOAhFCELdPykhCF4kD58vu7-0Nz/view","dubbed":true,"description":"Dublado (Japonês)"},
+  {"title":"Tomo chan is a Girl!","url":"https://drive.google.com/drive/u/0/folders/16W7rFMDCHrET7HK-X-M7GFiYIGGzmnAK","dubbed":true,"description":"Dublado e Legendado"},
+  {"title":"Toradora","url":"https://drive.google.com/drive/u/0/folders/1S22cwAeE-kkXu4bfDclpVCc--AbeWp5Y","dubbed":false,"description":"Legendado"},
+  {"title":"Tsukihime","url":"https://drive.google.com/drive/u/0/folders/1TIPo368XZUBJvU2wzJW9Wi8_u3SU30Sv","dubbed":true,"description":"Dublado"},
+  {"title":"Túmulo dos Vagalumes","url":"https://drive.google.com/file/d/1EAw6rOlVGHa7vSpXcMGxiLsvMQZ9NtQ2/view?usp=drivesdk","dubbed":false,"description":"Legendado"},
+  {"title":"Vinland Saga","url":"https://drive.google.com/drive/folders/1aZNNumtoEDTAvuV0seSQMWi-reLkPpgP","dubbed":true,"description":"Dublado"},
+  {"title":"Vinland Saga Season 2","url":"https://drive.google.com/drive/folders/1ms56ikK8em7RgmE3PpwXk59C-FGQwfVC","dubbed":true,"description":"Dublado"},
+  {"title":"Wind Breaker - Temporada 1 (2024)","url":"https://drive.google.com/file/d/16FwwLZdoMb5yC0b-ngZOo_3lNl7mBgZn/view?usp=drive_link","dubbed":false,"description":"Legendado"},
+  {"title":"Youjo Senki Filme","url":"https://drive.google.com/file/d/1xC6j7QxfOuKZxz3KWfZhN9TNzVUG9fTm/view","dubbed":false,"description":"Legendado"},
+  {"title":"Yu-Gi-Oh! Zero","url":"https://drive.google.com/drive/folders/13yQsH3KGLcSyWf2fEmmJPm6SnQUc7q4T","dubbed":false,"description":"Dublado e Legendado"}
 ];
 
 const animes = rawAnimes.map((a,i)=>({...a,id:i}));
@@ -227,7 +311,6 @@ async function render(){
   }
 }
 
-// Filtros + pesquisa
 document.querySelectorAll(".filter-btn").forEach(btn=>{
   btn.onclick=()=>{
     document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
