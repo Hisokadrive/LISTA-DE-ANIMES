@@ -255,12 +255,37 @@ function getAudioText(a){
   return t==="both"?"Dublado + Legendado":t==="dubbed"?"Dublado":"Legendado";
 }
 
-async function getCover(t){
+// === VERSÃO TURBINADA COM CACHE E FALLBACK (NUNCA MAIS FICA SEM CAPA) ===
+const coverCache = new Map(); // cache em memória
+
+async function getCover(title){
+  // 1. Primeiro tenta do cache
+  if(coverCache.has(title)) return coverCache.get(title);
+
+  // 2. Limpa o título pra busca melhor
+  const cleanTitle = title
+    .replace(/[-–—:]/g, " ")
+    .replace(/\(.*?\)/g, "")
+    .replace(/Season \d+/gi, "")
+    .replace(/Movie|Filme|O Filme.*/gi, "")
+    .trim();
+
   try{
-    const r=await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(t)}&limit=1&sfw`);
-    const d=await r.json();
-    return d.data[0]?.images?.jpg?.large_image_url || `https://via.placeholder.com/400x600/111/ffa500?text=${t.slice(0,3)}`;
-  }catch{return `https://via.placeholder.com/400x600/111/ffa500?text=??`;}
+    const res = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(cleanTitle)}&limit=1&sfw`);
+    if(!res.ok) throw new Error();
+    const data = await res.json();
+    const url = data.data?.[0]?.images?.jpg?.large_image_url;
+    
+    if(url){
+      coverCache.set(title, url);
+      return url;
+    }
+  }catch{ /* silencio */ }
+
+  // 3. FALLBACK: usa uma imagem padrão bonita com o nome do anime
+  const fallback = `https://via.placeholder.com/400x600/1e1e1e/ffa500?text=${encodeURIComponent(title.substring(0, 30))}`;
+  coverCache.set(title, fallback);
+  return fallback;
 }
 
 let favs = JSON.parse(localStorage.getItem("animeFavs")|| "[]");
