@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="Drive de Animes 2025 - +1000 Animes Dublados & Legendados">
-  <meta property="og:description" content="Filtros • Cards uniformes • Design Premium">
+  <meta property="og:description" content="Anúncio obrigatório • Máxima receita • Design Premium">
   <meta property="og:image" content="https://i.postimg.cc/CKX5Zsm0/1-pg.jpg">
   <meta name="theme-color" content="#ffa500">
   <title>Drive de Animes 2025</title>
   <link rel="icon" href="https://i.postimg.cc/wj0zY7Dk/favicon-orange.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     :root{--o:#ffa500;--d:#121212;--c:#1e1e1e;--t:#f5f5f5}
@@ -45,26 +45,31 @@
 
     .stats{text-align:center;color:var(--o);font-weight:600;padding:12px;font-size:1.05rem}
 
-    .reward-banner{background:linear-gradient(135deg,#ff6b00,#ffa500);color:#000;padding:18px;margin:20px 16px;
-      border-radius:16px;text-align:center;font-weight:700;cursor:pointer;font-size:1.1rem;box-shadow:0 8px 25px rgba(255,165,0,.4)}
-
-    /* GRID UNIFORME */
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:18px;padding:0 12px;
-      max-width:1800px;margin:0 auto}
-    @media(min-width:768px){.grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}}
+    .grid{
+      display:grid;
+      gap:18px;
+      padding:0 12px;
+      max-width:1800px;
+      margin:0 auto;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (min-width: 768px) {.grid{grid-template-columns: repeat(4, 1fr);}}
+    @media (min-width: 1024px) {.grid{grid-template-columns: repeat(5, 1fr);}}
+    @media (min-width: 1400px) {.grid{grid-template-columns: repeat(6, 1fr);}}
 
     .card{background:var(--c);border-radius:18px;overflow:hidden;cursor:pointer;position:relative;
       transition:all .35s ease;box-shadow:0 6px 20px rgba(0,0,0,.5);display:flex;flex-direction:column;
-      height:480px}
+      height:440px}
     .card:hover{transform:translateY(-10px);box-shadow:0 25px 50px rgba(255,165,0,.4)}
 
     .card-img{width:100%;height:300px;object-fit:cover;background:#000}
 
-    .info{padding:18px 16px;display:flex;flex-direction:column;justify-content:center;height:180px;text-align:center}
-    .title{font-weight:700;color:var(--o);font-size:1.05rem;line-height:1.4;
-      display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+    .info{padding:14px 12px;display:flex;align-items:center;justify-content:center;
+      height:140px;text-align:center;background:rgba(0,0,0,0.3)}
+    .title{font-weight:800;color:var(--o);font-size:1.05rem;line-height:1.35;
+      display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;
+      text-shadow:0 2px 8px rgba(0,0,0,0.8)}
 
-    /* BADGE MAIS VISÍVEL E BONITO */
     .audio-badge{position:absolute;top:12px;left:12px;padding:8px 14px;border-radius:12px;
       font-size:0.82rem;font-weight:800;z-index:2;text-transform:uppercase;letter-spacing:1px;
       backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,0.1)}
@@ -82,6 +87,11 @@
     .nav-i{color:#999;text-align:center;font-size:0.9rem;cursor:pointer;font-weight:500}
     .nav-i.active,.nav-i:hover{color:var(--o)}
     .nav-i i{font-size:1.7rem;display:block;margin-bottom:6px}
+
+    /* Overlay de anúncio obrigatório */
+    #adOverlay{position:fixed;inset:0;background:rgba(0,0,0,0.98);z-index:99999;display:none;align-items:center;justify-content:center;flex-direction:column;color:white;text-align:center;padding:20px}
+    #adOverlay.show{display:flex}
+    #adOverlay i{font-size:4rem;margin-bottom:20px}
   </style>
 </head>
 <body>
@@ -118,10 +128,6 @@
 
   <div class="stats" id="stats">Carregando...</div>
 
-  <div class="reward-banner" id="rewardBtn">
-    <i class="fas fa-gift"></i> Assistir anúncio rápido → apoio ao site + remove limite diário
-  </div>
-
   <div class="grid" id="grid"></div>
 
   <nav class="bottom-nav">
@@ -130,45 +136,105 @@
     <div class="nav-i"><i class="fas fa-fire"></i> Novidades</div>
   </nav>
 
+  <!-- Overlay de anúncio obrigatório -->
+  <div id="adOverlay">
+    <i class="fas fa-circle-notch fa-spin"></i>
+    <h2>Aguarde o anúncio para abrir <span id="animeTitleOverlay"></span>...</h2>
+    <p>Desative o AdBlock se necessário</p>
+  </div>
+
 <script>
-// === COLE SUA LISTA COMPLETA AQUI ===
+// === COLE TUA LISTA COMPLETA AQUI ===
 const rawAnimes = [
-  {"title":"Alma-chan wa Kazoku ni Naritai","url":"https://drive.google.com/drive/folders/1ylJvYgFqZrBkb71stlfBOW_bf4sLDTzV","dubbed":false,"description":"Legendado"},
-  // ... todos os seus animes aqui
-  {"title":"Gintama Compilação","url":"https://drive.google.com/drive/folders/15slWq9LKKrGErN4Emeq3t84Kcjb92QJi","dubbed":false,"description":"Legendado"}
+  // ←←← COLE TODOS OS TEUS ANIMES AQUI ←←←
+  {"title":"Exemplo","url":"https://drive.google.com/...","dubbed":false,"description":"Legendado"}
 ];
 
 const animes = rawAnimes.map((a,i)=>({...a,id:i}));
 const unique = [...new Map(animes.map(a=>[a.title+a.url,a])).values()];
 
-function getAudioType(a){
-  if(a.dubbed && /legendado/i.test(a.description)) return "both";
-  if(a.dubbed) return "dubbed";
-  return "subbed";
-}
-function getAudioText(a){
-  const t = getAudioType(a);
-  return t==="both"?"Dublado + Legendado":t==="dubbed"?"Dublado":"Legendado";
-}
+// FALLBACK MANUAL + CACHE (igual antes)
+const MANUAL_COVERS = {
+  "Arcane": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/fm3lkFym9h1k7Y6pcsHu1k3B2nA.jpg",
+  "Castlevania": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/4B0a6sU4Y4K9rX5q108AXv9aG6J.jpg",
+  "Devil May Cry": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/1y3zFqT8qH9BDI8e3K0b3cr8i0U.jpg",
+  "The Witcher: Sereias das Profundezas": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/9f6F5B1rQ9.jpg",
+  "The Witcher: Sirens Of The Deep (Dub Japonês) 2025": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/9f6F5B1rQ9.jpg",
+  "Batman Ninja vs. Yakuza League": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/7qZ8K7qZ8.jpg",
+  "Lookism": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/7r6z6z6z6.jpg"
+};
 
-async function getCover(t){
+const CACHE_NAME = "anime-covers-v2";
+let coverCache = new Map();
+try { const saved = localStorage.getItem(CACHE_NAME); if(saved) coverCache = new Map(JSON.parse(saved)); } 
+catch { localStorage.removeItem(CACHE_NAME); }
+
+async function getCover(title){
+  if(MANUAL_COVERS[title]) return MANUAL_COVERS[title];
+  if(coverCache.has(title)) return coverCache.get(title);
+
+  const cleanTitle = title.replace(/[-–—:]/g," ").replace(/\(.*?\)/g,"").replace(/Season \d+.*/gi,"").replace(/Movie|Filme.*/gi,"").trim();
+
   try{
-    const r=await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(t)}&limit=1&sfw`);
-    const d=await r.json();
-    return d.data[0]?.images?.jpg?.large_image_url || `https://via.placeholder.com/400x600/111/ffa500?text=${t.slice(0,3)}`;
-  }catch{return `https://via.placeholder.com/400x600/111/ffa500?text=??`;}
+    const res = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(cleanTitle)}&limit=1&sfw`);
+    if(!res.ok) throw "";
+    const data = await res.json();
+    const url = data.data?.[0]?.images?.jpg?.large_image_url;
+    if(url){ coverCache.set(title,url); saveCache(); return url; }
+  }catch{}
+
+  const fallback = `https://via.placeholder.com/400x600/1e1e1e/ffa500?text=${encodeURIComponent(title.substring(0,25))}`;
+  coverCache.set(title,fallback); saveCache();
+  return fallback;
 }
+function saveCache(){ try{ localStorage.setItem(CACHE_NAME, JSON.stringify(Array.from(coverCache.entries()))); } catch{} }
+
+// ÁUDIO + FAVORITOS
+function getAudioType(a){ if(a.dubbed && /legendado/i.test(a.description)) return "both"; if(a.dubbed) return "dubbed"; return "subbed"; }
+function getAudioText(a){ const t = getAudioType(a); return t==="both"?"Dublado + Legendado":t==="dubbed"?"Dublado":"Legendado"; }
 
 let favs = JSON.parse(localStorage.getItem("animeFavs")|| "[]");
 let currentFilter = "all";
 
-function toggleFav(id){
-  const i=favs.indexOf(id); i>-1?favs.splice(i,1):favs.push(id);
-  localStorage.setItem("animeFavs",JSON.stringify(favs));
-  document.getElementById("favCount").textContent=favs.length;
-  render();
+// === ANÚNCIO OBRIGATÓRIO ===
+async function openWithAd(anime){
+  if(anime.url === "#"){ alert("Link em breve"); return; }
+
+  const overlay = document.getElementById("adOverlay");
+  const titleSpan = document.getElementById("animeTitleOverlay");
+  titleSpan.textContent = anime.title;
+  overlay.classList.add("show");
+
+  // Espera o SDK carregar
+  let attempts = 0;
+  const wait = setInterval(() => {
+    if(typeof show_10011677 === "function"){
+      clearInterval(wait);
+      show_10011677()
+        .then(() => {
+          overlay.innerHTML = `<i class="fas fa-check-circle" style="color:#4CAF50;font-size:4rem;margin-bottom:20px"></i>
+            <h2>Anúncio concluído!</h2><p>Abrindo ${anime.title}...</p>`;
+          setTimeout(() => {
+            overlay.classList.remove("show");
+            const finalUrl = anime.url.includes("drive.google.com") ? anime.url + (anime.url.includes("?") ? "" : "?usp=sharing") : anime.url;
+            window.open(finalUrl, "_blank");
+          }, 1200);
+        })
+        .catch(() => {
+          overlay.innerHTML = `<i class="fas fa-times-circle" style="color:#f44336;font-size:4rem;margin-bottom:20px"></i>
+            <h2>Anúncio bloqueado</h2><p>Desative o AdBlock e tente novamente</p>`;
+          setTimeout(() => overlay.classList.remove("show"), 4000);
+        });
+    } else if(attempts++ > 30){
+      clearInterval(wait);
+      overlay.innerHTML = `<i class="fas fa-exclamation-triangle" style="color:#ff9800;font-size:4rem;margin-bottom:20px"></i>
+        <h2>Sem anúncios disponíveis</h2><p>Tente mais tarde</p>`;
+      setTimeout(() => overlay.classList.remove("show"), 4000);
+    }
+  }, 400);
 }
 
+// RENDER
 async function render(){
   const grid=document.getElementById("grid");
   grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:100px;color:#666"><i class="fas fa-spinner fa-spin fa-3x"></i></div>`;
@@ -176,10 +242,7 @@ async function render(){
   let filtered = unique;
   const query = document.getElementById("searchInput").value.toLowerCase();
   if(query) filtered = filtered.filter(a=>a.title.toLowerCase().includes(query));
-
-  if(currentFilter!=="all"){
-    filtered = filtered.filter(a=>getAudioType(a)===currentFilter);
-  }
+  if(currentFilter!=="all") filtered = filtered.filter(a=>getAudioType(a)===currentFilter);
 
   document.getElementById("stats").textContent=`${filtered.length} animes • ${favs.length} favoritos`;
   grid.innerHTML="";
@@ -191,36 +254,24 @@ async function render(){
     div.innerHTML=`
       <div class="audio-badge ${type}">${getAudioText(anime)}</div>
       <img src="${cover}" alt="${anime.title}" class="card-img">
-      <div class="info">
-        <div class="title">${anime.title}</div>
-        <!-- DESCRIÇÃO REMOVIDA -->
-      </div>
+      <div class="info"><div class="title">${anime.title}</div></div>
       <div class="fav-btn ${favs.includes(anime.id)?"fav":""}" onclick="event.stopPropagation();toggleFav(${anime.id})">
         <i class="fas fa-heart"></i>
       </div>
     `;
-    div.onclick=()=>{
-      if(anime.url==="#"){alert("Link em breve");return;}
-      const url=anime.url.includes("drive.google.com")?anime.url+(anime.url.includes("?")?"":"?usp=sharing"):anime.url;
-      window.open(url,"_blank");
-    };
+    div.onclick = () => openWithAd(anime);
     grid.appendChild(div);
   }
 }
 
-// Filtros + pesquisa
+// Filtros + favoritos
+function toggleFav(id){ const i=favs.indexOf(id); i>-1?favs.splice(i,1):favs.push(id); localStorage.setItem("animeFavs",JSON.stringify(favs)); document.getElementById("favCount").textContent=favs.length; render(); }
+
 document.querySelectorAll(".filter-btn").forEach(btn=>{
-  btn.onclick=()=>{
-    document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
-    btn.classList.add("active");
-    currentFilter=btn.dataset.filter;
-    render();
-  };
+  btn.onclick=()=>{ document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active")); btn.classList.add("active"); currentFilter=btn.dataset.filter; render(); };
 });
 
 document.getElementById("searchInput").oninput=()=>render();
-document.getElementById("rewardBtn").onclick=()=>{if(typeof show_10011677==="function")show_10011677();alert("Obrigado pelo apoio! ❤️");};
-
 document.getElementById("favCount").textContent=favs.length;
 render();
 </script>
