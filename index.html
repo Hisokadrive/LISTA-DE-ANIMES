@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="Drive de Animes 2025 - +1000 Animes Dublados & Legendados">
-  <meta property="og:description" content="Anúncio rápido ou abre direto • Máxima velocidade • Design Premium">
+  <meta property="og:description" content="Abre rápido • Anúncio ou direto • Design Premium">
   <meta property="og:image" content="https://i.postimg.cc/CKX5Zsm0/1-pg.jpg">
   <meta name="theme-color" content="#ffa500">
   <title>Drive de Animes 2025</title>
@@ -12,17 +12,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
  
-  <!-- SCRIPT DO ANÚNCIO LIBTL -->
+  <!-- ANÚNCIO LIBTL -->
   <script src="//libtl.com/sdk.js" data-zone="10011677" data-sdk="show_10011677" async></script>
+
   <style>
     :root{--o:#ffa500;--d:#121212;--c:#1e1e1e;--t:#f5f5f5}
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:'Inter',sans-serif;background:var(--d);color:var(--t);padding-bottom:100px}
-    .top-partners{background:rgba(30,30,30,0.94);backdrop-filter:blur(12px);padding:12px;text-align:center;
-      border-bottom:1px solid rgba(255,165,0,0.3);font-size:0.9rem;overflow-x:auto;white-space:nowrap}
-    .top-partners a{display:inline-flex;align-items:center;gap:10px;color:var(--o);text-decoration:none;
-      font-weight:600;background:rgba(255,165,0.15);padding:9px 18px;border-radius:50px;margin:0 8px;transition:.3s}
-    .top-partners a:hover{background:rgba(255,165,0,0.35)}
+    
+    /* BARRA DE PARCERIAS CORRIGIDA (laranja normal) */
+    .top-partners{
+      background:rgba(30,30,30,0.94);backdrop-filter:blur(12px);padding:12px;text-align:center;
+      border-bottom:1px solid rgba(255,165,0,0.3);font-size:0.9rem;overflow-x:auto;white-space:nowrap;
+    }
+    .top-partners a{
+      display:inline-flex;align-items:center;gap:10px;color:#ffa500;text-decoration:none;
+      font-weight:600;background:rgba(255,165,0,0.15);padding:9px 18px;border-radius:50px;
+      margin:0 8px;transition:.3s;
+    }
+    .top-partners a:hover{
+      background:rgba(255,165,0,0.35);color:white;
+    }
+
     header{position:sticky;top:0;z-index:1000;background:rgba(18,18,18,0.98);backdrop-filter:blur(12px);
       padding:16px;text-align:center;border-bottom:1px solid rgba(255,165,0,.2)}
     .logo{font-size:2.3rem;font-weight:800;color:var(--o);letter-spacing:2px}
@@ -74,9 +85,9 @@
 </head>
 <body>
   <div class="top-partners">
-    <a href="https://bit.ly/JSY-ANIME" target="_blank"><i class="fas fa-users"></i> JSY ANIME</a>
-    <a href="https://t.me/drivedeanimesblogger" target="_blank"><i class="fab fa-telegram"></i> Canal Telegram</a>
-    <a href="https://x.com/drivedeanimes" target="_blank"><i class="fab fa-x-twitter"></i> X / Twitter</a>
+    <a href="https://bit.ly/JSY-ANIME" target="_blank">JSY ANIME</a>
+    <a href="https://t.me/drivedeanimesblogger" target="_blank">Canal Telegram</a>
+    <a href="https://x.com/drivedeanimes" target="_blank">X / Twitter</a>
   </div>
   <header><div class="logo">DRIVE DE ANIMES</div></header>
   <div class="hero">
@@ -101,23 +112,23 @@
   <div class="stats" id="stats">Carregando...</div>
   <div class="grid" id="grid"></div>
 
-  <!-- Overlay simples -->
+  <!-- Overlay simples e rápido -->
   <div id="adOverlay">
     <i class="fas fa-circle-notch fa-spin"></i>
     <h2>Aguarde um instante...</h2>
   </div>
 
 <script>
-// === COLE SUA LISTA COMPLETA DE ANIMES AQUI ===
+// === COLE TODA SUA LISTA DE ANIMES AQUI ===
 const rawAnimes = [
   {"title":"One Piece Dublado","url":"https://drive.google.com/drive/folders/exemplo","dubbed":true,"description":"Dublado em Português"}
-  // ← Cole todos os seus animes aqui
+  // ← cole todos os seus animes aqui
 ];
 const animes = rawAnimes.map((a,i)=>({...a,id:i}));
 const unique = [...new Map(animes.map(a=>[a.title+a.url,a])).values()];
 
-// Cache de capas (mantido)
-const MANUAL_COVERS = { };
+// Cache de capas
+const MANUAL_COVERS = {};
 const CACHE_NAME = "anime-covers-v2";
 let coverCache = new Map();
 try { const saved = localStorage.getItem(CACHE_NAME); if(saved) coverCache = new Map(JSON.parse(saved)); } catch { localStorage.removeItem(CACHE_NAME); }
@@ -143,7 +154,7 @@ function getAudioText(a){ const t = getAudioType(a); return t==="both"?"Dublado 
 let favs = JSON.parse(localStorage.getItem("animeFavs")|| "[]");
 let currentFilter = "all";
 
-// === FUNÇÃO ULTRA-RÁPIDA (máx 3.8s de espera) ===
+// === FUNÇÃO FINAL: ABRE EM MÁXIMO 4 SEGUNDOS ===
 async function openWithAd(anime) {
   if (!anime.url || anime.url === "#" || anime.url === "") {
     alert("Link em breve");
@@ -154,7 +165,7 @@ async function openWithAd(anime) {
   overlay.innerHTML = `<i class="fas fa-circle-notch fa-spin"></i><h2>Aguarde um instante...</h2>`;
   overlay.classList.add("show");
 
-  // Abre aba imediatamente
+  // Abre aba imediatamente (funciona 100% no iPhone)
   let popup = null;
   try {
     popup = window.open("", "_blank");
@@ -163,7 +174,7 @@ async function openWithAd(anime) {
         <!DOCTYPE html><html><head><meta name="theme-color" content="#ffa500"></head>
         <body style="margin:0;height:100vh;background:#121212;color:#ffa500;font-family:system-ui;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px">
           <div style="width:56px;height:56px;border:6px solid #333;border-top:6px solid #ffa500;border-radius:50%;animation:s 1s linear infinite;margin-bottom:20px"></div>
-          <h1 style="font-size:1.6rem;margin:10px">Carregando ${anime.title.replace(/</g,"&lt;")}</h1>
+          <h1 style="font-size:1.6rem">Carregando ${anime.title.replace(/</g,"&lt;")}</h1>
           <p style="color:#aaa">Aguarde um instante...</p>
           <style>@keyframes s{to{transform:rotate(360deg)}}</style>
         </body></html>
@@ -175,38 +186,33 @@ async function openWithAd(anime) {
     ? anime.url + (anime.url.includes("?") ? "&" : "?") + "usp=sharing"
     : anime.url;
 
-  const abrirAgora = () => {
+  const abrir = () => {
     if (popup && !popup.closed) popup.location.href = finalUrl;
     else window.open(finalUrl, "_blank");
     overlay.classList.remove("show");
   };
 
   // Força abrir em 3.8s no máximo
-  const timeout = setTimeout(abrirAgora, 3800);
+  const forceOpen = setTimeout(abrir, 3800);
 
-  // Tenta mostrar anúncio rapidamente
+  // Tenta mostrar anúncio
   if (typeof show_10011677 === "function") {
     try {
       await show_10011677();
-      clearTimeout(timeout);
-      setTimeout(abrirAgora, 800); // dá um tempinho pro anúncio fechar bonitinho
-    } catch(e) {
-      // Não conseguiu? Timeout abre mesmo assim (já tá contando)
-    }
+      clearTimeout(forceOpen);
+      setTimeout(abrir, 800);
+    } catch(e) {}
   }
-  // Se o SDK ainda não carregou em 3.8s → abre direto (normal)
 }
 
-// Renderização (sem mudanças)
+// Renderização + tudo mais (sem alterações)
 async function render(){
   const grid = document.getElementById("grid");
   grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:100px;color:#666"><i class="fas fa-spinner fa-spin fa-3x"></i></div>`;
- 
   let filtered = unique;
   const query = document.getElementById("searchInput").value.toLowerCase();
   if(query) filtered = filtered.filter(a=>a.title.toLowerCase().includes(query));
   if(currentFilter !== "all") filtered = filtered.filter(a=>getAudioType(a)===currentFilter);
- 
   document.getElementById("stats").textContent = `${filtered.length} animes • ${favs.length} favoritos`;
   grid.innerHTML = "";
   for(const anime of filtered){
@@ -225,7 +231,6 @@ async function render(){
     grid.appendChild(div);
   }
 }
-
 function toggleFav(id){
   const i = favs.indexOf(id);
   i > -1 ? favs.splice(i,1) : favs.push(id);
@@ -233,7 +238,6 @@ function toggleFav(id){
   document.getElementById("favCount").textContent = favs.length;
   render();
 }
-
 document.querySelectorAll(".filter-btn").forEach(btn=>{
   btn.onclick = () => {
     document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
@@ -242,7 +246,6 @@ document.querySelectorAll(".filter-btn").forEach(btn=>{
     render();
   };
 });
-
 document.getElementById("searchInput").oninput = () => render();
 document.getElementById("favCount").textContent = favs.length;
 render();
