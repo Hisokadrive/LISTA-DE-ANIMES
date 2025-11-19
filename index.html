@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="Drive de Animes 2025 - +1000 Animes Dublados & Legendados">
-  <meta property="og:description" content="Anúncio obrigatório • Máxima receita • Design Premium">
+  <meta property="og:description" content="Anúncio rápido ou abre direto • Máxima velocidade • Design Premium">
   <meta property="og:image" content="https://i.postimg.cc/CKX5Zsm0/1-pg.jpg">
   <meta name="theme-color" content="#ffa500">
   <title>Drive de Animes 2025</title>
@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
  
-  <!-- SCRIPT DO ANÚNCIO LIBTL (OBRIGATÓRIO) -->
+  <!-- SCRIPT DO ANÚNCIO LIBTL -->
   <script src="//libtl.com/sdk.js" data-zone="10011677" data-sdk="show_10011677" async></script>
   <style>
     :root{--o:#ffa500;--d:#121212;--c:#1e1e1e;--t:#f5f5f5}
@@ -21,7 +21,7 @@
     .top-partners{background:rgba(30,30,30,0.94);backdrop-filter:blur(12px);padding:12px;text-align:center;
       border-bottom:1px solid rgba(255,165,0,0.3);font-size:0.9rem;overflow-x:auto;white-space:nowrap}
     .top-partners a{display:inline-flex;align-items:center;gap:10px;color:var(--o);text-decoration:none;
-      font-weight:600;background:rgba(255,165,0,0.15);padding:9px 18px;border-radius:50px;margin:0 8px;transition:.3s}
+      font-weight:600;background:rgba(255,165,0.15);padding:9px 18px;border-radius:50px;margin:0 8px;transition:.3s}
     .top-partners a:hover{background:rgba(255,165,0,0.35)}
     header{position:sticky;top:0;z-index:1000;background:rgba(18,18,18,0.98);backdrop-filter:blur(12px);
       padding:16px;text-align:center;border-bottom:1px solid rgba(255,165,0,.2)}
@@ -66,11 +66,6 @@
       border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;z-index:2}
     .fav-btn i{transition:.3s}
     .fav-btn.fav i{color:#ff2d55;transform:scale(1.3)}
-    .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(18,18,18,.98);backdrop-filter:blur(12px);
-      display:flex;justify-content:space-around;padding:14px 0 28px;border-top:1px solid rgba(255,165,0,.2);z-index:999}
-    .nav-i{color:#999;text-align:center;font-size:0.9rem;cursor:pointer;font-weight:500}
-    .nav-i.active,.nav-i:hover{color:var(--o)}
-    .nav-i i{font-size:1.7rem;display:block;margin-bottom:6px}
     #adOverlay{position:fixed;inset:0;background:rgba(0,0,0,0.98);z-index:99999;display:none;
       align-items:center;justify-content:center;flex-direction:column;color:white;text-align:center;padding:20px}
     #adOverlay.show{display:flex}
@@ -79,9 +74,9 @@
 </head>
 <body>
   <div class="top-partners">
-    <a href="https://bit.ly/JSY-ANIME" target="_blank">JSY ANIME</a>
-    <a href="https://t.me/drivedeanimesblogger" target="_blank">Canal Telegram</a>
-    <a href="https://x.com/drivedeanimes" target="_blank">X / Twitter</a>
+    <a href="https://bit.ly/JSY-ANIME" target="_blank"><i class="fas fa-users"></i> JSY ANIME</a>
+    <a href="https://t.me/drivedeanimesblogger" target="_blank"><i class="fab fa-telegram"></i> Canal Telegram</a>
+    <a href="https://x.com/drivedeanimes" target="_blank"><i class="fab fa-x-twitter"></i> X / Twitter</a>
   </div>
   <header><div class="logo">DRIVE DE ANIMES</div></header>
   <div class="hero">
@@ -105,34 +100,27 @@
   </div>
   <div class="stats" id="stats">Carregando...</div>
   <div class="grid" id="grid"></div>
-  <nav class="bottom-nav">
-    <div class="nav-i active">Home</div>
-    <div class="nav-i">Favoritos (<span id="favCount">0</span>)</div>
-    <div class="nav-i">Novidades</div>
-  </nav>
 
-  <!-- Overlay de anúncio -->
+  <!-- Overlay simples -->
   <div id="adOverlay">
     <i class="fas fa-circle-notch fa-spin"></i>
-    <h2>Aguarde o anúncio para abrir <span id="animeTitleOverlay"></span>...</h2>
-    <p>Desative o AdBlock se necessário</p>
+    <h2>Aguarde um instante...</h2>
   </div>
 
 <script>
-// === SUA LISTA DE ANIMES (COLE AQUI) ===
+// === COLE SUA LISTA COMPLETA DE ANIMES AQUI ===
 const rawAnimes = [
-  {"title":"One Piece Dublado","url":"https://drive.google.com/drive/folders/exemplo","dubbed":true,"description":"Dublado em Português"},
-  // COLE TODOS OS SEUS ANIMES AQUI
+  {"title":"One Piece Dublado","url":"https://drive.google.com/drive/folders/exemplo","dubbed":true,"description":"Dublado em Português"}
+  // ← Cole todos os seus animes aqui
 ];
 const animes = rawAnimes.map((a,i)=>({...a,id:i}));
 const unique = [...new Map(animes.map(a=>[a.title+a.url,a])).values()];
 
-// Cache de capas
+// Cache de capas (mantido)
 const MANUAL_COVERS = { };
 const CACHE_NAME = "anime-covers-v2";
 let coverCache = new Map();
 try { const saved = localStorage.getItem(CACHE_NAME); if(saved) coverCache = new Map(JSON.parse(saved)); } catch { localStorage.removeItem(CACHE_NAME); }
-
 async function getCover(title){
   if(MANUAL_COVERS[title]) return MANUAL_COVERS[title];
   if(coverCache.has(title)) return coverCache.get(title);
@@ -155,7 +143,7 @@ function getAudioText(a){ const t = getAudioType(a); return t==="both"?"Dublado 
 let favs = JSON.parse(localStorage.getItem("animeFavs")|| "[]");
 let currentFilter = "all";
 
-// === FUNÇÃO 100% FUNCIONAL NO IPHONE (2025) ===
+// === FUNÇÃO ULTRA-RÁPIDA (máx 3.8s de espera) ===
 async function openWithAd(anime) {
   if (!anime.url || anime.url === "#" || anime.url === "") {
     alert("Link em breve");
@@ -163,94 +151,53 @@ async function openWithAd(anime) {
   }
 
   const overlay = document.getElementById("adOverlay");
-  const titleSpan = document.getElementById("animeTitleOverlay");
-  titleSpan.textContent = anime.title;
+  overlay.innerHTML = `<i class="fas fa-circle-notch fa-spin"></i><h2>Aguarde um instante...</h2>`;
   overlay.classList.add("show");
 
-  // 1. ABRE A ABA AGORA (user gesture → iOS permite)
+  // Abre aba imediatamente
   let popup = null;
   try {
     popup = window.open("", "_blank");
     if (popup) {
       popup.document.write(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <meta name="theme-color" content="#ffa500">
-          <style>
-            body,html{margin:0;height:100vh;background:#121212;color:#ffa500;font-family:system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}
-            .spinner{width:56px;height:56px;border:6px solid #333;border-top:6px solid #ffa500;border-radius:50%;animation:s 1s linear infinite;margin-bottom:30px}
-            @keyframes s{to{transform:rotate(360deg)}}
-            h1{font-size:1.8rem;margin:10px 0}
-            p{color:#aaa;font-size:1.1rem}
-          </style>
-        </head>
-        <body>
-          <div class="spinner"></div>
-          <h1>Carregando ${anime.title.replace(/</g, "&lt;")}</h1>
-          <p>Aguarde o anúncio obrigatório...</p>
-        </body>
-        </html>
+        <!DOCTYPE html><html><head><meta name="theme-color" content="#ffa500"></head>
+        <body style="margin:0;height:100vh;background:#121212;color:#ffa500;font-family:system-ui;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px">
+          <div style="width:56px;height:56px;border:6px solid #333;border-top:6px solid #ffa500;border-radius:50%;animation:s 1s linear infinite;margin-bottom:20px"></div>
+          <h1 style="font-size:1.6rem;margin:10px">Carregando ${anime.title.replace(/</g,"&lt;")}</h1>
+          <p style="color:#aaa">Aguarde um instante...</p>
+          <style>@keyframes s{to{transform:rotate(360deg)}}</style>
+        </body></html>
       `);
     }
   } catch(e) { popup = null; }
 
-  const openFinal = () => {
-    let finalUrl = anime.url;
-    if (finalUrl.includes("drive.google.com") && !finalUrl.includes("usp=")) {
-      finalUrl += (finalUrl.includes("?") ? "&" : "?") + "usp=sharing";
-    }
-    if (popup && !popup.closed) {
-      popup.location.href = finalUrl;
-    } else {
-      window.open(finalUrl, "_blank");
-    }
-    setTimeout(() => overlay.classList.remove("show"), 1200);
+  const finalUrl = anime.url.includes("drive.google.com") && !anime.url.includes("usp=")
+    ? anime.url + (anime.url.includes("?") ? "&" : "?") + "usp=sharing"
+    : anime.url;
+
+  const abrirAgora = () => {
+    if (popup && !popup.closed) popup.location.href = finalUrl;
+    else window.open(finalUrl, "_blank");
+    overlay.classList.remove("show");
   };
 
-  // Detecta AdBlock
-  const test = document.createElement("div");
-  test.className = "adsbox";
-  test.style.position = "absolute";
-  test.innerHTML = "&nbsp;";
-  document.body.appendChild(test);
-  const adblock = test.offsetHeight === 0;
-  test.remove();
+  // Força abrir em 3.8s no máximo
+  const timeout = setTimeout(abrirAgora, 3800);
 
-  if (adblock) {
-    overlay.innerHTML = `<i class="fas fa-shield-alt" style="font-size:4rem;color:#ff9800"></i>
-      <h2>AdBlock detectado</h2><p>Abrindo em 2s...</p>`;
-    setTimeout(openFinal, 2000);
-    return;
-  }
-
-  // Espera o anúncio
-  let attempts = 0;
-  const max = 80;
-  const check = setInterval(() => {
-    if (typeof show_10011677 === "function") {
-      clearInterval(check);
-      show_10011677()
-        .then(() => {
-          overlay.innerHTML = `<i class="fas fa-check-circle" style="font-size:4rem;color:#4CAF50"></i>
-            <h2>Anúncio concluído!</h2><p>Abrindo ${anime.title}...</p>`;
-          setTimeout(openFinal, 1400);
-        })
-        .catch(() => {
-          overlay.innerHTML = `<i class="fas fa-exclamation-triangle" style="font-size:4rem;color:#ff9800"></i>
-            <h2>Anúncio bloqueado</h2><p>Abrindo mesmo assim...</p>`;
-          setTimeout(openFinal, 1800);
-        });
-    } else if (attempts++ > max) {
-      clearInterval(check);
-      overlay.innerHTML = `<i class="fas fa-wifi" style="font-size:4rem;color:#2196F3"></i>
-        <h2>Sem anúncios agora</h2><p>Abrindo ${anime.title}...</p>`;
-      setTimeout(openFinal, 1400);
+  // Tenta mostrar anúncio rapidamente
+  if (typeof show_10011677 === "function") {
+    try {
+      await show_10011677();
+      clearTimeout(timeout);
+      setTimeout(abrirAgora, 800); // dá um tempinho pro anúncio fechar bonitinho
+    } catch(e) {
+      // Não conseguiu? Timeout abre mesmo assim (já tá contando)
     }
-  }, 400);
+  }
+  // Se o SDK ainda não carregou em 3.8s → abre direto (normal)
 }
 
-// Renderização
+// Renderização (sem mudanças)
 async function render(){
   const grid = document.getElementById("grid");
   grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:100px;color:#666"><i class="fas fa-spinner fa-spin fa-3x"></i></div>`;
