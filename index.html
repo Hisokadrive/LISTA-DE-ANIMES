@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4EE9BERHRC"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-4EE9BERHRC');
-  </script>
-    <!-- MONETAG ADS -->
-  <script src='//libtl.com/sdk.js' data-zone='10011677' data-sdk='show_10011677' async></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="Drive de Animes 2025 - +1000 Animes Dublados & Legendados">
@@ -21,99 +11,80 @@
   <link rel="icon" href="https://i.postimg.cc/wj0zY7Dk/favicon-orange.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  
+  <!-- SCRIPT DO ANÚNCIO LIBTL (OBRIGATÓRIO) -->
+  <script src="//libtl.com/sdk.js" data-zone="10011677" data-sdk="show_10011677" async></script>
+
   <style>
     :root{--o:#ffa500;--d:#121212;--c:#1e1e1e;--t:#f5f5f5}
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:'Inter',sans-serif;background:var(--d);color:var(--t);padding-bottom:100px}
-
     .top-partners{background:rgba(30,30,30,0.94);backdrop-filter:blur(12px);padding:12px;text-align:center;
       border-bottom:1px solid rgba(255,165,0,0.3);font-size:0.9rem;overflow-x:auto;white-space:nowrap}
     .top-partners a{display:inline-flex;align-items:center;gap:10px;color:var(--o);text-decoration:none;
       font-weight:600;background:rgba(255,165,0,0.15);padding:9px 18px;border-radius:50px;margin:0 8px;transition:.3s}
     .top-partners a:hover{background:rgba(255,165,0,0.35)}
-
     header{position:sticky;top:0;z-index:1000;background:rgba(18,18,18,0.98);backdrop-filter:blur(12px);
       padding:16px;text-align:center;border-bottom:1px solid rgba(255,165,0,.2)}
     .logo{font-size:2.3rem;font-weight:800;color:var(--o);letter-spacing:2px}
-
     .hero{position:relative;height:58vh;overflow:hidden}
     .hero img{width:100%;height:100%;object-fit:cover;filter:brightness(0.8)}
     .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(18,18,18,0.95),transparent 45%);
       display:flex;align-items:flex-end;padding:50px 20px}
     .hero-overlay h1{font-size:3.4rem;color:white;text-shadow:0 6px 20px #000;margin:0}
     .hero-overlay p{font-size:1.4rem;color:var(--o);margin-top:10px;font-weight:600}
-
     .filters{padding:16px 12px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;background:rgba(30,30,30,0.8)}
     .filter-btn{padding:10px 20px;border-radius:50px;background:#2a2a2a;color:#ccc;font-weight:600;
       cursor:pointer;transition:.3s;border:1px solid transparent}
     .filter-btn.active{background:var(--o);color:black;border-color:var(--o)}
-
     .search-box{max-width:720px;margin:20px auto;padding:0 16px;position:relative}
     #searchInput{width:100%;padding:18px 56px;border-radius:50px;background:#2a2a2a;border:none;color:white;font-size:1.15rem}
     #searchInput:focus{outline:2px solid var(--o)}
     .search-icon{position:absolute;left:36px;top:50%;transform:translateY(-50%);font-size:1.5rem;color:#aaa}
-
     .stats{text-align:center;color:var(--o);font-weight:600;padding:12px;font-size:1.05rem}
-
     .grid{
-      display:grid;
-      gap:18px;
-      padding:0 12px;
-      max-width:1800px;
-      margin:0 auto;
-      grid-template-columns: repeat(3, 1fr);
+      display:grid;gap:18px;padding:0 12px;max-width:1800px;margin:0 auto;
+      grid-template-columns:repeat(3,1fr);
     }
-    @media (min-width: 768px) {.grid{grid-template-columns: repeat(4, 1fr);}}
-    @media (min-width: 1024px) {.grid{grid-template-columns: repeat(5, 1fr);}}
-    @media (min-width: 1400px) {.grid{grid-template-columns: repeat(6, 1fr);}}
-
+    @media(min-width:768px){.grid{grid-template-columns:repeat(4,1fr)}}
+    @media(min-width:1024px){.grid{grid-template-columns:repeat(5,1fr)}}
+    @media(min-width:1400px){.grid{grid-template-columns:repeat(6,1fr)}}
     .card{background:var(--c);border-radius:18px;overflow:hidden;cursor:pointer;position:relative;
-      transition:all .35s ease;box-shadow:0 6px 20px rgba(0,0,0,.5);display:flex;flex-direction:column;
-      height:440px}
+      transition:all .35s ease;box-shadow:0 6px 20px rgba(0,0,0,.5);display:flex;flex-direction:column;height:440px}
     .card:hover{transform:translateY(-10px);box-shadow:0 25px 50px rgba(255,165,0,.4)}
-
     .card-img{width:100%;height:300px;object-fit:cover;background:#000}
-
-    .info{padding:14px 12px;display:flex;align-items:center;justify-content:center;
-      height:140px;text-align:center;background:rgba(0,0,0,0.3)}
+    .info{padding:14px 12px;display:flex;align-items:center;justify-content:center;height:140px;text-align:center;background:rgba(0,0,0,0.3)}
     .title{font-weight:800;color:var(--o);font-size:1.05rem;line-height:1.35;
       display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;
       text-shadow:0 2px 8px rgba(0,0,0,0.8)}
-
     .audio-badge{position:absolute;top:12px;left:12px;padding:8px 14px;border-radius:12px;
       font-size:0.82rem;font-weight:800;z-index:2;text-transform:uppercase;letter-spacing:1px;
       backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,0.1)}
     .dubbed{background:rgba(29,185,84,0.95);color:white;box-shadow:0 0 20px #1db954}
     .subbed{background:rgba(13,139,255,0.95);color:white;box-shadow:0 0 20px #0d8bff}
     .both{background:rgba(156,39,176,0.95);color:white;box-shadow:0 0 20px #9c27b0}
-
     .fav-btn{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.75);width:46px;height:46px;
       border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;z-index:2}
     .fav-btn i{transition:.3s}
     .fav-btn.fav i{color:#ff2d55;transform:scale(1.3)}
-
     .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(18,18,18,.98);backdrop-filter:blur(12px);
       display:flex;justify-content:space-around;padding:14px 0 28px;border-top:1px solid rgba(255,165,0,.2);z-index:999}
     .nav-i{color:#999;text-align:center;font-size:0.9rem;cursor:pointer;font-weight:500}
     .nav-i.active,.nav-i:hover{color:var(--o)}
     .nav-i i{font-size:1.7rem;display:block;margin-bottom:6px}
-
-    /* Overlay de anúncio obrigatório */
-    #adOverlay{position:fixed;inset:0;background:rgba(0,0,0,0.98);z-index:99999;display:none;align-items:center;justify-content:center;flex-direction:column;color:white;text-align:center;padding:20px}
+    #adOverlay{position:fixed;inset:0;background:rgba(0,0,0,0.98);z-index:99999;display:none;
+      align-items:center;justify-content:center;flex-direction:column;color:white;text-align:center;padding:20px}
     #adOverlay.show{display:flex}
     #adOverlay i{font-size:4rem;margin-bottom:20px}
   </style>
 </head>
 <body>
-
   <div class="top-partners">
     <a href="https://bit.ly/JSY-ANIME" target="_blank"><i class="fas fa-users"></i> JSY ANIME</a>
     <a href="https://t.me/drivedeanimesblogger" target="_blank"><i class="fab fa-telegram"></i> Canal Telegram</a>
     <a href="https://x.com/drivedeanimes" target="_blank"><i class="fab fa-x-twitter"></i> X / Twitter</a>
   </div>
-
   <header><div class="logo">DRIVE DE ANIMES</div></header>
-
   <div class="hero">
     <img src="https://i.postimg.cc/CKX5Zsm0/1-pg.jpg" alt="Drive de Animes">
     <div class="hero-overlay">
@@ -123,30 +94,25 @@
       </div>
     </div>
   </div>
-
   <div class="filters">
     <div class="filter-btn active" data-filter="all">Todos</div>
     <div class="filter-btn" data-filter="dubbed">Só Dublado</div>
     <div class="filter-btn" data-filter="subbed">Só Legendado</div>
     <div class="filter-btn" data-filter="both">Dublado + Legendado</div>
   </div>
-
   <div class="search-box">
     <i class="fas fa-search search-icon"></i>
     <input type="text" id="searchInput" placeholder="Pesquisar anime...">
   </div>
-
   <div class="stats" id="stats">Carregando...</div>
-
   <div class="grid" id="grid"></div>
-
   <nav class="bottom-nav">
     <div class="nav-i active"><i class="fas fa-home"></i> Home</div>
     <div class="nav-i"><i class="fas fa-heart"></i> Favoritos (<span id="favCount">0</span>)</div>
     <div class="nav-i"><i class="fas fa-fire"></i> Novidades</div>
   </nav>
 
-  <!-- Overlay de anúncio obrigatório -->
+  <!-- Overlay de anúncio (melhorado) -->
   <div id="adOverlay">
     <i class="fas fa-circle-notch fa-spin"></i>
     <h2>Aguarde o anúncio para abrir <span id="animeTitleOverlay"></span>...</h2>
@@ -154,116 +120,123 @@
   </div>
 
 <script>
-// === COLE TUA LISTA COMPLETA AQUI ===
+// === COLE SUA LISTA COMPLETA AQUI ===
 const rawAnimes = [
-  // ←←← COLE TODOS OS TEUS ANIMES AQUI ←←←
-  {"title":"Exemplo","url":"https://drive.google.com/...","dubbed":false,"description":"Legendado"}
+  // Exemplo (cole todos os seus animes aqui)
+  {"title":"One Piece Dublado","url":"https://drive.google.com/drive/folders/exemplo","dubbed":true,"description":"Dublado em Português"}
 ];
-
 const animes = rawAnimes.map((a,i)=>({...a,id:i}));
 const unique = [...new Map(animes.map(a=>[a.title+a.url,a])).values()];
 
-// FALLBACK MANUAL + CACHE (igual antes)
-const MANUAL_COVERS = {
-  "Arcane": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/fm3lkFym9h1k7Y6pcsHu1k3B2nA.jpg",
-  "Castlevania": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/4B0a6sU4Y4K9rX5q108AXv9aG6J.jpg",
-  "Devil May Cry": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/1y3zFqT8qH9BDI8e3K0b3cr8i0U.jpg",
-  "The Witcher: Sereias das Profundezas": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/9f6F5B1rQ9.jpg",
-  "The Witcher: Sirens Of The Deep (Dub Japonês) 2025": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/9f6F5B1rQ9.jpg",
-  "Batman Ninja vs. Yakuza League": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/7qZ8K7qZ8.jpg",
-  "Lookism": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/7r6z6z6z6.jpg"
-};
-
+// Cache de capas
+const MANUAL_COVERS = { /* seus covers manuais */ };
 const CACHE_NAME = "anime-covers-v2";
 let coverCache = new Map();
-try { const saved = localStorage.getItem(CACHE_NAME); if(saved) coverCache = new Map(JSON.parse(saved)); } 
-catch { localStorage.removeItem(CACHE_NAME); }
+try { const saved = localStorage.getItem(CACHE_NAME); if(saved) coverCache = new Map(JSON.parse(saved)); } catch { localStorage.removeItem(CACHE_NAME); }
 
 async function getCover(title){
   if(MANUAL_COVERS[title]) return MANUAL_COVERS[title];
   if(coverCache.has(title)) return coverCache.get(title);
-
   const cleanTitle = title.replace(/[-–—:]/g," ").replace(/\(.*?\)/g,"").replace(/Season \d+.*/gi,"").replace(/Movie|Filme.*/gi,"").trim();
-
   try{
     const res = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(cleanTitle)}&limit=1&sfw`);
-    if(!res.ok) throw "";
-    const data = await res.json();
-    const url = data.data?.[0]?.images?.jpg?.large_image_url;
-    if(url){ coverCache.set(title,url); saveCache(); return url; }
+    if(res.ok){ const data = await res.json(); const url = data.data?.[0]?.images?.jpg?.large_image_url;
+      if(url){ coverCache.set(title,url); saveCache(); return url; }
+    }
   }catch{}
-
   const fallback = `https://via.placeholder.com/400x600/1e1e1e/ffa500?text=${encodeURIComponent(title.substring(0,25))}`;
   coverCache.set(title,fallback); saveCache();
   return fallback;
 }
 function saveCache(){ try{ localStorage.setItem(CACHE_NAME, JSON.stringify(Array.from(coverCache.entries()))); } catch{} }
 
-// ÁUDIO + FAVORITOS
+// Áudio + Favoritos
 function getAudioType(a){ if(a.dubbed && /legendado/i.test(a.description)) return "both"; if(a.dubbed) return "dubbed"; return "subbed"; }
 function getAudioText(a){ const t = getAudioType(a); return t==="both"?"Dublado + Legendado":t==="dubbed"?"Dublado":"Legendado"; }
-
 let favs = JSON.parse(localStorage.getItem("animeFavs")|| "[]");
 let currentFilter = "all";
 
-// === ANÚNCIO OBRIGATÓRIO ===
+// === FUNÇÃO DE ANÚNCIO MELHORADA (NUNCA MAIS TRAVA) ===
 async function openWithAd(anime){
-  if(anime.url === "#"){ alert("Link em breve"); return; }
+  if(anime.url === "#" || !anime.url){ alert("Link em breve"); return; }
 
   const overlay = document.getElementById("adOverlay");
   const titleSpan = document.getElementById("animeTitleOverlay");
   titleSpan.textContent = anime.title;
   overlay.classList.add("show");
 
-  // Espera o SDK carregar
+  // Função para abrir o link (fallback final)
+  const openLink = () => {
+    const finalUrl = anime.url.includes("drive.google.com") 
+      ? anime.url + (anime.url.includes("?") ? "" : "?usp=sharing") 
+      : anime.url;
+    window.open(finalUrl, "_blank");
+    setTimeout(() => overlay.classList.remove("show"), 1500);
+  };
+
+  // Detecção simples de AdBlock
+  const testAd = document.createElement('div');
+  testAd.className = 'adsbox';
+  testAd.style.position = 'absolute';
+  testAd.innerHTML = '&nbsp;';
+  document.body.appendChild(testAd);
+  const adBlocked = testAd.offsetHeight === 0;
+  document.body.removeChild(testAd);
+
+  if(adBlocked){
+    overlay.innerHTML = `<i class="fas fa-shield-alt" style="color:#ff9800"></i>
+      <h2>AdBlock detectado</h2><p>Abrindo mesmo assim...</p>`;
+    setTimeout(openLink, 2000);
+    return;
+  }
+
   let attempts = 0;
+  const maxAttempts = 60; // 24 segundos (aumentado)
+
   const wait = setInterval(() => {
     if(typeof show_10011677 === "function"){
       clearInterval(wait);
       show_10011677()
         .then(() => {
-          overlay.innerHTML = `<i class="fas fa-check-circle" style="color:#4CAF50;font-size:4rem;margin-bottom:20px"></i>
+          overlay.innerHTML = `<i class="fas fa-check-circle" style="color:#4CAF50"></i>
             <h2>Anúncio concluído!</h2><p>Abrindo ${anime.title}...</p>`;
-          setTimeout(() => {
-            overlay.classList.remove("show");
-            const finalUrl = anime.url.includes("drive.google.com") ? anime.url + (anime.url.includes("?") ? "" : "?usp=sharing") : anime.url;
-            window.open(finalUrl, "_blank");
-          }, 1200);
+          setTimeout(openLink, 1500);
         })
         .catch(() => {
-          overlay.innerHTML = `<i class="fas fa-times-circle" style="color:#f44336;font-size:4rem;margin-bottom:20px"></i>
-            <h2>Anúncio bloqueado</h2><p>Desative o AdBlock e tente novamente</p>`;
-          setTimeout(() => overlay.classList.remove("show"), 4000);
+          overlay.innerHTML = `<i class="fas fa-exclamation-triangle" style="color:#ff9800"></i>
+            <h2>Anúncio bloqueado</h2><p>Abrindo mesmo assim...</p>`;
+          setTimeout(openLink, 2000);
         });
-    } else if(attempts++ > 30){
+    }
+    else if(attempts++ > maxAttempts){
       clearInterval(wait);
-      overlay.innerHTML = `<i class="fas fa-exclamation-triangle" style="color:#ff9800;font-size:4rem;margin-bottom:20px"></i>
-        <h2>Sem anúncios disponíveis</h2><p>Tente mais tarde</p>`;
-      setTimeout(() => overlay.classList.remove("show"), 4000);
+      overlay.innerHTML = `<i class="fas fa-wifi" style="color:#2196F3"></i>
+        <h2>Sem anúncios no momento</h2><p>Abrindo ${anime.title}...</p>`;
+      setTimeout(openLink, 1500);
     }
   }, 400);
 }
 
-// RENDER
+// Renderização
 async function render(){
-  const grid=document.getElementById("grid");
-  grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:100px;color:#666"><i class="fas fa-spinner fa-spin fa-3x"></i></div>`;
-
+  const grid = document.getElementById("grid");
+  grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:100px;color:#666"><i class="fas fa-spinner fa-spin fa-3x"></i></div>`;
+  
   let filtered = unique;
   const query = document.getElementById("searchInput").value.toLowerCase();
   if(query) filtered = filtered.filter(a=>a.title.toLowerCase().includes(query));
-  if(currentFilter!=="all") filtered = filtered.filter(a=>getAudioType(a)===currentFilter);
-
-  document.getElementById("stats").textContent=`${filtered.length} animes • ${favs.length} favoritos`;
-  grid.innerHTML="";
+  if(currentFilter !== "all") filtered = filtered.filter(a=>getAudioType(a)===currentFilter);
+  
+  document.getElementById("stats").textContent = `${filtered.length} animes • ${favs.length} favoritos`;
+  grid.innerHTML = "";
 
   for(const anime of filtered){
-    const cover=await getCover(anime.title);
-    const type=getAudioType(anime);
-    const div=document.createElement("div"); div.className="card";
-    div.innerHTML=`
+    const cover = await getCover(anime.title);
+    const type = getAudioType(anime);
+    const div = document.createElement("div"); div.className = "card";
+    div.innerHTML = `
       <div class="audio-badge ${type}">${getAudioText(anime)}</div>
-      <img src="${cover}" alt="${anime.title}" class="card-img">
+      <img src="${cover}" alt="${anime.title}" class="card-img" loading="lazy">
       <div class="info"><div class="title">${anime.title}</div></div>
       <div class="fav-btn ${favs.includes(anime.id)?"fav":""}" onclick="event.stopPropagation();toggleFav(${anime.id})">
         <i class="fas fa-heart"></i>
@@ -274,16 +247,28 @@ async function render(){
   }
 }
 
-// Filtros + favoritos
-function toggleFav(id){ const i=favs.indexOf(id); i>-1?favs.splice(i,1):favs.push(id); localStorage.setItem("animeFavs",JSON.stringify(favs)); document.getElementById("favCount").textContent=favs.length; render(); }
+// Favoritos + Filtros
+function toggleFav(id){
+  const i = favs.indexOf(id);
+  i > -1 ? favs.splice(i,1) : favs.push(id);
+  localStorage.setItem("animeFavs", JSON.stringify(favs));
+  document.getElementById("favCount").textContent = favs.length;
+  render();
+}
 
 document.querySelectorAll(".filter-btn").forEach(btn=>{
-  btn.onclick=()=>{ document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active")); btn.classList.add("active"); currentFilter=btn.dataset.filter; render(); };
+  btn.onclick = () => {
+    document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    currentFilter = btn.dataset.filter;
+    render();
+  };
 });
 
-document.getElementById("searchInput").oninput=()=>render();
-document.getElementById("favCount").textContent=favs.length;
-render();
+document.getElementById("searchInput").oninput = () => render();
+document.getElementById("favCount").textContent = favs.length;
+
+render(); // Inicia
 </script>
 </body>
 </html>
