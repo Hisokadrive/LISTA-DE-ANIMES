@@ -4,158 +4,155 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="Drive de Animes 2025 - +1000 Animes Dublados & Legendados">
-  <meta property="og:description" content="Capas reais • Favoritos • Sem travar • Atualizado diariamente">
+  <meta property="og:description" content="Filtros • Cards uniformes • Design Premium">
   <meta property="og:image" content="https://i.postimg.cc/CKX5Zsm0/1-pg.jpg">
   <meta name="theme-color" content="#ffa500">
   <title>Drive de Animes 2025</title>
   <link rel="icon" href="https://i.postimg.cc/wj0zY7Dk/favicon-orange.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     :root{--o:#ffa500;--d:#121212;--c:#1e1e1e;--t:#f5f5f5}
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Inter',sans-serif;background:var(--d);color:var(--t);padding-bottom:90px}
+    body{font-family:'Inter',sans-serif;background:var(--d);color:var(--t);padding-bottom:100px}
 
-    /* BARRA DE PARCERIAS */
-    .top-partners{
-      background:rgba(30,30,30,0.92);
-      backdrop-filter:blur(10px);
-      padding:12px 10px;
-      text-align:center;
-      border-bottom:1px solid rgba(255,165,0,0.3);
-      font-size:0.85rem;
-      overflow-x:auto;
-      white-space:nowrap;
-      -webkit-overflow-scrolling:touch;
-    }
-    .top-partners a{
-      display:inline-flex;align-items:center;gap:8px;
-      color:var(--o);text-decoration:none;font-weight:600;
-      background:rgba(255,165,0,0.15);padding:8px 16px;border-radius:50px;
-      margin:0 6px;transition:.3s;
-    }
-    .top-partners a:hover{background:rgba(255,165,0,0.35);transform:translateY(-2px);box-shadow:0 4px 12px rgba(255,165,0,0.3)}
+    .top-partners{background:rgba(30,30,30,0.94);backdrop-filter:blur(12px);padding:12px;text-align:center;
+      border-bottom:1px solid rgba(255,165,0,0.3);font-size:0.9rem;overflow-x:auto;white-space:nowrap}
+    .top-partners a{display:inline-flex;align-items:center;gap:10px;color:var(--o);text-decoration:none;
+      font-weight:600;background:rgba(255,165,0,0.15);padding:9px 18px;border-radius:50px;margin:0 8px;transition:.3s}
+    .top-partners a:hover{background:rgba(255,165,0,0.35)}
 
-    header{position:sticky;top:0;z-index:1000;background:rgba(18,18,18,0.98);backdrop-filter:blur(12px);padding:14px 16px;text-align:center;border-bottom:1px solid rgba(255,165,0,.2)}
-    .logo{font-size:2.1rem;font-weight:700;color:var(--o);letter-spacing:1px}
+    header{position:sticky;top:0;z-index:1000;background:rgba(18,18,18,0.98);backdrop-filter:blur(12px);
+      padding:16px;text-align:center;border-bottom:1px solid rgba(255,165,0,.2)}
+    .logo{font-size:2.3rem;font-weight:800;color:var(--o);letter-spacing:2px}
 
-    /* HERO COM IMAGEM ÚNICA */
-    .hero{position:relative;height:55vh;overflow:hidden}
-    .hero img{width:100%;height:100%;object-fit:cover}
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(18,18,18,0.95),transparent 50%);
-      display:flex;align-items:flex-end;padding:40px 20px}
-    .hero-overlay h1{font-size:3rem;color:white;text-shadow:0 4px 15px #000;margin:0}
-    .hero-overlay p{font-size:1.3rem;color:var(--o);margin-top:8px;font-weight:600}
+    .hero{position:relative;height:58vh;overflow:hidden}
+    .hero img{width:100%;height:100%;object-fit:cover;filter:brightness(0.8)}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(18,18,18,0.95),transparent 45%);
+      display:flex;align-items:flex-end;padding:50px 20px}
+    .hero-overlay h1{font-size:3.4rem;color:white;text-shadow:0 6px 20px #000;margin:0}
+    .hero-overlay p{font-size:1.4rem;color:var(--o);margin-top:10px;font-weight:600}
 
-    .search-box{max-width:700px;margin:20px auto;padding:0 16px;position:relative}
-    #searchInput{width:100%;padding:16px 50px;border-radius:50px;background:#2a2a2a;border:none;color:white;font-size:1.1rem}
+    .filters{padding:16px 12px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;background:rgba(30,30,30,0.8)}
+    .filter-btn{padding:10px 20px;border-radius:50px;background:#2a2a2a;color:#ccc;font-weight:600;
+      cursor:pointer;transition:.3s;border:1px solid transparent}
+    .filter-btn.active{background:var(--o);color:black;border-color:var(--o)}
+
+    .search-box{max-width:720px;margin:20px auto;padding:0 16px;position:relative}
+    #searchInput{width:100%;padding:18px 56px;border-radius:50px;background:#2a2a2a;border:none;color:white;font-size:1.15rem}
     #searchInput:focus{outline:2px solid var(--o)}
-    .search-icon{position:absolute;left:32px;top:50%;transform:translateY(-50%);font-size:1.5rem;color:#aaa}
+    .search-icon{position:absolute;left:36px;top:50%;transform:translateY(-50%);font-size:1.5rem;color:#aaa}
 
-    .stats{text-align:center;color:var(--o);font-weight:600;padding:10px;font-size:1rem}
+    .stats{text-align:center;color:var(--o);font-weight:600;padding:12px;font-size:1.05rem}
 
-    .reward-banner{background:linear-gradient(135deg,#ff6b00,#ffa500);color:#000;padding:16px;margin:20px 16px;border-radius:14px;text-align:center;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(255,165,0,.4)}
+    .reward-banner{background:linear-gradient(135deg,#ff6b00,#ffa500);color:#000;padding:18px;margin:20px 16px;
+      border-radius:16px;text-align:center;font-weight:700;cursor:pointer;font-size:1.1rem;box-shadow:0 8px 25px rgba(255,165,0,.4)}
 
-    /* GRID + CARDS OTIMIZADOS */
-    .grid{padding:0 10px;columns:2;column-gap:14px;max-width:1600px;margin:0 auto}
-    @media(min-width:768px){.grid{columns:4}}
-    @media(min-width:1200px){.grid{columns:6}}
+    /* GRID + CARD COMPACTO E PERFEITO */
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:18px;padding:0 12px;
+      max-width:1800px;margin:0 auto}
+    @media(min-width:768px){.grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}}
 
-    .card{
-      break-inside:avoid;margin-bottom:18px;background:var(--c);border-radius:16px;overflow:hidden;
-      cursor:pointer;position:relative;transition:.3s;box-shadow:0 4px 15px rgba(0,0,0,.6);
-      display:flex;flex-direction:column;
-    }
-    .card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(255,165,0,.35)}
+    .card{background:var(--c);border-radius:18px;overflow:hidden;cursor:pointer;position:relative;
+      transition:all .35s ease;box-shadow:0 6px 20px rgba(0,0,0,.5);display:flex;flex-direction:column;
+      height:440px} /* ALTURA IDEAL */
+    .card:hover{transform:translateY(-10px);box-shadow:0 25px 50px rgba(255,165,0,.4)}
 
-    .card-img{width:100%;aspect-ratio:2/3;object-fit:cover;background:#000}
+    .card-img{width:100%;height:300px;object-fit:cover;background:#000}
 
-    .info{padding:14px;flex-grow:1;display:flex;flex-direction:column;justify-content:space-between}
-    .title{font-weight:600;color:var(--o);font-size:1rem;line-height:1.35;word-break:break-word;margin-bottom:8px}
-    .desc{font-size:0.85rem;color:#aaa;margin-top:auto}
+    /* ÁREA DO TÍTULO SUPER COMPACTA E BONITA */
+    .info{padding:14px 12px;display:flex;align-items:center;justify-content:center;
+      height:140px;text-align:center;background:rgba(0,0,0,0.3)}
+    .title{font-weight:800;color:var(--o);font-size:1.05rem;line-height:1.35;
+      display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;
+      text-shadow:0 2px 8px rgba(0,0,0,0.8)}
 
-    .audio-badge{position:absolute;top:10px;left:10px;padding:5px 11px;border-radius:9px;font-size:0.74rem;font-weight:700;z-index:2}
-    .dubbed{background:#4CAF50;color:white;box-shadow:0 0 12px #4CAF50}
-    .subbed{background:#2196F3;color:white;box-shadow:0 0 12px #2196F3}
-    .both{background:#9C27B0;color:white;box-shadow:0 0 12px #9C27B0}
+    .audio-badge{position:absolute;top:12px;left:12px;padding:8px 14px;border-radius:12px;
+      font-size:0.82rem;font-weight:800;z-index:2;text-transform:uppercase;letter-spacing:1px;
+      backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,0.1)}
+    .dubbed{background:rgba(29,185,84,0.95);color:white;box-shadow:0 0 20px #1db954}
+    .subbed{background:rgba(13,139,255,0.95);color:white;box-shadow:0 0 20px #0d8bff}
+    .both{background:rgba(156,39,176,0.95);color:white;box-shadow:0 0 20px #9c27b0}
 
-    .fav-btn{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.7);width:42px;height:42px;border-radius:50%;
-      display:flex;align-items:center;justify-content:center;font-size:1.7rem;z-index:2;transition:.3s}
-    .fav-btn.fav{color:#ff3b30;transform:scale(1.25)}
+    .fav-btn{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.75);width:46px;height:46px;
+      border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;z-index:2}
+    .fav-btn i{transition:.3s}
+    .fav-btn.fav i{color:#ff2d55;transform:scale(1.3)}
 
     .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(18,18,18,.98);backdrop-filter:blur(12px);
-      display:flex;justify-content:space-around;padding:12px 0 24px;border-top:1px solid rgba(255,165,0,.2);z-index:999}
-    .nav-i{color:#888;text-align:center;font-size:.8rem;cursor:pointer;transition:.3s}
+      display:flex;justify-content:space-around;padding:14px 0 28px;border-top:1px solid rgba(255,165,0,.2);z-index:999}
+    .nav-i{color:#999;text-align:center;font-size:0.9rem;cursor:pointer;font-weight:500}
     .nav-i.active,.nav-i:hover{color:var(--o)}
-    .nav-i span{font-size:1.8rem;display:block;margin-bottom:4px}
+    .nav-i i{font-size:1.7rem;display:block;margin-bottom:6px}
   </style>
 </head>
 <body>
 
-  <!-- PARCERIAS -->
   <div class="top-partners">
-    <a href="https://bit.ly/JSY-ANIME" target="_blank">✦ JSY ANIME</a>
-    <a href="https://t.me/drivedeanimesblogger" target="_blank">✦ Canal Telegram</a>
-    <a href="https://x.com/drivedeanimes" target="_blank">✦ X/Twitter</a>
-    <!-- ADICIONE MAIS AQUI -->
+    <a href="https://bit.ly/JSY-ANIME" target="_blank"><i class="fas fa-users"></i> JSY ANIME</a>
+    <a href="https://t.me/drivedeanimesblogger" target="_blank"><i class="fab fa-telegram"></i> Canal Telegram</a>
+    <a href="https://x.com/drivedeanimes" target="_blank"><i class="fab fa-x-twitter"></i> X / Twitter</a>
   </div>
 
   <header><div class="logo">DRIVE DE ANIMES</div></header>
 
-  <!-- HERO ESTÁTICO -->
   <div class="hero">
     <img src="https://i.postimg.cc/CKX5Zsm0/1-pg.jpg" alt="Drive de Animes">
     <div class="hero-overlay">
       <div>
         <h1>DRIVE DE ANIMES</h1>
-        <p>+1000 títulos • Dublado & Legendado • 2025</p>
+        <p>+1000 títulos • Dublado & Legendado</p>
       </div>
     </div>
   </div>
 
+  <div class="filters">
+    <div class="filter-btn active" data-filter="all">Todos</div>
+    <div class="filter-btn" data-filter="dubbed">Só Dublado</div>
+    <div class="filter-btn" data-filter="subbed">Só Legendado</div>
+    <div class="filter-btn" data-filter="both">Dublado + Legendado</div>
+  </div>
+
   <div class="search-box">
-    <span class="search-icon">🔍</span>
+    <i class="fas fa-search search-icon"></i>
     <input type="text" id="searchInput" placeholder="Pesquisar anime...">
   </div>
 
-  <div class="stats" id="stats">Carregando animes...</div>
+  <div class="stats" id="stats">Carregando...</div>
 
   <div class="reward-banner" id="rewardBtn">
-    🎁 Assistir anúncio rápido = apoio ao site e remove limite diário!
+    <i class="fas fa-gift"></i> Assistir anúncio rápido → apoio ao site + remove limite diário
   </div>
 
   <div class="grid" id="grid"></div>
 
   <nav class="bottom-nav">
-    <div class="nav-i active"><span>🏠</span>Home</div>
-    <div class="nav-i"><span>⭐</span>Favoritos (<span id="favCount">0</span>)</div>
-    <div class="nav-i"><span>🔥</span>Novidades</div>
+    <div class="nav-i active"><i class="fas fa-home"></i> Home</div>
+    <div class="nav-i"><i class="fas fa-heart"></i> Favoritos (<span id="favCount">0</span>)</div>
+    <div class="nav-i"><i class="fas fa-fire"></i> Novidades</div>
   </nav>
 
 <script>
-// === COLE TODA A SUA LISTA DE ANIMES AQUI ===
+// === COLE SUA LISTA COMPLETA AQUI ===
 const rawAnimes = [
   {"title":"Alma-chan wa Kazoku ni Naritai","url":"https://drive.google.com/drive/folders/1ylJvYgFqZrBkb71stlfBOW_bf4sLDTzV","dubbed":false,"description":"Legendado"},
-  {"title":"Arifureta Shokugyou de Sekai Saikyou","url":"https://drive.google.com/drive/folders/1MSKuBseu9GeHi8x3uS0z0E_1TtQka50b","dubbed":true,"description":"Dublado"},
-  // <<< COLE TODOS OS SEUS +300 ITENS AQUI >>>
+  // ... todos os seus animes
   {"title":"Gintama Compilação","url":"https://drive.google.com/drive/folders/15slWq9LKKrGErN4Emeq3t84Kcjb92QJi","dubbed":false,"description":"Legendado"}
 ];
 
 const animes = rawAnimes.map((a,i)=>({...a,id:i}));
 const unique = [...new Map(animes.map(a=>[a.title+a.url,a])).values()];
 
-// Detecta tipo de áudio
 function getAudioType(a){
-  if(a.dubbed && a.description.toLowerCase().includes("legendado")) return "both";
+  if(a.dubbed && /legendado/i.test(a.description)) return "both";
   if(a.dubbed) return "dubbed";
   return "subbed";
 }
 function getAudioText(a){
-  if(getAudioType(a)==="both") return "Dublado + Legendado";
-  if(getAudioType(a)==="dubbed") return "Dublado";
-  return "Legendado";
+  const t = getAudioType(a);
+  return t==="both"?"Dublado + Legendado":t==="dubbed"?"Dublado":"Legendado";
 }
 
-// Capas do MyAnimeList
 async function getCover(t){
   try{
     const r=await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(t)}&limit=1&sfw`);
@@ -164,40 +161,47 @@ async function getCover(t){
   }catch{return `https://via.placeholder.com/400x600/111/ffa500?text=??`;}
 }
 
-// Favoritos
 let favs = JSON.parse(localStorage.getItem("animeFavs")|| "[]");
+let currentFilter = "all";
+
 function toggleFav(id){
-  const i=favs.indexOf(id);
-  i>-1 ? favs.splice(i,1) : favs.push(id);
+  const i=favs.indexOf(id); i>-1?favs.splice(i,1):favs.push(id);
   localStorage.setItem("animeFavs",JSON.stringify(favs));
   document.getElementById("favCount").textContent=favs.length;
   render();
 }
 
-// Render
-async function render(filter=""){
+async function render(){
   const grid=document.getElementById("grid");
-  grid.innerHTML="<div style='grid-column:1/-1;text-align:center;padding:80px;color:#888'>Carregando capas...</div>";
-  const filtered=unique.filter(a=>a.title.toLowerCase().includes(filter.toLowerCase()));
-  document.getElementById("stats").textContent=`${filtered.length} animes • ${favs.length} favoritos ❤️`;
+  grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:100px;color:#666"><i class="fas fa-spinner fa-spin fa-3x"></i></div>`;
+
+  let filtered = unique;
+  const query = document.getElementById("searchInput").value.toLowerCase();
+  if(query) filtered = filtered.filter(a=>a.title.toLowerCase().includes(query));
+
+  if(currentFilter!=="all"){
+    filtered = filtered.filter(a=>getAudioType(a)===currentFilter);
+  }
+
+  document.getElementById("stats").textContent=`${filtered.length} animes • ${favs.length} favoritos`;
   grid.innerHTML="";
 
   for(const anime of filtered){
     const cover=await getCover(anime.title);
     const type=getAudioType(anime);
-    const div=document.createElement("div");
-    div.className="card";
+    const div=document.createElement("div"); div.className="card";
     div.innerHTML=`
       <div class="audio-badge ${type}">${getAudioText(anime)}</div>
       <img src="${cover}" alt="${anime.title}" class="card-img">
       <div class="info">
         <div class="title">${anime.title}</div>
-        <div class="desc">${anime.description}</div>
       </div>
-      <div class="fav-btn ${favs.includes(anime.id)?"fav":""}" onclick="event.stopPropagation();toggleFav(${anime.id})">❤️</div>
+      <div class="fav-btn ${favs.includes(anime.id)?"fav":""}" onclick="event.stopPropagation();toggleFav(${anime.id})">
+        <i class="fas fa-heart"></i>
+      </div>
     `;
     div.onclick=()=>{
-      if(anime.url==="#"){alert("Link em breve!");return;}
+      if(anime.url==="#"){alert("Link em breve");return;}
       const url=anime.url.includes("drive.google.com")?anime.url+(anime.url.includes("?")?"":"?usp=sharing"):anime.url;
       window.open(url,"_blank");
     };
@@ -205,11 +209,19 @@ async function render(filter=""){
   }
 }
 
-// Pesquisa + anúncio voluntário
-document.getElementById("searchInput").oninput=e=>render(e.target.value);
-document.getElementById("rewardBtn").onclick=()=>{if(typeof show_10011677==="function")show_10011677();alert("Obrigado pelo apoio! 💛");};
+// Filtros + pesquisa
+document.querySelectorAll(".filter-btn").forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    currentFilter=btn.dataset.filter;
+    render();
+  };
+});
 
-// Iniciar
+document.getElementById("searchInput").oninput=()=>render();
+document.getElementById("rewardBtn").onclick=()=>{if(typeof show_10011677==="function")show_10011677();alert("Obrigado pelo apoio! ❤️");};
+
 document.getElementById("favCount").textContent=favs.length;
 render();
 </script>
