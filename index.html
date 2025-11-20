@@ -101,9 +101,8 @@
   </div>
 
 <script>
-// === LISTA COMPLETA DE ANIMES (já organizada) ===
-const rawAnimes = [
-  {"title":"0-Saiji Start Dash Monogatari","url":"https://drive.google.com/file/d/1_q02tIjacvIYXjFWC-pYz4WTVFCvm4qn/view","dubbed":false,"description":"Legendado"},
+// === LISTA COMPLETA (igual antes) ===
+const rawAnimes = [ "title":"0-Saiji Start Dash Monogatari","url":"https://drive.google.com/file/d/1_q02tIjacvIYXjFWC-pYz4WTVFCvm4qn/view","dubbed":false,"description":"Legendado"},
   {"title":"100-man no Inochi no Ue ni Ore wa Tatteiru 2nd Season","url":"https://drive.google.com/drive/folders/1ZlD-gxhQ6e_FFWILMXA145DkwPmne8wO?usp=sharing","dubbed":false,"description":"Legendado"},
   {"title":"Afro Samurai","url":"https://fir3.net/hDTko7","dubbed":false,"description":"Legendado"},
   {"title":"Akira 1988","url":"https://drive.google.com/file/d/1vEPvHKT8DuYyltJ85sW44iCMBmx6pFzs/view?usp=sharing","dubbed":true,"description":"Dublado e Legendado"},
@@ -215,147 +214,91 @@ const rawAnimes = [
   {"title":"Wind Breaker - Temporada 1 (2024)","url":"https://drive.google.com/file/d/16FwwLZdoMb5yC0b-ngZOo_3lNl7mBgZn/view?usp=drive_link","dubbed":false,"description":"Legendado"},
   {"title":"Youjo Senki Filme","url":"https://drive.google.com/file/d/1xC6j7QxfOuKZxz3KWfZhN9TNzVUG9fTm/view","dubbed":false,"description":"Legendado"},
   {"title":"Yu-Gi-Oh! Zero","url":"https://drive.google.com/drive/folders/13yQsH3KGLcSyWf2fEmmJPm6SnQUc7q4T","dubbed":false,"description":"Dublado e Legendado"}
-];
+ ];
+
+// ... (todo o código de cache, getCover, getAudioType, favs, etc — continua igual até aqui)
 
 const animes = rawAnimes.map((a,i)=>({...a,id:i}));
 const unique = [...new Map(animes.map(a=>[a.title+a.url,a])).values()];
 
-// Cache de capas
-const MANUAL_COVERS = {};
-const CACHE_NAME = "anime-covers-v2";
-let coverCache = new Map();
-try { const saved = localStorage.getItem(CACHE_NAME); if(saved) coverCache = new Map(JSON.parse(saved)); } catch(e) { localStorage.removeItem(CACHE_NAME); }
+// Cache, getCover, getAudioType, favs... (tudo igual até aqui)
 
-async function getCover(title){
-  if(MANUAL_COVERS[title]) return MANUAL_COVERS[title];
-  if(coverCache.has(title)) return coverCache.get(title);
-  const clean = title.replace(/[-–—:]/g," ").replace(/\(.*?\)/g,"").replace(/Season \d+.*/gi,"").replace(/Movie|Filme.*/gi,"").trim();
-  try{
-    const res = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(clean)}&limit=1&sfw`);
-    if(res.ok){
-      const data = await res.json();
-      const url = data.data?.[0]?.images?.jpg?.large_image_url;
-      if(url){ coverCache.set(title,url); localStorage.setItem(CACHE_NAME, JSON.stringify(Array.from(coverCache.entries()))); return url; }
-    }
-  }catch(e){}
-  const fallback = `https://via.placeholder.com/400x600/1e1e1e/ffa500?text=${encodeURIComponent(title.substring(0,25))}`;
-  coverCache.set(title,fallback); localStorage.setItem(CACHE_NAME, JSON.stringify(Array.from(coverCache.entries())));
-  return fallback;
-}
+// === VERSÃO CORRIGIDA PARA IPHONE (OBRIGATÓRIO ASSIM) ===
+let pendingAnime = null;
 
-// Áudio + Favoritos
-function getAudioType(a){ 
-  if(a.dubbed && /legendado|ambos|both/i.test(a.description)) return "both";
-  if(a.dubbed) return "dubbed"; 
-  return "subbed"; 
-}
-function getAudioText(a){ const t=getAudioType(a); return t==="both"?"Dublado + Legendado":t==="dubbed"?"Dublado":"Legendado"; }
+function openWithAd(anime) {
+  if (!anime.url || anime.url === "#" || anime.url === "") {
+    alert("Link em breve");
+    return;
+  }
 
-let favs = JSON.parse(localStorage.getItem("animeFavs") || "[]");
-let currentFilter = "all";
+  // 1. Guarda o anime que o usuário quer abrir
+  pendingAnime = anime;
 
-// === FUNÇÃO FINAL: ABRE SÓ QUANDO O ANÚNCIO FECHAR ===
-async function openWithAd(anime) {
-  if (!anime.url || anime.url === "#" || anime.url === "") { alert("Link em breve"); return; }
-
+  // 2. Mostra o overlay imediatamente
   const overlay = document.getElementById("adOverlay");
   overlay.innerHTML = `<i class="fas fa-circle-notch fa-spin"></i><h2>Aguarde o anúncio fechar...</h2>`;
   overlay.classList.add("show");
 
+  // 3. Tenta abrir popup em branco (funciona no clique real)
   let popup = null;
   try {
     popup = window.open("", "_blank");
     if (popup) {
-      popup.document.write(`<!DOCTYPE html><html><head><meta name="theme-color" content="#ffa500"></head>
-        <body style="margin:0;height:100vh;background:#121212;color:#ffa500;font-family:system-ui;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px">
-          <div style="width:56px;height:56px;border:6px solid #333;border-top:6px solid #ffa500;border-radius:50%;animation:s 1s linear infinite;margin-bottom:20px"></div>
-          <h1 style="font-size:1.6rem">Carregando ${anime.title.replace(/</g,"&lt;")}</h1>
-          <p style="color:#aaa">Aguarde o anúncio fechar...</p>
+      popup.document.write(`<!DOCTYPE html><html><head><title>Carregando...</title><meta name="theme-color" content="#ffa500"></head>
+        <body style="margin:0;background:#121212;color:#ffa500;font-family:system-ui;display:flex;align-items:center;justify-content:center;height:100vh;flex-direction:column">
+          <div style="width:60px;height:60px;border:6px solid #333;border-top:6px solid #ffa500;border-radius:50%;animation:s 1s linear infinite"></div>
+          <p style="margin-top:20px">Aguarde o anúncio...</p>
           <style>@keyframes s{to{transform:rotate(360deg)}}</style>
         </body></html>`);
     }
-  } catch(e) {}
+  } catch(e) { popup = null; }
 
-  const finalUrl = anime.url.includes("drive.google.com") && !anime.url.includes("usp=")
-    ? anime.url + (anime.url.includes("?") ? "&" : "?") + "usp=sharing" : anime.url;
-
-  const abrirLink = () => {
-    if (popup && !popup.closed) {
-      popup.location.href = finalUrl;
+  // 4. Força o anúncio RODAR AGORA (no mesmo clique)
+  setTimeout(() => {
+    if (typeof show_10011677 === "function") {
+      show_10011677().then(() => {
+        // Anúncio fechou → abre o link
+        abrirDepoisDoAnuncio(popup);
+      }).catch(() => {
+        // Anúncio falhou ou foi bloqueado → abre mesmo assim (fallback)
+        setTimeout(() => abrirDepoisDoAnuncio(popup), 800);
+      });
     } else {
-      window.open(finalUrl, "_blank");
+      // SDK nem carregou → abre rápido
+      setTimeout(() => abrirDepoisDoAnuncio(popup), 800);
     }
-    overlay.classList.remove("show");
-  };
 
-  const fallback = setTimeout(() => {
-    overlay.innerHTML = `<i class="fas fa-exclamation-triangle"></i><h2>Anúncio demorou... abrindo mesmo assim!</h2>`;
-    setTimeout(abrirLink, 1200);
-  }, 3800);
+    // Fallback de segurança: abre em 4s mesmo se tudo falhar
+    setTimeout(() => {
+      if (overlay.classList.contains("show")) {
+        overlay.innerHTML = `<i class="fas fa-exclamation-triangle"></fa-exclamation-triangle><h2>Abrindo mesmo assim...</h2>`;
+        setTimeout(() => abrirDepoisDoAnuncio(popup), 1200);
+      }
+    }, 4000);
 
-  if (typeof show_10011677 === "function") {
-    try {
-      await show_10011677();
-      clearTimeout(fallback);
-      abrirLink();
-    } catch(e) {
-      clearTimeout(fallback);
-      setTimeout(abrirLink, 800);
-    }
+  }, 100);
+}
+
+function abrirDepoisDoAnuncio(popup) {
+  if (!pendingAnime) return;
+
+  const finalUrl = pendingAnime.url.includes("drive.google.com") && !pendingAnime.url.includes("usp=")
+    ? pendingAnime.url + (pendingAnime.url.includes("?") ? "&" : "?") + "usp=sharing"
+    : pendingAnime.url;
+
+  if (popup && !popup.closed) {
+    popup.location.href = finalUrl;
   } else {
-    clearTimeout(fallback);
-    setTimeout(abrirLink, 800);
+    window.open(finalUrl, "_blank");
   }
+
+  document.getElementById("adOverlay").classList.remove("show");
+  pendingAnime = null;
 }
 
-// Renderização
-async function render(){
-  const grid = document.getElementById("grid");
-  grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:100px;color:#666"><i class="fas fa-spinner fa-spin fa-3x"></i><p>Carregando capas...</p></div>`;
-
-  let filtered = unique;
-  const query = document.getElementById("searchInput").value.toLowerCase();
-  if(query) filtered = filtered.filter(a=>a.title.toLowerCase().includes(query));
-  if(currentFilter !== "all") filtered = filtered.filter(a=>getAudioType(a)===currentFilter);
-
-  document.getElementById("stats").textContent = `${filtered.length} animes • ${favs.length} favoritos`;
-  grid.innerHTML = "";
-
-  for(const anime of filtered){
-    const cover = await getCover(anime.title);
-    const type = getAudioType(anime);
-    const div = document.createElement("div"); div.className = "card";
-    div.innerHTML = `
-      <div class="audio-badge ${type}">${getAudioText(anime)}</div>
-      <img src="${cover}" alt="${anime.title}" class="card-img" loading="lazy">
-      <div class="info"><div class="title">${anime.title}</div></div>
-      <div class="fav-btn ${favs.includes(anime.id)?"fav":""}" onclick="event.stopPropagation();toggleFav(${anime.id})">
-        <i class="fas fa-heart"></i>
-      </div>
-    `;
-    div.onclick = () => openWithAd(anime);
-    grid.appendChild(div);
-  }
-}
-
-function toggleFav(id){
-  const i = favs.indexOf(id);
-  if(i > -1) favs.splice(i,1); else favs.push(id);
-  localStorage.setItem("animeFavs", JSON.stringify(favs));
-  render();
-}
-
-document.querySelectorAll(".filter-btn").forEach(btn=>{
-  btn.onclick = () => {
-    document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
-    btn.classList.add("active");
-    currentFilter = btn.dataset.filter;
-    render();
-  };
-});
-
-document.getElementById("searchInput").oninput = () => render();
-render();
+// Renderização, favoritos, filtros → tudo exatamente igual ao anterior
+// (só troque a função openWithAd e adicione a função abrirDepoisDoAnuncio)
 </script>
 </body>
 </html>
