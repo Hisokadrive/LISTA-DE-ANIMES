@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="Drive de Animes 2025">
-  <meta property="og:description" content="Abre em até 4s • Com ou sem anúncio">
+  <meta property="og:title" content="Drive de Animes 2025 - +1000 Títulos Dublado & Legendado">
+  <meta property="og:description" content="Abre só depois do anúncio fechar • Máxima receita • 100% no iPhone">
   <meta property="og:image" content="https://i.postimg.cc/CKX5Zsm0/1-pg.jpg">
   <meta name="theme-color" content="#ffa500">
   <title>Drive de Animes 2025</title>
@@ -92,16 +92,16 @@
     <i class="fas fa-search search-icon"></i>
     <input type="text" id="searchInput" placeholder="Pesquisar anime...">
   </div>
-  <div class="stats" id="stats">Carregando animes...</div>
+  <div class="stats" id="stats">Carregando...</div>
   <div class="grid" id="grid"></div>
 
   <div id="adOverlay">
     <i class="fas fa-circle-notch fa-spin"></i>
-    <h2>Aguarde um instante...</h2>
+    <h2>Aguarde o anúncio fechar...</h2>
   </div>
 
 <script>
-// === SUA LISTA COMPLETA JÁ DENTRO ===
+// === LISTA COMPLETA DE ANIMES (já organizada) ===
 const rawAnimes = [
   {"title":"0-Saiji Start Dash Monogatari","url":"https://drive.google.com/file/d/1_q02tIjacvIYXjFWC-pYz4WTVFCvm4qn/view","dubbed":false,"description":"Legendado"},
   {"title":"100-man no Inochi no Ue ni Ore wa Tatteiru 2nd Season","url":"https://drive.google.com/drive/folders/1ZlD-gxhQ6e_FFWILMXA145DkwPmne8wO?usp=sharing","dubbed":false,"description":"Legendado"},
@@ -204,7 +204,7 @@ const rawAnimes = [
   {"title":"The God of High School","url":"https://drive.google.com/drive/folders/1AOCZELV-SrFNHixl2o7WeFgERoxhZPhO?usp=sharing","dubbed":false,"description":"Legendado"},
   {"title":"The King of Pings","url":"https://drive.google.com/file/d/1jZelC3pDUbbq6A4oaavt8x2kAWmMyEwq/view?usp=drivesdk","dubbed":false,"description":"Legendado"},
   {"title":"The Witcher: Sereias das Profundezas","url":"https://ouo.io/PdVHzv","dubbed":true,"description":"Dublado"},
-  {"title":"The Witcher: Sirens Of The Deep (Dub Japonês) 2025","url":"https://drive.google.com/file/d/1IAxxwYOAhFCELdPykhCF4KDD58vu7-0Nz/view","dubbed":true,"description":"Dublado Japonês"},
+  {"title":"The Witcher: Sirens Of The Deep (Dub Japonês) 2025","url":"https://drive.google.com/file/d/1IAxxwYOAhFCELdPykhCF4kD58vu7-0Nz/view","dubbed":true,"description":"Dublado Japonês"},
   {"title":"Tomo chan is a Girl!","url":"https://drive.google.com/drive/u/0/folders/16W7rFMDCHrET7HK-X-M7GFiYIGGzmnAK","dubbed":true,"description":"Dublado e Legendado"},
   {"title":"Toradora","url":"https://drive.google.com/drive/u/0/folders/1S22cwAeE-kkXu4bfDclpVCc--AbeWp5Y","dubbed":false,"description":"Legendado"},
   {"title":"Tsukihime","url":"https://drive.google.com/drive/u/0/folders/1TIPo368XZUBJvU2wzJW9Wi8_u3SU30Sv","dubbed":true,"description":"Dublado"},
@@ -254,11 +254,12 @@ function getAudioText(a){ const t=getAudioType(a); return t==="both"?"Dublado + 
 let favs = JSON.parse(localStorage.getItem("animeFavs") || "[]");
 let currentFilter = "all";
 
-// FUNÇÃO ULTRA-RÁPIDA (abre em máx 3.8s)
+// === FUNÇÃO FINAL: ABRE SÓ QUANDO O ANÚNCIO FECHAR ===
 async function openWithAd(anime) {
   if (!anime.url || anime.url === "#" || anime.url === "") { alert("Link em breve"); return; }
+
   const overlay = document.getElementById("adOverlay");
-  overlay.innerHTML = `<i class="fas fa-circle-notch fa-spin"></i><h2>Aguarde um instante...</h2>`;
+  overlay.innerHTML = `<i class="fas fa-circle-notch fa-spin"></i><h2>Aguarde o anúncio fechar...</h2>`;
   overlay.classList.add("show");
 
   let popup = null;
@@ -269,7 +270,7 @@ async function openWithAd(anime) {
         <body style="margin:0;height:100vh;background:#121212;color:#ffa500;font-family:system-ui;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px">
           <div style="width:56px;height:56px;border:6px solid #333;border-top:6px solid #ffa500;border-radius:50%;animation:s 1s linear infinite;margin-bottom:20px"></div>
           <h1 style="font-size:1.6rem">Carregando ${anime.title.replace(/</g,"&lt;")}</h1>
-          <p style="color:#aaa">Aguarde um instante...</p>
+          <p style="color:#aaa">Aguarde o anúncio fechar...</p>
           <style>@keyframes s{to{transform:rotate(360deg)}}</style>
         </body></html>`);
     }
@@ -278,16 +279,32 @@ async function openWithAd(anime) {
   const finalUrl = anime.url.includes("drive.google.com") && !anime.url.includes("usp=")
     ? anime.url + (anime.url.includes("?") ? "&" : "?") + "usp=sharing" : anime.url;
 
-  const abrir = () => {
-    if (popup && !popup.closed) popup.location.href = finalUrl;
-    else window.open(finalUrl, "_blank");
+  const abrirLink = () => {
+    if (popup && !popup.closed) {
+      popup.location.href = finalUrl;
+    } else {
+      window.open(finalUrl, "_blank");
+    }
     overlay.classList.remove("show");
   };
 
-  const timeout = setTimeout(abrir, 3800);
+  const fallback = setTimeout(() => {
+    overlay.innerHTML = `<i class="fas fa-exclamation-triangle"></i><h2>Anúncio demorou... abrindo mesmo assim!</h2>`;
+    setTimeout(abrirLink, 1200);
+  }, 3800);
 
   if (typeof show_10011677 === "function") {
-    try { await show_10011677(); clearTimeout(timeout); setTimeout(abrir, 800); } catch(e) {}
+    try {
+      await show_10011677();
+      clearTimeout(fallback);
+      abrirLink();
+    } catch(e) {
+      clearTimeout(fallback);
+      setTimeout(abrirLink, 800);
+    }
+  } else {
+    clearTimeout(fallback);
+    setTimeout(abrirLink, 800);
   }
 }
 
@@ -338,8 +355,7 @@ document.querySelectorAll(".filter-btn").forEach(btn=>{
 });
 
 document.getElementById("searchInput").oninput = () => render();
-
-render(); // inicia o carregamento
+render();
 </script>
 </body>
 </html>
