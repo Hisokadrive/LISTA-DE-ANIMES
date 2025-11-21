@@ -55,7 +55,7 @@
       text-shadow:0 2px 8px rgba(0,0,0,0.8)}
     .audio-badge{position:absolute;top:12px;left:12px;padding:8px 14px;border-radius:12px;
       font-size:0.82rem;font-weight:800;z-index:2;text-transform:uppercase;letter-spacing:1px;
-      backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,255,0.1)}
+      backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,0.1)}
     .dubbed{background:rgba(29,185,84,0.95);color:white;box-shadow:0 0 20px #1db954}
     .subbed{background:rgba(13,139,255,0.95);color:white;box-shadow:0 0 20px #0d8bff}
     .both{background:rgba(156,39,176,0.95);color:white;box-shadow:0 0 20px #9c27b0}
@@ -101,7 +101,7 @@
   </div>
 
 <script>
-// LISTA COMPLETA COM LINKS CRIPTOGRAFADOS (Safari NUNCA vê o URL real)
+// LISTA COMPLETA COM LINKS CRIPTOGRAFADOS
 const rawAnimes = [
 {"title":"0-Saiji Start Dash Monogatari","u":"aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xX3EwMnRJamFjdklZWGpGV0MtcFl6NFdUVkZDdm00cW4vdmlldw==","d":false},
 {"title":"100-man no Inochi no Ue ni Ore wa Tatteiru 2nd Season","u":"aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2RyaXZlL2ZvbGRlcnMvMVpsRC1neGhRNmVfRkZXSUxNWEExNDVEa3dQbW5lOHdPP3VzcD1zaGFyaW5n","d":false},
@@ -142,7 +142,7 @@ const rawAnimes = [
 {"title":"Demon Slayer: Kimetsu no Yaiba Season 4","u":"aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2RyaXZlL2ZvbGRlcnMvMThXNUVKVTZMVWJOUnVnNVVISFBNZWtUWVBOYWxnWD91c3A9ZHJpdmVfbGluaw==","d":false},
 {"title":"Devil May Cry","u":"aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xUG53SFROWmZYTGxxbzJjNHVKL3hEWTFFd0VJXzdtRi92aWV3","d":true},
 {"title":"Digimon Tamers","u":"aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2RyaXZlL2ZvbGRlcnMvMVVDVGRjSVg2TlAzX1BHUXZCYW9NTjlRNlZGa3ZuM1VUP3VzcD1kcml2ZV9saW5r","d":false},
-{"title":"Dororo Compilação (1969-2019)","u":"aHR0cHM6Ly9kcml2VzLmdvb2dsZS5jb20vZHJpdmUvdS8xL2ZvbGRlcnMvMXJxMGJCWGNoMlFqeDd2cmFseERUVFFsSG9BN2lIY0lhUQ==","d":false},
+{"title":"Dororo Compilação (1969-2019)","u":"aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2RyaXZlL3UvMS9mb2xkZXJzLzFycTBiQnhjaDJRang3dnJhbHhEVFRRbEhvQTdpSGNJYVE=","d":false},
 {"title":"Fate/stay night: Heaven's Feel I. Presage Flower","u":"aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xWGxQOVNGU1FzTzJCcHV3MjJfNFZHZVp0N0xhQ3VNaS92aWV3P3VzcD1zaGFyaW5n","d":false},
 {"title":"Fate/stay night: Heaven's Feel II. Lost Butterfly","u":"aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xRWZzbFAyUm5rV1d6MWhaQVBsU2syYkhMVFJLVTNlVVEvdmlldz91c3A9c2hhcmluZw==","d":false},
 {"title":"Fate/stay night: Heaven's Feel III. Spring Song","u":"aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xMUxENlVOaVFsZzBiTWVvV0VBQnhFdkFhNURjakRMeUwvZGlldz91c3A9c2hhcmluZw==","d":false},
@@ -150,10 +150,10 @@ const rawAnimes = [
 {"title":"Fullmetal Alchemist","u":"aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2RyaXZlL2ZvbGRlcnMvMTNTTkw5eGlVZTM0UE1nWWhJWFFXOHFUNnFJYVUzcmFw","d":false},
 {"title":"Fullmetal Alchemist: Brotherhood","u":"aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2RyaXZlL2ZvbGRlcnMvMUtXTjJ6aXRRNmUwQUtvRHlvem5tbUpkYndweWtkbVRX","d":false},
 {"title":"Game Sekai wa Mob ni Kibishii Sekai desu","u":"aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2RyaXZlL2ZvbGRlcnMvMVB1ckpzQXdoTV9fXzI0RDBXMTZJYkNGWjh2dkxrWmNqP3VzcD1kcml2ZV9saW5r","d":false},
-{"title":"Goblin Slayer","u":"aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2RyaXZlL2ZvbGRlcnMvMTU1OXpKdE9lOFRPaGRnWTRxT1l4b2tkZmp1SGpYUHVL","d":false},
+{"title":"Goblin Slayer","u":"aHR0cHM6Lz9kcml2ZS5nb29nbGUuY29tL2RyaXZlL2ZvbGRlcnMvMTU1OXpKdE9lOFRPaGRnWTRxT1l4b2tkZmp1SGpYUHVL","d":false},
 {"title":"Great Pretender - Razbliuto Filme 2024","u":"aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xNnZiTHRCVGlRd3dseFdTNGxadVN2ZWdjZTlidlVCWUcvdmlldw==","d":false},
 {"title":"Gurren Lagann The Movie: Childhood's End","u":"aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xc041V3N6aHo5RWp3bVRmbkpnZVh6LWJCdEZfQTAzZlkvZGlldz91c3A9ZHJpdmVfbGluaw==","d":false},
-{"title":"Hajime no Ippo Champion Road – Filme 2003","u":"aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xandlbExuWk9MMUpkLUpSbmtDM3ZZRGxzdWg5bG8zdkovZGlldw==","d":false},
+{"title":"Hajime no Ippo Champion Road – Filme 2003","u":"aHR0cHM6Ly9kcml2ZS5nb29nbGUuYp0L2ZpbGUvZC8xandlbExuWk9MMUpkLUpSbmtDM3ZZRGxzdWg5bG8zdkovZGlldw==","d":false},
 {"title":"Horimiya","u":"aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2RyaXZlL2ZvbGRlcnMvMUw2SWREVFRINjJEU1Fidk1vS2hvNUlicHhv dUhiMzlZ","d":true},
 {"title":"HUNTER×HUNTER (1999)","u":"aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2RyaXZlL2ZvbGRlcnMvMW9IUlVMV1J0RDFFMURQdDFRTHM2Nm8wREJURjR4X0Ju","d":false},
 {"title":"Isekai Shikkaku","u":"aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2RyaXZlL2ZvbGRlcnMvMUc1QnpOSzRiMlppWUpCNXozSjBublV2Mk50cVR4eEtL","d":false},
@@ -226,28 +226,37 @@ function decode(b64){
 const animes = rawAnimes.map((a,i)=>({...a,id:i,title:a.title,url:"",dubbed:a.d,description:a.d?"Dublado e/ou Legendado":"Legendado"}));
 let pendingAnime = null;
 
-// CACHE DE CAPAS
-const CACHE_NAME = "anime-covers-v3";
+// === CACHE DE CAPAS ===
+const CACHE_NAME = "anime-covers-v4";
 let coverCache = new Map();
-try { const s = localStorage.getItem(CACHE_NAME); if(s) coverCache = new Map(JSON.parse(s)); } catch(e) {}
+try { const s = localStorage.getItem(CACHE_NAME); if(s) coverCache = new Map(JSON.parse(s)); } catch(e) { localStorage.removeItem(CACHE_NAME); }
 
+// === FUNÇÃO CORRIGIDA — NUNCA MAIS TRAVA ===
 async function getCover(title){
   if(coverCache.has(title)) return coverCache.get(title);
-  const clean = title.replace(/[-–—:]/g," ").replace(/\(.*?\)/g,"").replace(/Season \d+.*/gi,"").replace(/Movie|Filme.*/gi,"").trim();
+
+  const clean = title.replace(/[-–—:]/g," ").replace(/\(.*?\)/g,"").replace(/Season \d+.*/gi,"").replace(/Movie|Filme.*|O Filme.*/gi,"").trim();
+
   try{
-    const r = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(clean)}&limit=1&sfw`);
-    if(r.ok){
-      const j = await r.json();
-      const url = j.data?.[0]?.images?.jpg?.large_image_url || `https://via.placeholder.com/400x600/1e1e1e/ffa500?text=${encodeURIComponent(title.substring(0,25))}`;
-      coverCache.set(title,url);
-      localStorage.setItem(CACHE_NAME, JSON.stringify(Array.from(coverCache)));
-      return url;
+    const res = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(clean)}&limit=1&sfw`, {
+      headers: { "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" }
+    });
+    if(res.ok){
+      const data = await res.json();
+      if(data.data && data.data.length > 0){
+        const url = data.data[0].images.jpg.large_image_url;
+        coverCache.set(title, url);
+        localStorage.setItem(CACHE_NAME, JSON.stringify(Array.from(coverCache)));
+        return url;
+      }
     }
   }catch(e){}
-  const fb = `https://via.placeholder.com/400x600/1e1e1e/ffa500?text=${encodeURIComponent(title.substring(0,25))}`;
-  coverCache.set(title,fb);
+
+  // Fallback imediato se a API falhar
+  const fallback = `https://via.placeholder.com/400x600/1e1e1e/ffa500?text=${encodeURIComponent(clean.substring(0,22))}`;
+  coverCache.set(title, fallback);
   localStorage.setItem(CACHE_NAME, JSON.stringify(Array.from(coverCache)));
-  return fb;
+  return fallback;
 }
 
 function getAudioType(a){ 
@@ -260,7 +269,6 @@ function getAudioText(a){ const t=getAudioType(a); return t==="both"?"Dublado + 
 let favs = JSON.parse(localStorage.getItem("animeFavs") || "[]");
 let currentFilter = "all";
 
-// FUNÇÃO FINAL – 100% PROVA DE SAFARI
 function openWithAd(anime){
   if(!anime.u || anime.u === "#"){ alert("Link em breve"); return; }
   pendingAnime = anime;
@@ -311,7 +319,6 @@ function go(popup){
   pendingAnime = null;
 }
 
-// RENDERIZAÇÃO
 async function render(){
   const grid = document.getElementById("grid");
   grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:100px;color:#666"><i class="fas fa-spinner fa-spin fa-3x"></i><p>Carregando capas...</p></div>`;
