@@ -1517,19 +1517,27 @@
 
     // MANTIDO: Lógica de interceptação de cliques para anúncios
     document.addEventListener('click', (e) => {
-      const link = e.target.closest('.anime-link');
-      if (link) {
-        e.preventDefault();
-        const href = link.getAttribute('href');
-        if (href === '#') {
-          alert('Link em breve!');
-          return;
-        }
-        showAd().then(() => {
-          window.open(href, '_blank');
-        });
+  const link = e.target.closest('.anime-link');
+  if (link) {
+    e.preventDefault();
+    const href = link.getAttribute('href');
+
+    // 1. Abre a aba IMEDIATAMENTE (O iPhone permite isso porque é no clique)
+    const novaAba = window.open('about:blank', '_blank');
+    if (novaAba) {
+      novaAba.document.write('<body style="background:#121212; color:white; display:flex; align-items:center; justify-content:center; height:100vh; font-family:sans-serif;"><h3>Carregando link... Aguarde o anúncio.</h3></body>');
+    }
+
+    // 2. Roda o anúncio
+    showAd().then(() => {
+      if (novaAba) {
+        novaAba.location.href = href; // Redireciona a aba que já estava aberta
+      } else {
+        window.location.href = href; // Fallback caso a aba tenha falhado
       }
     });
+  }
+});
 
     // NOVO: Lógica dos botões de filtro
     document.querySelectorAll('.filter-btn').forEach(btn => {
