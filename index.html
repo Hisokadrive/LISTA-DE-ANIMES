@@ -1515,12 +1515,12 @@
       });
     }
 
- // Substitua o bloco de cliques por este:
+// === LÓGICA PARA ABRIR NO APLICATIVO (ANDROID E IPHONE) ===
 document.addEventListener('click', (e) => {
   const link = e.target.closest('.anime-link') || e.target.closest('.anime-item a');
   
   if (link) {
-    e.preventDefault();
+    e.preventDefault(); 
     const href = link.getAttribute('href');
 
     if (href === '#' || !href) {
@@ -1528,25 +1528,27 @@ document.addEventListener('click', (e) => {
       return;
     }
 
-    // Feedback visual
     const adFeedback = document.getElementById('adFeedback');
     if (adFeedback) {
       adFeedback.innerText = "Carregando anúncio...";
       adFeedback.style.display = 'block';
     }
 
-    // Chama seu script de anúncio original
+    // Executa o seu anúncio original
     showAd().then(() => {
       if (adFeedback) adFeedback.style.display = 'none';
 
-      // Janela de confirmação (estilo antigo que você gosta)
-      if (confirm("Anúncio concluído! Deseja acessar o Drive de Animes agora?")) {
-        // Isso força o iPhone a decidir entre abrir no navegador ou no App do Drive
-        window.location.href = href;
+      // Janela de confirmação nativa
+      if (confirm("Anúncio concluído! Deseja abrir o link no Google Drive?")) {
+        
+        // MUDANÇA CRUCIAL: 
+        // No Android/iPhone, window.location.assign ou .href 
+        // permite que o sistema intercepte o link e abra o APP.
+        window.location.assign(href);
       }
     }).catch(() => {
-      // Caso o anúncio falhe por bloqueadores
-      window.location.href = href;
+      // Se o anúncio falhar, tenta abrir direto na mesma aba
+      window.location.assign(href);
     });
   }
 });
