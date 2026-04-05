@@ -1515,26 +1515,29 @@
       });
     }
 
-    // MANTIDO: Lógica de interceptação de cliques para anúncios
-    document.addEventListener('click', (e) => {
+    // Altere a parte final do seu script por esta:
+document.addEventListener('click', (e) => {
   const link = e.target.closest('.anime-link');
   if (link) {
     e.preventDefault();
     const href = link.getAttribute('href');
-
-    // 1. Abre a aba IMEDIATAMENTE (O iPhone permite isso porque é no clique)
-    const novaAba = window.open('about:blank', '_blank');
-    if (novaAba) {
-      novaAba.document.write('<body style="background:#121212; color:white; display:flex; align-items:center; justify-content:center; height:100vh; font-family:sans-serif;"><h3>Carregando link... Aguarde o anúncio.</h3></body>');
+    
+    if (href === '#') {
+      alert('Link em breve!');
+      return;
     }
 
-    // 2. Roda o anúncio
+    // Mostra o feedback de carregamento
+    const adFeedback = document.getElementById('adFeedback');
+    adFeedback.innerHTML = "Carregando anúncio... Após fechar, clique no link novamente.";
+    adFeedback.style.display = 'block';
+
     showAd().then(() => {
-      if (novaAba) {
-        novaAba.location.href = href; // Redireciona a aba que já estava aberta
-      } else {
-        window.location.href = href; // Fallback caso a aba tenha falhado
-      }
+      // No iPhone, após o anúncio, o ideal é transformar o feedback em um botão real
+      adFeedback.innerHTML = `<button onclick="window.open('${href}', '_blank')" 
+        style="background: #ffa500; color: #000; border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer;">
+        CLIQUE AQUI PARA ACESSAR O DRIVE
+      </button>`;
     });
   }
 });
