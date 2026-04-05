@@ -1515,13 +1515,13 @@
       });
     }
 
-// === LÓGICA PARA ABRIR NO APLICATIVO (ANDROID E IPHONE) ===
+// === LÓGICA PARA ABRIR NO APLICATIVO (TELEGRAM MINI APP - ANDROID E IPHONE) ===
 document.addEventListener('click', (e) => {
-  const link = e.target.closest('.anime-link') || e.target.closest('.anime-item a');
+  const link = e.target.closest('.anime-link') || e.target.closest('.anime-item a') || e.target.closest('.anime-item');
   
   if (link) {
     e.preventDefault(); 
-    const href = link.getAttribute('href');
+    const href = link.getAttribute('href') || link.getAttribute('data-url');
 
     if (href === '#' || !href) {
       alert('Link em breve!');
@@ -1538,17 +1538,28 @@ document.addEventListener('click', (e) => {
     showAd().then(() => {
       if (adFeedback) adFeedback.style.display = 'none';
 
-      // Janela de confirmação nativa
+      // Janela de confirmação nativa (o gesto que o iOS exige)
       if (confirm("Anúncio concluído! Deseja abrir o link no Google Drive?")) {
         
-        // MUDANÇA CRUCIAL: 
-        // No Android/iPhone, window.location.assign ou .href 
-        // permite que o sistema intercepte o link e abra o APP.
-        window.location.assign(href);
+        // Verifica se o script do Telegram está disponível
+        const tg = window.Telegram ? window.Telegram.WebApp : null;
+
+        if (tg && tg.openLink) {
+          // MÉTODO OFICIAL TELEGRAM: Abre links externos e apps (Drive) no iPhone/Android
+          tg.openLink(href);
+        } else {
+          // Fallback para navegadores comuns
+          window.location.href = href;
+        }
       }
     }).catch(() => {
-      // Se o anúncio falhar, tenta abrir direto na mesma aba
-      window.location.assign(href);
+      // Se o anúncio falhar, tenta abrir direto
+      const tg = window.Telegram ? window.Telegram.WebApp : null;
+      if (tg && tg.openLink) {
+        tg.openLink(href);
+      } else {
+        window.location.href = href;
+      }
     });
   }
 });
