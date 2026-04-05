@@ -1515,33 +1515,51 @@
       });
     }
 
-    // Altere a parte final do seu script por esta:
+   // === LÓGICA DE CLIQUE E REDIRECIONAMENTO COM CONFIRMAÇÃO (ESTILO ANTIGO) ===
 document.addEventListener('click', (e) => {
-  const link = e.target.closest('.anime-link');
+  const link = e.target.closest('.anime-link') || e.target.closest('.anime-item a');
+  
   if (link) {
-    e.preventDefault();
+    e.preventDefault(); // Para o clique para rodar o anúncio primeiro
     const href = link.getAttribute('href');
-    
-    if (href === '#') {
-      alert('Link em breve!');
+
+    if (href === '#' || !href) {
+      alert('Este link ainda não está disponível.');
       return;
     }
 
-    // Mostra o feedback de carregamento
+    // 1. Mostra o feedback que o anúncio está carregando
     const adFeedback = document.getElementById('adFeedback');
-    adFeedback.innerHTML = "Carregando anúncio... Após fechar, clique no link novamente.";
-    adFeedback.style.display = 'block';
+    if (adFeedback) {
+      adFeedback.innerText = "Carregando anúncio...";
+      adFeedback.style.display = 'block';
+    }
 
-    showAd().then(() => {
-      // No iPhone, após o anúncio, o ideal é transformar o feedback em um botão real
-      adFeedback.innerHTML = `<button onclick="window.open('${href}', '_blank')" 
-        style="background: #ffa500; color: #000; border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer;">
-        CLIQUE AQUI PARA ACESSAR O DRIVE
-      </button>`;
-    });
+    // 2. Chama a função de anúncio original do seu SDK
+    showAd()
+      .then(() => {
+        if (adFeedback) adFeedback.style.display = 'none';
+
+        // 3. A MENSAGEM DE REDIRECIONAMENTO (O "Aceitar" que você mencionou)
+        // O confirm() é nativo e o iPhone permite abrir o link após o clique no "OK"
+        const aceitou = confirm("Anúncio finalizado! Deseja ser redirecionado para o link do anime?");
+        
+        if (aceitou) {
+          window.open(href, '_blank');
+        }
+      })
+      .catch((error) => {
+        console.error("Erro no anúncio:", error);
+        if (adFeedback) adFeedback.style.display = 'none';
+        // Se o anúncio falhar, ele pergunta se quer abrir direto
+        if (confirm("O anúncio não carregou, mas você pode prosseguir. Abrir link?")) {
+          window.open(href, '_blank');
+        }
+      });
   }
 });
 
+// Verifique se a sua função showAd() termina com resolve() para que o .then() acima funcione
     // NOVO: Lógica dos botões de filtro
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
