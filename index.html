@@ -1515,50 +1515,41 @@
       });
     }
 
-   // === LÓGICA DE CLIQUE E REDIRECIONAMENTO COM CONFIRMAÇÃO (ESTILO ANTIGO) ===
+ // Substitua o bloco de cliques por este:
 document.addEventListener('click', (e) => {
   const link = e.target.closest('.anime-link') || e.target.closest('.anime-item a');
   
   if (link) {
-    e.preventDefault(); // Para o clique para rodar o anúncio primeiro
+    e.preventDefault();
     const href = link.getAttribute('href');
 
     if (href === '#' || !href) {
-      alert('Este link ainda não está disponível.');
+      alert('Link em breve!');
       return;
     }
 
-    // 1. Mostra o feedback que o anúncio está carregando
+    // Feedback visual
     const adFeedback = document.getElementById('adFeedback');
     if (adFeedback) {
       adFeedback.innerText = "Carregando anúncio...";
       adFeedback.style.display = 'block';
     }
 
-    // 2. Chama a função de anúncio original do seu SDK
-    showAd()
-      .then(() => {
-        if (adFeedback) adFeedback.style.display = 'none';
+    // Chama seu script de anúncio original
+    showAd().then(() => {
+      if (adFeedback) adFeedback.style.display = 'none';
 
-        // 3. A MENSAGEM DE REDIRECIONAMENTO (O "Aceitar" que você mencionou)
-        // O confirm() é nativo e o iPhone permite abrir o link após o clique no "OK"
-        const aceitou = confirm("Anúncio finalizado! Deseja ser redirecionado para o link do anime?");
-        
-        if (aceitou) {
-          window.open(href, '_blank');
-        }
-      })
-      .catch((error) => {
-        console.error("Erro no anúncio:", error);
-        if (adFeedback) adFeedback.style.display = 'none';
-        // Se o anúncio falhar, ele pergunta se quer abrir direto
-        if (confirm("O anúncio não carregou, mas você pode prosseguir. Abrir link?")) {
-          window.open(href, '_blank');
-        }
-      });
+      // Janela de confirmação (estilo antigo que você gosta)
+      if (confirm("Anúncio concluído! Deseja acessar o Drive de Animes agora?")) {
+        // Isso força o iPhone a decidir entre abrir no navegador ou no App do Drive
+        window.location.href = href;
+      }
+    }).catch(() => {
+      // Caso o anúncio falhe por bloqueadores
+      window.location.href = href;
+    });
   }
 });
-
 // Verifique se a sua função showAd() termina com resolve() para que o .then() acima funcione
     // NOVO: Lógica dos botões de filtro
     document.querySelectorAll('.filter-btn').forEach(btn => {
